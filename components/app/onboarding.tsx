@@ -129,7 +129,7 @@ function Art({ step }: { step: number; bg?: string }) {
   ][step];
   return (
     <div className={cn("grid h-44 w-44 place-items-center rounded-full", items.tone)} aria-hidden>
-      {items.Icon ? <items.Icon size={72} strokeWidth={1.6} /> : <LogoMark size={96} />}
+      {items.Icon ? <items.Icon size={72} strokeWidth={1.6} /> : <LogoMark size={128} className="rounded-[28px]" />}
     </div>
   );
 }

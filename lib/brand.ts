@@ -3,7 +3,7 @@
  * Every "{brand}" in messages/*.json is replaced with this name at load time.
  */
 export const BRAND = {
-  name: "IBSCalm",
+  name: "IBScalm",
   domain: "ibscalm.com",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??

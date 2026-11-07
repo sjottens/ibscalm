@@ -223,6 +223,21 @@ html:has(.site-header) {
   transform: none;
 }
 
+/* Logo: navy lettering needs a light plate on dark backgrounds. */
+.logo-plate {
+  border-radius: 10px;
+}
+:root[data-theme="dark"] .logo-plate {
+  background: #fff7f0;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-plate {
+    background: #fff7f0;
+    padding: 3px 8px;
+  }
+}
+
 /* ── Surfaces ────────────────────────────────────────────────────────── */
 
 .paper-card {

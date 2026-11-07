@@ -1,4 +1,4 @@
-# IBSCalm — PDS-dagboek
+# IBScalm — PDS-dagboek
 
 Een mobile-first web-app voor mensen met prikkelbare darm (PDS). Je houdt eten, klachten, stress en slaap bij, en na een paar weken laat de app zien of je klachten vooral lijken samen te hangen met **eten**, **stress** of **slaap**.
 

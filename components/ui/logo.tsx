@@ -1,37 +1,37 @@
+import Image from "next/image";
 import { BRAND } from "@/lib/brand";
 import { cn } from "@/lib/cn";
 
+/** Horizontal logo (public/logos/logo-horizontaal@2x.png, 1552×512). */
+const LOGO = { src: "/logos/logo-horizontaal@2x.png", width: 1552, height: 512 };
+/** Rounded app icon (public/logos/icon-rounded-512.png). */
+const ICON = { src: "/logos/icon-rounded-512.png", width: 512, height: 512 };
+
+const HEIGHT = { sm: 30, md: 38, lg: 56, xl: 72 } as const;
+
 /**
- * Wordmark: a calm wave mark (a gut settling down) next to the name.
- * "IBS" in bold navy, "Calm" in regular weight — readable at any size.
+ * The brand logo. In dark mode it sits on a light plate (`.logo-plate`), because the navy
+ * lettering would otherwise disappear against the dark background.
  */
-export function Logo({ className, size = "md" }: { className?: string; size?: "sm" | "md" | "lg" | "xl" }) {
-  const text = { sm: "text-[1.2rem]", md: "text-[1.45rem]", lg: "text-[2.2rem]", xl: "text-[3rem]" }[size];
-  const mark = { sm: 26, md: 30, lg: 44, xl: 60 }[size];
-  const split = BRAND.name.match(/^([A-Z]+)(.*)$/);
+export function Logo({
+  className,
+  size = "md",
+  priority = false,
+}: {
+  className?: string;
+  size?: keyof typeof HEIGHT;
+  priority?: boolean;
+}) {
+  const h = HEIGHT[size];
+  const w = Math.round((LOGO.width / LOGO.height) * h);
   return (
-    <span className={cn("inline-flex items-center gap-2 leading-none", text, className)}>
-      <LogoMark size={mark} />
-      <span className="tracking-[-0.01em]">
-        {split ? (
-          <>
-            <span className="font-extrabold">{split[1]}</span>
-            <span className="font-medium">{split[2]}</span>
-          </>
-        ) : (
-          <span className="font-extrabold">{BRAND.name}</span>
-        )}
-      </span>
+    <span className={cn("logo-plate inline-flex shrink-0 items-center", className)}>
+      <Image src={LOGO.src} alt={BRAND.name} width={w} height={h} priority={priority} sizes={`${w}px`} className="block h-auto" style={{ width: w, height: h }} />
     </span>
   );
 }
 
-/** App mark: rounded navy square with a gentle wave settling into a straight line. */
+/** Square app icon (decorative by default). */
 export function LogoMark({ className, size = 40 }: { className?: string; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" className={className} aria-hidden>
-      <rect width="48" height="48" rx="12" fill="#1b2b48" />
-      <path d="M10 26c3.5-6 7-6 10 0s5.5 4.5 8 0 5-3 10-1" stroke="#f5d33d" strokeWidth="4" fill="none" strokeLinecap="round" />
-    </svg>
-  );
+  return <Image src={ICON.src} alt="" aria-hidden width={size} height={size} sizes={`${size}px`} className={cn("block", className)} />;
 }

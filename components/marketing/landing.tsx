@@ -32,7 +32,7 @@ export async function SiteHeader() {
     <header className="site-header sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur-md supports-[not(backdrop-filter:blur(1px))]:bg-paper">
       <div className="mx-auto flex min-h-[4.5rem] w-full max-w-6xl items-center justify-between gap-2 px-4 pt-[env(safe-area-inset-top)] sm:gap-4 sm:px-8">
         <Link href="/" aria-label={`${BRAND.name} — home`} className="inline-flex min-h-12 items-center rounded-md">
-          <Logo size="md" />
+          <Logo size="md" priority />
         </Link>
         <nav aria-label={locale === "nl" ? "Hoofdnavigatie" : "Main navigation"} className="flex shrink-0 items-center gap-1">
           <ul className="hidden items-center gap-1 md:flex">
@@ -286,9 +286,7 @@ export async function SiteFooter() {
     <footer className="bg-ink text-paper">
       <div className={`${container} grid gap-8 py-12 md:grid-cols-[2fr_1fr]`}>
         <div className="max-w-xl">
-          <span className="inline-flex items-center rounded-md bg-white px-2 py-1 text-[#1b2b48]">
-            <Logo size="sm" />
-          </span>
+          <Logo size="sm" className="rounded-lg bg-white px-2 py-1" />
           <p className="mt-4 leading-relaxed opacity-85">{t("footerDisclaimer")}</p>
         </div>
         <nav aria-label="Footer">

@@ -34,7 +34,15 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       locale: locale === "nl" ? "nl_NL" : "en_GB",
     },
     twitter: { card: "summary_large_image", title: t("title"), description: t("description") },
-    icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }], apple: "/icons/180" },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/logos/ibscalm-icon.svg", type: "image/svg+xml" },
+        { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      ],
+      apple: { url: "/logos/apple-touch-icon-180.png", sizes: "180x180" },
+    },
   };
 }
 

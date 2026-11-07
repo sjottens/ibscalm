@@ -82,7 +82,7 @@ test.describe("onboarding", () => {
     // And back into the app via the website header button.
     await page.getByRole("link", { name: "Open app" }).first().click();
     await expect(page).toHaveURL(/\/vandaag$/);
-    await expect(page.getByRole("link", { name: /IBSCalm — naar de website/ })).toBeVisible();
+    await expect(page.getByRole("link", { name: /IBScalm — naar de website/ })).toBeVisible();
   });
 
   test("can be skipped", async ({ page }) => {
@@ -218,6 +218,6 @@ test.describe("data", () => {
   test("rejects a file that is not a backup", async ({ page }) => {
     await page.getByRole("link", { name: "Instellingen" }).click();
     await page.getByTestId("import-input").setInputFiles({ name: "x.json", mimeType: "application/json", buffer: Buffer.from('{"hello":1}') });
-    await expect(page.getByText("Dit is geen back-up van IBSCalm.")).toBeVisible();
+    await expect(page.getByText("Dit is geen back-up van IBScalm.")).toBeVisible();
   });
 });

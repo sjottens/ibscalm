@@ -2,7 +2,7 @@
 
 ISO 9241-11:2018 definieert usability als *de mate waarin een systeem door specifieke gebruikers gebruikt kan worden om specifieke doelen te bereiken met doeltreffendheid (effectiveness), efficiëntie (efficiency) en tevredenheid (satisfaction), in een specifieke gebruikscontext*.
 
-Dit document legt die vier onderdelen vast voor IBSCalm: de gebruikscontext, de meetbare doelen en hoe elk doel wordt gecontroleerd. De ontwerpprincipes uit ISO 9241-110 (interactieprincipes) en WCAG 2.2 AA dienen als ondersteunende richtlijnen.
+Dit document legt die vier onderdelen vast voor IBScalm: de gebruikscontext, de meetbare doelen en hoe elk doel wordt gecontroleerd. De ontwerpprincipes uit ISO 9241-110 (interactieprincipes) en WCAG 2.2 AA dienen als ondersteunende richtlijnen.
 
 ---
 
@@ -55,7 +55,7 @@ Ontwerpkeuzes die tevredenheid ondersteunen: een rustige, professionele uitstral
 
 ## 3. Ondersteunende ergonomische eisen (ISO 9241-110 en WCAG 2.2 AA)
 
-| Principe (ISO 9241-110) | Toepassing in IBSCalm | Controle |
+| Principe (ISO 9241-110) | Toepassing in IBScalm | Controle |
 |---|---|---|
 | Geschiktheid voor de taak | Alleen de velden die nodig zijn; extra's (notitie, Bristol, wearable) zijn optioneel | ontwerp |
 | Zelfbeschrijvendheid | Elke knop heeft een tekstlabel; schaalwoorden bij ernst ("matig", "flink") | review |
