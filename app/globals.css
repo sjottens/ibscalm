@@ -189,6 +189,34 @@ body {
 
 /* Component classes live in the components layer, so Tailwind utilities can still override them. */
 @layer components {
+/* ── FAQ accordion: smooth slide open/closed (pure CSS) ──────────────────
+   Modern browsers animate the height of the details content; older browsers
+   simply open instantly. Reduced-motion users get the instant version too. */
+.faq-item {
+  interpolate-size: allow-keywords;
+}
+.faq-item::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    block-size 0.35s var(--ease-out-soft),
+    content-visibility 0.35s allow-discrete;
+}
+.faq-item[open]::details-content {
+  block-size: auto;
+}
+.faq-answer {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s var(--ease-out-soft);
+}
+.faq-item[open] .faq-answer {
+  opacity: 1;
+  transform: none;
+}
+
 /* ── Surfaces ────────────────────────────────────────────────────────── */
 
 .paper-card {

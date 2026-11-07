@@ -234,14 +234,17 @@ export async function Landing() {
         </h2>
         <div className="mt-6 divide-y divide-line border-y border-line">
           {FAQ_KEYS.map((n) => (
-            <details key={n} className="group">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3">
+            <details key={n} className="faq-item group">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 [&::-webkit-details-marker]:hidden">
                 <h3 className="text-lg font-bold">{t(`faq.q${n}`)}</h3>
-                <span aria-hidden className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-paper-deep text-xl transition-transform group-open:rotate-45">
+                <span
+                  aria-hidden
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-paper-deep text-xl transition-[transform,background-color] duration-300 ease-[var(--ease-out-soft)] group-open:rotate-45 group-open:bg-accent group-open:text-[#1b2b48]"
+                >
                   +
                 </span>
               </summary>
-              <p className="pb-5 pr-10 leading-relaxed text-ink-soft">{t(`faq.a${n}`)}</p>
+              <p className="faq-answer pb-5 pr-10 leading-relaxed text-ink-soft">{t(`faq.a${n}`)}</p>
             </details>
           ))}
         </div>
