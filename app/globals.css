@@ -153,6 +153,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
+  overflow-x: clip;
 }
 
 /* Paper grain — an SVG noise texture laid over everything, like ink on uncoated stock. */

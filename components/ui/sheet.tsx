@@ -57,7 +57,7 @@ export function Sheet({
             </Dialog.Overlay>
             <Dialog.Content asChild forceMount {...(description ? {} : { "aria-describedby": undefined })}>
               <motion.div
-                className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[94dvh] w-full max-w-xl flex-col rounded-t-[var(--radius-sheet)] border-[1.5px] border-b-0 border-ink bg-paper shadow-[0_-12px_40px_rgb(18_20_42/0.18)] outline-none"
+                className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[94dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-[var(--radius-sheet)] border-[1.5px] border-b-0 border-ink bg-paper shadow-[0_-12px_40px_rgb(18_20_42/0.18)] outline-none"
                 initial={reduce ? { opacity: 0 } : { y: "100%" }}
                 animate={reduce ? { opacity: 1 } : { y: 0 }}
                 exit={reduce ? { opacity: 0 } : { y: "100%" }}

@@ -88,7 +88,8 @@ export async function Landing() {
       </section>
 
       {/* ── Marquee band ───────────────────────────────────────────── */}
-      <div className="relative -rotate-1 border-y-[2px] border-ink bg-stress py-3" aria-hidden>
+      <div className="overflow-hidden py-4" aria-hidden>
+      <div className="relative -mx-4 -rotate-1 border-y-[2px] border-ink bg-stress py-3">
         <div className="flex w-max animate-[marquee_38s_linear_infinite] gap-8 whitespace-nowrap font-display text-xl font-extrabold text-on-spot">
           {[...marquee, ...marquee].map((m, i) => (
             <span key={i} className="inline-flex items-center gap-8">
@@ -96,6 +97,7 @@ export async function Landing() {
             </span>
           ))}
         </div>
+      </div>
       </div>
 
       {/* ── How it works ───────────────────────────────────────────── */}

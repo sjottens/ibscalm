@@ -62,9 +62,9 @@ export async function PhoneMock() {
         </div>
       </div>
       {/* Floating stickers */}
-      <div className="absolute -left-10 top-24 rotate-[-8deg] rounded-xl border-[2.5px] border-symptom bg-card px-3 py-1.5 font-display text-sm font-extrabold uppercase tracking-[0.08em] text-symptom-ink shadow-lg max-sm:-left-3">
+      <div className="absolute -left-8 -top-3 rotate-[-8deg] rounded-xl border-[2.5px] border-symptom bg-card px-3 py-1.5 font-display text-sm font-extrabold uppercase tracking-[0.08em] text-symptom-ink shadow-lg max-sm:-left-2">
         <span className="inline-flex items-center gap-1.5">
-          <CheckIcon size={15} strokeWidth={3} /> {tk("meal")} ✓
+          <CheckIcon size={15} strokeWidth={3} /> {tk("meal")}
         </span>
       </div>
       <div className="absolute -right-12 bottom-28 w-44 rotate-[5deg] rounded-2xl border-[1.5px] border-ink bg-card p-3 shadow-[5px_5px_0_0_var(--food)] max-sm:-right-4">

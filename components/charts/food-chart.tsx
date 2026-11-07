@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import type { AnalysisConfig, TagEffect } from "@/lib/analysis";
+import { shrink, type AnalysisConfig, type TagEffect } from "@/lib/analysis";
 import { percent } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -14,7 +14,9 @@ import { cn } from "@/lib/cn";
 export function FoodChart({ tags, config, tagLabel }: { tags: TagEffect[]; config: AnalysisConfig; tagLabel: (id: string) => string }) {
   const t = useTranslations("insights.food");
   const [all, setAll] = useState(false);
-  const rows = tags.filter((x) => x.exposed.n > 0 && x.reference.n > 0);
+  // Same ordering as the summary: effect weighted by sample size, too-small samples last.
+  const score = (x: TagEffect) => (x.exposed.n < config.food.minMeals ? -1 : shrink(x.difference ?? 0, x.exposed.n, config));
+  const rows = tags.filter((x) => x.exposed.n > 0 && x.reference.n > 0).sort((a, b) => score(b) - score(a));
   const shown = all ? rows : rows.slice(0, 6);
 
   if (rows.length === 0) return <p className="text-sm text-ink-soft">{t("empty")}</p>;

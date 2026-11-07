@@ -307,7 +307,7 @@ function DataSection({ lastBackupAt }: { lastBackupAt: number | null }) {
             }
             setWipeOpen(false);
             showToast({ message: t("wiped"), tone: "info" });
-            router.replace("/");
+            router.replace("/welkom");
           }}
         >
           <label htmlFor="wipe-confirm" className="mb-1.5 block text-sm font-semibold">
