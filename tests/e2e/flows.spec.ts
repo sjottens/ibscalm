@@ -138,7 +138,7 @@ test.describe("logging", () => {
     await list.getByRole("button").first().click();
     await expect(dialog.getByRole("heading", { name: "Klacht bewerken" })).toBeVisible();
     await dialog.getByRole("radiogroup", { name: "Hoe erg?" }).getByRole("radio", { name: /^2 —/ }).click();
-    await dialog.getByRole("button", { name: "Wijziging opslaan" }).click();
+    await dialog.getByRole("button", { name: "Wijzigingen opslaan" }).click();
     await expect(list).toContainText("licht");
 
     await list.getByRole("button").first().click();
@@ -162,7 +162,7 @@ test.describe("logging", () => {
     await page.getByRole("link", { name: "Tijdlijn" }).click();
     await expect(page.getByRole("heading", { name: "Vandaag", level: 2 })).toBeVisible();
     await page.getByRole("button", { name: "Vorige dag" }).click();
-    await expect(page.getByText("Niets genoteerd op deze dag.")).toHaveCount(1);
+    await expect(page.getByText("Op deze dag is niets genoteerd.")).toHaveCount(1);
     await page.getByRole("button", { name: "Naar vandaag" }).click();
     await expect(page.getByRole("heading", { name: "Vandaag", level: 2 })).toBeVisible();
   });

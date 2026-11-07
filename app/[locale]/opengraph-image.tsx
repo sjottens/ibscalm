@@ -19,6 +19,12 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
   const t = await getTranslations({ locale, namespace: "landing" });
   const logo = await readFile(join(process.cwd(), "public/logos/ibscalm-logo-horizontaal@2x.png"));
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+  // Same typeface as the logo wordmark (Nunito, SIL OFL), so the share image matches the brand.
+  const fontDir = join(process.cwd(), "node_modules/@fontsource/nunito/files");
+  const [bold, regular] = await Promise.all([
+    readFile(join(fontDir, "nunito-latin-800-normal.woff")),
+    readFile(join(fontDir, "nunito-latin-600-normal.woff")),
+  ]);
   const navy = "#23485a";
   return new ImageResponse(
     (
@@ -31,7 +37,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
           background: "linear-gradient(180deg, #FFF7F0 0%, #FDEBDF 100%)",
           padding: 72,
           color: navy,
-          fontFamily: "sans-serif",
+          fontFamily: "Nunito",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain <img> */}
@@ -39,10 +45,16 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
         <div style={{ marginTop: 48, fontSize: 60, fontWeight: 800, lineHeight: 1.1, maxWidth: 1000 }}>{t("title")}</div>
         <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ background: navy, color: "white", fontSize: 30, fontWeight: 800, padding: "14px 28px", borderRadius: 12 }}>{t("cta")}</div>
-          <div style={{ fontSize: 26, color: "#4a5a75", display: "flex" }}>{t("free")}</div>
+          <div style={{ fontSize: 26, fontWeight: 600, color: "#4a5a75", display: "flex" }}>{t("free")}</div>
         </div>
       </div>
     ),
-    size,
+    {
+      ...size,
+      fonts: [
+        { name: "Nunito", data: bold, weight: 800, style: "normal" },
+        { name: "Nunito", data: regular, weight: 600, style: "normal" },
+      ],
+    },
   );
 }

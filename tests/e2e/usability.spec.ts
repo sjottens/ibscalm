@@ -80,7 +80,7 @@ test.describe("effectiveness & error tolerance (ISO 9241-11 §3.1.12, ISO 9241-1
   test("an incomplete entry explains what is missing instead of failing silently", async ({ page }) => {
     await page.getByRole("button", { name: "Nieuwe invoer: Eten" }).click();
     await page.getByRole("dialog").getByRole("button", { name: "Opslaan" }).click();
-    await expect(page.getByRole("dialog").getByText("Vul in wat je at, of kies een tag")).toBeVisible();
+    await expect(page.getByRole("dialog").getByText("Beschrijf wat je hebt gegeten of kies een tag")).toBeVisible();
     await expect(page.getByRole("dialog").getByPlaceholder("Bijv. pasta pesto")).toHaveAttribute("aria-invalid", "true");
   });
 
