@@ -1,0 +1,503 @@
+{
+  "meta": {
+    "title": "{brand} — dagboek voor je buik",
+    "description": "Houd eten, klachten, stress en slaap bij en ontdek na een paar weken waar jouw buikklachten mee samenhangen. Alles blijft op je eigen telefoon.",
+    "ogAlt": "{brand}: eten, stress of slaap? Ontdek wat jouw buik doet."
+  },
+  "common": {
+    "save": "Opslaan",
+    "saveChanges": "Wijziging opslaan",
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "delete": "Verwijderen",
+    "undo": "Ongedaan maken",
+    "edit": "Bewerken",
+    "back": "Terug",
+    "next": "Volgende",
+    "skip": "Overslaan",
+    "now": "Nu",
+    "today": "Vandaag",
+    "yesterday": "Gisteren",
+    "done": "Klaar",
+    "loading": "Even bladeren…",
+    "optional": "optioneel",
+    "addNote": "Notitie toevoegen",
+    "note": "Notitie",
+    "notePlaceholder": "Wat wil je onthouden?",
+    "time": "Tijd",
+    "date": "Datum",
+    "yes": "Ja",
+    "no": "Nee",
+    "of": "van",
+    "minutes": "min",
+    "glasses": "glazen",
+    "skipToContent": "Naar de inhoud"
+  },
+  "nav": {
+    "label": "Hoofdmenu",
+    "today": "Vandaag",
+    "timeline": "Tijdlijn",
+    "insights": "Inzichten",
+    "settings": "Instellingen"
+  },
+  "kinds": {
+    "meal": "Eten",
+    "symptom": "Klacht",
+    "stress": "Stress",
+    "sleep": "Slaap",
+    "day": "Dag"
+  },
+  "tags": {
+    "onion-garlic": "ui/knoflook",
+    "wheat-gluten": "tarwe/gluten",
+    "dairy-lactose": "zuivel/lactose",
+    "legumes": "peulvruchten",
+    "stone-fruit": "appel/peer/steenvrucht",
+    "sweeteners": "zoetstoffen",
+    "fatty-fried": "vet/gefrituurd",
+    "spicy": "pittig",
+    "carbonated": "koolzuur",
+    "sugar-candy": "suiker/snoep",
+    "large-meal": "grote maaltijd",
+    "late-meal": "laat gegeten",
+    "fast-eating": "snel gegeten"
+  },
+  "symptomTypes": {
+    "pain": "buikpijn",
+    "bloating": "opgeblazen",
+    "cramps": "krampen",
+    "gas": "winderig",
+    "diarrhea": "diarree",
+    "constipation": "obstipatie",
+    "nausea": "misselijk"
+  },
+  "stressTriggers": {
+    "meeting": "meeting",
+    "deadline": "deadline",
+    "social": "sociaal",
+    "home": "thuis",
+    "travel": "onderweg",
+    "other": "anders"
+  },
+  "sizes": {
+    "small": "klein",
+    "normal": "normaal",
+    "large": "groot"
+  },
+  "severity": {
+    "label": "Hoe erg?",
+    "word": "{value, select, 0 {geen} 1 {heel licht} 2 {licht} 3 {licht} 4 {merkbaar} 5 {matig} 6 {flink} 7 {flink} 8 {zwaar} 9 {heel zwaar} other {ondraaglijk}}",
+    "scale": "0 = niets, 10 = het ergste dat je kent"
+  },
+  "stressLevel": {
+    "label": "Hoeveel stress?",
+    "word": "{value, select, 1 {een beetje} 2 {wat} 3 {behoorlijk} 4 {veel} other {heel veel}}"
+  },
+  "bristol": {
+    "label": "Ontlasting (Bristol)",
+    "hint": "Optioneel. Type 1 is hard, type 7 is waterig.",
+    "1": "harde keutels",
+    "2": "klonterige worst",
+    "3": "worst met barstjes",
+    "4": "gladde worst",
+    "5": "zachte stukjes",
+    "6": "brijig",
+    "7": "waterig"
+  },
+  "landing": {
+    "nav": {
+      "how": "Hoe het werkt",
+      "privacy": "Privacy",
+      "open": "Open de app"
+    },
+    "kicker": "Dagboek voor prikkelbare darm",
+    "title": "Eten, stress of slaap?",
+    "titleAccent": "Ontdek wat jóúw buik doet.",
+    "lead": "Noteer in tien seconden wat je eet, hoe je buik voelt en hoe gespannen je bent. Na een paar weken laat {brand} zien waar je klachten mee lijken samen te hangen.",
+    "cta": "Begin met bijhouden",
+    "ctaSecondary": "Hoe werkt het?",
+    "free": "Gratis · geen account · werkt offline",
+    "stepsTitle": "Drie stappen, geen gedoe",
+    "steps": {
+      "one": {
+        "title": "Noteer",
+        "body": "Drie grote knoppen: eten, klacht, stress. De tijd staat al goed. Klaar voor je koffie koud is."
+      },
+      "two": {
+        "title": "Zie het patroon",
+        "body": "Na ongeveer twee weken zie je of je klachten vooral samenhangen met wat je eet, met stress of met je slaap."
+      },
+      "three": {
+        "title": "Bespreek het",
+        "body": "Neem je overzicht mee naar je huisarts of MDL-diëtist. Exporteer het als bestand wanneer je wilt."
+      }
+    },
+    "loopTitle": "Buik en hoofd praten met elkaar",
+    "loopBody": "Stress kan je darmen onrustiger maken, en onrustige darmen geven weer stress. Soms al vóórdat er iets gebeurt: de spanning voor een treinreis of een afspraak. {brand} houdt die ‘stress vooraf’ apart bij, zodat je dat kringetje kunt zien.",
+    "privacyKicker": "Privacy",
+    "privacyTitle": "Je buik gaat niemand iets aan.",
+    "privacyBody": "Alles wat je invult blijft op je eigen telefoon. Er is geen account, geen server die je gegevens bewaart en geen tracker die meekijkt. Wij kunnen je gegevens niet zien, ook niet als we zouden willen.",
+    "privacyPoints": {
+      "device": "Opgeslagen op je toestel",
+      "noAccount": "Geen account nodig",
+      "noTracking": "Geen trackers of advertenties",
+      "export": "Exporteren en wissen wanneer je wilt"
+    },
+    "privacyLink": "Lees de privacyverklaring",
+    "insightKicker": "Inzichten",
+    "insightTitle": "Geen grafieken om de grafieken.",
+    "insightBody": "Een samenvatting in gewone taal, met erbij hoeveel gegevens eronder liggen. Voorzichtig geformuleerd: {brand} laat patronen zien en stelt geen diagnoses.",
+    "faqTitle": "Vragen",
+    "faq": {
+      "q1": "Is dit medisch advies?",
+      "a1": "Nee. {brand} laat patronen zien in wat je zelf bijhoudt. Bespreek wat je ziet altijd met je huisarts of een (MDL-)diëtist voordat je iets aan je eten of leefstijl verandert.",
+      "q2": "Waar worden mijn gegevens bewaard?",
+      "a2": "Alleen in je browser op dit toestel (IndexedDB). Maak af en toe een back-up via Instellingen, want als je je browsergegevens wist, ben je ze kwijt.",
+      "q3": "Werkt het zonder internet?",
+      "a3": "Ja. Na je eerste bezoek kun je {brand} installeren op je beginscherm en werkt alles offline.",
+      "q4": "Wat kost het?",
+      "a4": "Niets. Er zijn geen abonnementen en geen advertenties."
+    },
+    "finalTitle": "Begin vandaag. Je buik vertelt de rest.",
+    "footerDisclaimer": "{brand} geeft inzicht in patronen en is geen medisch hulpmiddel. Het stelt geen diagnoses en geeft geen behandeladvies.",
+    "footerMade": "Gemaakt met zorg, zonder trackers.",
+    "mock": {
+      "date": "za 7 nov",
+      "headline": "Rustige ochtend.",
+      "breakfast": "Havermout met banaan",
+      "lunch": "Wrap hummus",
+      "symptom": "opgeblazen",
+      "stress": "deadline",
+      "summary": "Lijkt vooral samen te hangen met",
+      "factor": "eten",
+      "detail": "ui/knoflook · 11 van 12 keer een klacht"
+    }
+  },
+  "privacy": {
+    "title": "Privacy, in gewone taal",
+    "updated": "Laatst bijgewerkt: november 2026",
+    "intro": "{brand} is gemaakt met één belofte: wat je over je buik bijhoudt, blijft van jou. Hieronder staat precies wat dat betekent.",
+    "sections": {
+      "where": {
+        "title": "Waar staan mijn gegevens?",
+        "body": "Alles wat je invult (maaltijden, klachten, stress, slaap en notities) wordt opgeslagen in de opslag van je browser op dit toestel (IndexedDB). Het wordt nooit naar ons of naar iemand anders gestuurd."
+      },
+      "account": {
+        "title": "Heb ik een account nodig?",
+        "body": "Nee. Er is geen account, geen e-mailadres en geen wachtwoord. Daardoor kunnen wij ook niet zien wie je bent."
+      },
+      "analytics": {
+        "title": "Meten jullie iets?",
+        "body": "Alleen op de openbare startpagina tellen we bezoeken, anoniem en zonder cookies (Vercel Web Analytics). In de app zelf meten we helemaal niets, en je gezondheidsgegevens komen nooit in die statistieken."
+      },
+      "backup": {
+        "title": "Wat als ik mijn telefoon kwijtraak?",
+        "body": "Omdat we je gegevens niet bewaren, kunnen we ze ook niet terugzetten. Maak daarom af en toe een back-up via Instellingen → Exporteren. {brand} herinnert je daar vriendelijk aan."
+      },
+      "control": {
+        "title": "Kan ik alles wissen?",
+        "body": "Ja. Via Instellingen → Alles wissen verwijder je in één keer alle gegevens van dit toestel. Je browsergegevens wissen werkt ook."
+      },
+      "medical": {
+        "title": "Geen medisch advies",
+        "body": "{brand} laat patronen zien, maar stelt geen diagnoses en geeft geen behandeladvies. Bespreek wat je ziet met je huisarts of een (MDL-)diëtist."
+      }
+    },
+    "back": "Terug naar de start"
+  },
+  "onboarding": {
+    "label": "Welkom",
+    "step": "Stap {current} van {total}",
+    "s1": {
+      "kicker": "Welkom bij {brand}",
+      "title": "Een dagboek voor je buik.",
+      "body": "Noteer wat je eet, wanneer je buik opspeelt en wanneer je gestrest bent. Dat kost je een paar tikken per keer."
+    },
+    "s2": {
+      "kicker": "Zo werkt het",
+      "title": "Na twee weken zie je patronen.",
+      "body": "{brand} vergelijkt je klachten met je eten, je stress en je slaap. Hoe vaker je iets noteert, hoe duidelijker het beeld."
+    },
+    "s3": {
+      "kicker": "Privacy",
+      "title": "Alles blijft op dit toestel.",
+      "body": "Geen account, geen server, geen trackers. Maak af en toe een back-up, want wij kunnen niets voor je terugzetten."
+    },
+    "s4": {
+      "kicker": "Belangrijk",
+      "title": "Inzicht, geen diagnose.",
+      "body": "{brand} laat zien wat lijkt samen te hangen. Dat is geen medisch advies. Bespreek patronen met je huisarts of (MDL-)diëtist voordat je iets verandert.",
+      "agree": "Begrepen"
+    },
+    "s5": {
+      "kicker": "Bijna klaar",
+      "title": "Wat wil je in de gaten houden?",
+      "body": "Kies de voedingstags die je vaak wilt gebruiken. Die staan dan bovenaan. Je kunt dit later altijd aanpassen.",
+      "start": "Begin met bijhouden"
+    }
+  },
+  "today": {
+    "greeting": {
+      "empty": "Nog een leeg blad.",
+      "calm": "Rustige dag.",
+      "mixed": "Wisselende dag.",
+      "rough": "Pittige dag.",
+      "roughSub": "Goed dat je het bijhoudt. Wees een beetje lief voor jezelf vandaag."
+    },
+    "summary": "{meals, plural, =0 {geen maaltijden} one {# maaltijd} other {# maaltijden}} · {symptoms, plural, =0 {geen klachten} one {# klacht} other {# klachten}} · {stress, plural, =0 {geen stress} one {# stressmoment} other {# stressmomenten}}",
+    "emptyTitle": "Begin met je eerste notitie",
+    "emptyBody": "Tik hieronder op Eten, Klacht of Stress. De tijd staat al op nu.",
+    "entriesTitle": "Vandaag genoteerd",
+    "add": "Nieuw",
+    "addAria": "Nieuwe invoer: {kind}",
+    "dayCard": {
+      "title": "Je dag",
+      "sleep": "Slaap",
+      "sleepEmpty": "Hoe sliep je?",
+      "water": "Water",
+      "movement": "Beweging",
+      "wearable": "Wearable",
+      "edit": "Dag bewerken"
+    },
+    "progress": "{days, plural, one {# dag} other {# dagen}} bijgehouden",
+    "progressHint": "Nog {left, plural, one {# dag} other {# dagen}} tot je eerste inzichten."
+  },
+  "entry": {
+    "meal": {
+      "title": "Wat heb je gegeten?",
+      "editTitle": "Maaltijd bewerken",
+      "placeholder": "Bijv. pasta pesto",
+      "descriptionLabel": "Omschrijving",
+      "recent": "Recent",
+      "tagsLabel": "Wat zat erin?",
+      "moreTags": "Meer tags",
+      "fewerTags": "Minder tags",
+      "sizeLabel": "Portie",
+      "lateHint": "Na 21:00 telt automatisch als laat gegeten."
+    },
+    "symptom": {
+      "title": "Hoe voelt je buik?",
+      "editTitle": "Klacht bewerken",
+      "typesLabel": "Wat merk je?",
+      "typesHint": "Kies er één of meer."
+    },
+    "stress": {
+      "title": "Hoe gespannen ben je?",
+      "editTitle": "Stress bewerken",
+      "triggerLabel": "Waardoor?",
+      "anticipatory": "Stress vooraf",
+      "anticipatoryHint": "Spanning uit zorg om buikklachten, bijvoorbeeld voor een reis of afspraak."
+    },
+    "saved": "Genoteerd",
+    "updated": "Bijgewerkt",
+    "deleted": "Verwijderd",
+    "deleteConfirm": "Weet je het zeker?",
+    "timeNow": "Nu · {time}",
+    "timeAt": "{day} · {time}",
+    "changeTime": "Tijd aanpassen",
+    "needsTypes": "Kies minstens één klacht",
+    "needsDescription": "Vul in wat je at, of kies een tag"
+  },
+  "day": {
+    "title": "Je dag",
+    "sleepTitle": "Afgelopen nacht",
+    "bedtime": "Naar bed",
+    "wakeTime": "Opgestaan",
+    "quality": "Hoe sliep je?",
+    "qualityWord": "{value, select, 1 {slecht} 2 {matig} 3 {oké} 4 {goed} other {heerlijk}}",
+    "water": "Water",
+    "movement": "Beweging",
+    "wearableTitle": "Wearable (optioneel)",
+    "wearableHint": "Neem over wat je horloge of ring aangeeft.",
+    "stressScore": "Stressscore (0–100)",
+    "hrv": "HRV (ms)",
+    "readiness": "Readiness (0–100)",
+    "decrease": "Minder {what}",
+    "increase": "Meer {what}"
+  },
+  "timeline": {
+    "title": "Tijdlijn",
+    "prev": "Vorige dag",
+    "next": "Volgende dag",
+    "today": "Naar vandaag",
+    "empty": "Niets genoteerd op deze dag.",
+    "emptyHint": "Vergeten? Je kunt achteraf invoeren: kies de tijd in het invoerscherm.",
+    "swipeHint": "Veeg om tussen dagen te wisselen",
+    "week": "Week",
+    "maxSeverity": "Hoogste ernst {value}",
+    "noSymptoms": "Geen klachten",
+    "legend": "Legenda"
+  },
+  "insights": {
+    "title": "Inzichten",
+    "collectingTitle": "Je patroon wordt zichtbaar",
+    "collectingBody": "Na ongeveer {min} dagen bijhouden kan {brand} voorzichtig iets zeggen. Je bent op dag {days}.",
+    "collectingPreview": "Voorlopige cijfers, nog niet betrouwbaar",
+    "emptyTitle": "Nog niets te zien",
+    "emptyBody": "Zodra je een paar dagen eten, klachten en stress hebt genoteerd, verschijnen hier je eerste patronen.",
+    "emptyCta": "Naar vandaag",
+    "summaryKicker": "Samenvatting",
+    "summaryFound": "Je klachten lijken vooral samen te hangen met",
+    "summaryUnclear": "Er springt nog niets duidelijk uit.",
+    "summaryUnclearBody": "Dat kan betekenen dat er meer gegevens nodig zijn, of dat je klachten niet sterk aan één ding vastzitten. Blijf bijhouden.",
+    "factor": {
+      "food": "eten",
+      "stress": "stress",
+      "sleep": "slaap"
+    },
+    "and": "en",
+    "foodDetail": "Vooral na maaltijden met {tags}.",
+    "basedOn": "Gebaseerd op {days, plural, one {# dag} other {# dagen}}, {meals, plural, one {# maaltijd} other {# maaltijden}}, {symptoms, plural, one {# klacht} other {# klachten}} en {stress, plural, one {# stressmoment} other {# stressmomenten}}.",
+    "confidence": {
+      "label": "Betrouwbaarheid",
+      "low": "weinig data",
+      "medium": "redelijk wat data",
+      "high": "veel data"
+    },
+    "disclaimer": "Dit zijn patronen, geen oorzaken en geen diagnose. Bespreek ze met je huisarts of (MDL-)diëtist.",
+    "rhythm": {
+      "title": "Je ritme",
+      "body": "Hoogste klacht per dag, met stress en slaap eronder.",
+      "severity": "klacht",
+      "stress": "stress",
+      "sleep": "slaap",
+      "dayLabel": "{date}: klacht {severity}, stress {stress}, slaap {sleep}"
+    },
+    "food": {
+      "title": "Eten",
+      "body": "Hoe vaak er binnen {min}–{max} uur na een maaltijd een klacht kwam (ernst {threshold} of hoger).",
+      "with": "met",
+      "without": "zonder",
+      "row": "{tag}: {hits} van {n} keer een klacht ({rate}), tegenover {ref} zonder",
+      "few": "weinig",
+      "empty": "Nog geen maaltijden met tags.",
+      "showAll": "Alle tags tonen",
+      "showLess": "Minder tonen"
+    },
+    "stress": {
+      "title": "Stress",
+      "body": "Kans op een klacht binnen {hours} uur na een stressmoment, vergeleken met andere momenten.",
+      "after": "na stress",
+      "anticipatory": "na stress vooraf",
+      "other": "andere momenten",
+      "daysTitle": "Dagen met veel stress",
+      "daysBody": "Gemiddelde hoogste klacht op dagen met veel stress tegenover rustige dagen.",
+      "high": "veel stress",
+      "low": "rustig",
+      "empty": "Nog te weinig stressmomenten."
+    },
+    "sleep": {
+      "title": "Slaap",
+      "body": "Gemiddelde hoogste klacht na een slechte nacht tegenover een goede nacht.",
+      "poor": "slecht geslapen",
+      "good": "goed geslapen",
+      "empty": "Vul een paar dagen je slaap in om dit te zien."
+    },
+    "late": {
+      "title": "Laat eten",
+      "body": "Klachten de volgende ochtend na eten vanaf {hour}:00.",
+      "late": "na laat eten",
+      "other": "andere avonden",
+      "empty": "Nog te weinig avonden om te vergelijken."
+    },
+    "nDays": "{n, plural, one {# dag} other {# dagen}}",
+    "nTimes": "{n}×",
+    "avg": "gem. {value}",
+    "noData": "–",
+    "settingsLink": "Tijdvensters en drempels aanpassen"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "tags": {
+      "title": "Voedingstags",
+      "body": "Favorieten staan bovenaan bij het invoeren. Verborgen tags blijven in je geschiedenis.",
+      "add": "Tag toevoegen",
+      "addPlaceholder": "Bijv. avocado",
+      "favorite": "Favoriet",
+      "hide": "Verbergen",
+      "show": "Tonen",
+      "remove": "Verwijderen",
+      "hidden": "verborgen",
+      "own": "eigen"
+    },
+    "language": {
+      "title": "Taal",
+      "nl": "Nederlands",
+      "en": "English"
+    },
+    "theme": {
+      "title": "Thema",
+      "system": "Systeem",
+      "light": "Licht",
+      "dark": "Donker"
+    },
+    "analysis": {
+      "title": "Analyse",
+      "body": "Pas aan hoe {brand} patronen zoekt. Weet je het niet zeker? Laat het dan zoals het is.",
+      "threshold": "Klacht telt vanaf ernst",
+      "foodMax": "Eten: kijk tot … uur later",
+      "foodMin": "Eten: vanaf … uur later",
+      "stressWindow": "Stress: kijk tot … uur later",
+      "lateHour": "Laat eten vanaf",
+      "reset": "Standaard herstellen"
+    },
+    "data": {
+      "title": "Je gegevens",
+      "body": "Alles staat alleen op dit toestel. Maak regelmatig een back-up.",
+      "exportJson": "Back-up maken (JSON)",
+      "exportCsv": "Exporteren voor spreadsheet (CSV)",
+      "import": "Back-up terugzetten",
+      "importDone": "Teruggezet: {added} nieuw, {updated} bijgewerkt",
+      "importError": {
+        "invalid-json": "Dit bestand kan niet gelezen worden.",
+        "not-ours": "Dit is geen back-up van {brand}.",
+        "invalid-data": "De back-up lijkt beschadigd.",
+        "too-new": "Deze back-up komt uit een nieuwere versie. Werk de app eerst bij."
+      },
+      "lastBackup": "Laatste back-up: {date}",
+      "neverBackup": "Nog nooit een back-up gemaakt",
+      "wipe": "Alles wissen",
+      "wipeTitle": "Alles wissen?",
+      "wipeBody": "Alle maaltijden, klachten, stress, slaap en instellingen worden van dit toestel verwijderd. Dit kun je niet ongedaan maken.",
+      "wipeConfirmLabel": "Typ WISSEN om te bevestigen",
+      "wipeConfirmWord": "WISSEN",
+      "wipeAction": "Definitief wissen",
+      "wiped": "Alles is gewist"
+    },
+    "about": {
+      "title": "Over {brand}",
+      "privacy": "Privacyverklaring",
+      "disclaimer": "Medische disclaimer",
+      "disclaimerBody": "{brand} geeft inzicht in patronen in je eigen gegevens. Het is geen medisch hulpmiddel, stelt geen diagnoses en geeft geen behandeladvies. Heb je aanhoudende of nieuwe klachten, bloed bij de ontlasting, onbedoeld gewichtsverlies of koorts? Neem dan contact op met je huisarts.",
+      "onboarding": "Introductie opnieuw bekijken",
+      "version": "Versie {version}"
+    },
+    "dev": {
+      "title": "Ontwikkeling",
+      "seed": "Laad 3 weken voorbeelddata",
+      "seeded": "Voorbeelddata geladen"
+    }
+  },
+  "backup": {
+    "title": "Tijd voor een back-up?",
+    "bodyNever": "Je houdt al even bij, maar er is nog geen back-up. Je gegevens staan alleen op dit toestel.",
+    "bodyOld": "Je laatste back-up is van {days, plural, one {# dag} other {# dagen}} geleden.",
+    "action": "Back-up maken",
+    "later": "Later",
+    "done": "Back-up opgeslagen"
+  },
+  "offline": {
+    "title": "Je bent offline",
+    "body": "Geen probleem: alles werkt gewoon. Deze pagina was nog niet bewaard voor offline gebruik.",
+    "action": "Naar vandaag"
+  },
+  "errors": {
+    "title": "Er ging iets mis",
+    "body": "Je gegevens zijn veilig, ze staan op je toestel. Probeer het opnieuw.",
+    "retry": "Opnieuw proberen",
+    "notFoundTitle": "Deze pagina bestaat niet",
+    "notFoundBody": "Misschien is de link verouderd.",
+    "home": "Naar de start",
+    "storage": "Opslaan lukte niet. Is je opslag vol, of gebruik je privé browsen?"
+  }
+}

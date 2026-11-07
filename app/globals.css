@@ -1,26 +1,263 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─────────────────────────────────────────────────────────────────────────
+   Mild — design tokens
+   Risograph print on warm paper: ink blue + four spot colours, one per kind of entry.
+   food = mint · symptom = riso pink · stress = fluor yellow · sleep = lavender
+   *-ink variants are for text/icons (AA contrast); *-wash for soft fills.
+   ───────────────────────────────────────────────────────────────────────── */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  color-scheme: light;
+  --paper: #f6f1e7;
+  --paper-deep: #ece4d3;
+  --card: #fcf9f2;
+  --ink: #1d2340;
+  --ink-soft: #4b5072;
+  --ink-faint: #8a8da3;
+  --line: rgb(29 35 64 / 0.14);
+  --line-strong: rgb(29 35 64 / 0.32);
+  --on-spot: #1d2340;
+
+  --food: #5fbfa0;
+  --food-ink: #1c6a52;
+  --food-wash: #d9efe5;
+  --symptom: #f2668b;
+  --symptom-ink: #a3234a;
+  --symptom-wash: #fbdde5;
+  --stress: #f5c84b;
+  --stress-ink: #765400;
+  --stress-wash: #fbefc6;
+  --sleep: #9c8fe0;
+  --sleep-ink: #4a3da3;
+  --sleep-wash: #e7e3f8;
+
+  --danger: #b8322b;
+  --danger-wash: #f8ddd9;
+  --focus: #1d2340;
+
+  --grain-opacity: 0.5;
+  --grain-blend: multiply;
+  --shadow-offset: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #12142a;
+    --paper-deep: #0b0d1e;
+    --card: #1b1e3a;
+    --ink: #f3ede0;
+    --ink-soft: #bfbacb;
+    --ink-faint: #7e7c93;
+    --line: rgb(243 237 224 / 0.13);
+    --line-strong: rgb(243 237 224 / 0.3);
+    --food: #6fd3b2;
+    --food-ink: #8fe3c6;
+    --food-wash: rgb(111 211 178 / 0.15);
+    --symptom: #ff7a9c;
+    --symptom-ink: #ffa0b8;
+    --symptom-wash: rgb(255 122 156 / 0.15);
+    --stress: #f7d060;
+    --stress-ink: #f9dc83;
+    --stress-wash: rgb(247 208 96 / 0.14);
+    --sleep: #ada2f0;
+    --sleep-ink: #c6bdf7;
+    --sleep-wash: rgb(173 162 240 / 0.15);
+    --danger: #ff8a7f;
+    --danger-wash: rgb(255 138 127 / 0.14);
+    --focus: #f7d060;
+    --grain-opacity: 0.35;
+    --grain-blend: screen;
   }
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #12142a;
+  --paper-deep: #0b0d1e;
+  --card: #1b1e3a;
+  --ink: #f3ede0;
+  --ink-soft: #bfbacb;
+  --ink-faint: #7e7c93;
+  --line: rgb(243 237 224 / 0.13);
+  --line-strong: rgb(243 237 224 / 0.3);
+  --food: #6fd3b2;
+  --food-ink: #8fe3c6;
+  --food-wash: rgb(111 211 178 / 0.15);
+  --symptom: #ff7a9c;
+  --symptom-ink: #ffa0b8;
+  --symptom-wash: rgb(255 122 156 / 0.15);
+  --stress: #f7d060;
+  --stress-ink: #f9dc83;
+  --stress-wash: rgb(247 208 96 / 0.14);
+  --sleep: #ada2f0;
+  --sleep-ink: #c6bdf7;
+  --sleep-wash: rgb(173 162 240 / 0.15);
+  --danger: #ff8a7f;
+  --danger-wash: rgb(255 138 127 / 0.14);
+  --focus: #f7d060;
+  --grain-opacity: 0.35;
+  --grain-blend: screen;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-on-spot: var(--on-spot);
+  --color-food: var(--food);
+  --color-food-ink: var(--food-ink);
+  --color-food-wash: var(--food-wash);
+  --color-symptom: var(--symptom);
+  --color-symptom-ink: var(--symptom-ink);
+  --color-symptom-wash: var(--symptom-wash);
+  --color-stress: var(--stress);
+  --color-stress-ink: var(--stress-ink);
+  --color-stress-wash: var(--stress-wash);
+  --color-sleep: var(--sleep);
+  --color-sleep-ink: var(--sleep-ink);
+  --color-sleep-wash: var(--sleep-wash);
+  --color-danger: var(--danger);
+  --color-danger-wash: var(--danger-wash);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-card: 1.375rem;
+  --radius-sheet: 1.75rem;
+
+  --ease-stamp: cubic-bezier(0.2, 1.4, 0.4, 1);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+
+html {
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+/* Paper grain — an SVG noise texture laid over everything, like ink on uncoated stock. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.13 0 0 0 0 0.25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--stress);
+  color: var(--on-spot);
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Display type: Bricolage Grotesque with optical sizing; tight, confident. */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Riso print effects ──────────────────────────────────────────────── */
+
+/* Mis-registered second ink layer behind a shape. */
+.riso-shadow {
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0 var(--riso, var(--ink));
+}
+
+/* Headline with an offset pink pass, like a two-colour print slightly off register. */
+.riso-text {
+  text-shadow: 0.045em 0.04em 0 var(--riso, var(--symptom));
+}
+
+/* Halftone dot fill. */
+.halftone {
+  background-image: radial-gradient(circle at center, var(--dot, var(--ink)) 0.9px, transparent 1.3px);
+  background-size: 6px 6px;
+}
+
+/* Perforated divider, like a tear-off ticket. */
+.perforation {
+  background-image: radial-gradient(circle, var(--line-strong) 1.2px, transparent 1.6px);
+  background-size: 9px 3px;
+  background-repeat: repeat-x;
+  height: 3px;
+}
+
+.paper-card {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-card);
+}
+
+/* Hide scrollbars on horizontal chip rails but keep them scrollable. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe-area helpers for the bottom action dock. */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

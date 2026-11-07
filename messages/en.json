@@ -1,0 +1,503 @@
+{
+  "meta": {
+    "title": "{brand} — a diary for your gut",
+    "description": "Track food, symptoms, stress and sleep, and after a few weeks discover what your IBS symptoms seem to relate to. Everything stays on your own phone.",
+    "ogAlt": "{brand}: food, stress or sleep? Find out what your gut does."
+  },
+  "common": {
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "undo": "Undo",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "now": "Now",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "done": "Done",
+    "loading": "Turning pages…",
+    "optional": "optional",
+    "addNote": "Add a note",
+    "note": "Note",
+    "notePlaceholder": "Anything to remember?",
+    "time": "Time",
+    "date": "Date",
+    "yes": "Yes",
+    "no": "No",
+    "of": "of",
+    "minutes": "min",
+    "glasses": "glasses",
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "label": "Main menu",
+    "today": "Today",
+    "timeline": "Timeline",
+    "insights": "Insights",
+    "settings": "Settings"
+  },
+  "kinds": {
+    "meal": "Food",
+    "symptom": "Symptom",
+    "stress": "Stress",
+    "sleep": "Sleep",
+    "day": "Day"
+  },
+  "tags": {
+    "onion-garlic": "onion/garlic",
+    "wheat-gluten": "wheat/gluten",
+    "dairy-lactose": "dairy/lactose",
+    "legumes": "legumes",
+    "stone-fruit": "apple/pear/stone fruit",
+    "sweeteners": "sweeteners",
+    "fatty-fried": "fatty/fried",
+    "spicy": "spicy",
+    "carbonated": "fizzy",
+    "sugar-candy": "sugar/sweets",
+    "large-meal": "large meal",
+    "late-meal": "ate late",
+    "fast-eating": "ate quickly"
+  },
+  "symptomTypes": {
+    "pain": "pain",
+    "bloating": "bloated",
+    "cramps": "cramps",
+    "gas": "gassy",
+    "diarrhea": "diarrhoea",
+    "constipation": "constipation",
+    "nausea": "nausea"
+  },
+  "stressTriggers": {
+    "meeting": "meeting",
+    "deadline": "deadline",
+    "social": "social",
+    "home": "home",
+    "travel": "on the go",
+    "other": "other"
+  },
+  "sizes": {
+    "small": "small",
+    "normal": "normal",
+    "large": "large"
+  },
+  "severity": {
+    "label": "How bad?",
+    "word": "{value, select, 0 {none} 1 {very mild} 2 {mild} 3 {mild} 4 {noticeable} 5 {moderate} 6 {strong} 7 {strong} 8 {severe} 9 {very severe} other {unbearable}}",
+    "scale": "0 = nothing, 10 = the worst you know"
+  },
+  "stressLevel": {
+    "label": "How stressed?",
+    "word": "{value, select, 1 {a little} 2 {some} 3 {quite} 4 {a lot} other {very much}}"
+  },
+  "bristol": {
+    "label": "Stool (Bristol)",
+    "hint": "Optional. Type 1 is hard, type 7 is watery.",
+    "1": "hard lumps",
+    "2": "lumpy sausage",
+    "3": "cracked sausage",
+    "4": "smooth sausage",
+    "5": "soft blobs",
+    "6": "mushy",
+    "7": "watery"
+  },
+  "landing": {
+    "nav": {
+      "how": "How it works",
+      "privacy": "Privacy",
+      "open": "Open the app"
+    },
+    "kicker": "A diary for IBS",
+    "title": "Food, stress or sleep?",
+    "titleAccent": "Find out what your gut does.",
+    "lead": "Log what you eat, how your gut feels and how tense you are in ten seconds. After a few weeks, {brand} shows what your symptoms seem to relate to.",
+    "cta": "Start tracking",
+    "ctaSecondary": "How does it work?",
+    "free": "Free · no account · works offline",
+    "stepsTitle": "Three steps, no fuss",
+    "steps": {
+      "one": {
+        "title": "Log",
+        "body": "Three big buttons: food, symptom, stress. The time is already set. Done before your coffee cools."
+      },
+      "two": {
+        "title": "See the pattern",
+        "body": "After about two weeks you'll see whether your symptoms mostly go with what you eat, with stress, or with your sleep."
+      },
+      "three": {
+        "title": "Talk it through",
+        "body": "Bring your overview to your GP or a gastro dietitian. Export it as a file whenever you like."
+      }
+    },
+    "loopTitle": "Gut and mind talk to each other",
+    "loopBody": "Stress can make your gut more restless, and a restless gut causes stress. Sometimes before anything happens: the tension before a train ride or an appointment. {brand} tracks that ‘stress beforehand’ separately, so you can see the loop.",
+    "privacyKicker": "Privacy",
+    "privacyTitle": "Your gut is nobody's business.",
+    "privacyBody": "Everything you enter stays on your own phone. No account, no server keeping your data, no tracker watching. We can't see your data, even if we wanted to.",
+    "privacyPoints": {
+      "device": "Stored on your device",
+      "noAccount": "No account needed",
+      "noTracking": "No trackers or ads",
+      "export": "Export and erase whenever you want"
+    },
+    "privacyLink": "Read the privacy statement",
+    "insightKicker": "Insights",
+    "insightTitle": "No charts for the sake of charts.",
+    "insightBody": "A summary in plain language, with how much data it is based on. Carefully worded: {brand} shows patterns and never diagnoses.",
+    "faqTitle": "Questions",
+    "faq": {
+      "q1": "Is this medical advice?",
+      "a1": "No. {brand} shows patterns in what you track yourself. Always discuss what you see with your GP or a (gastro) dietitian before changing your diet or lifestyle.",
+      "q2": "Where is my data stored?",
+      "a2": "Only in your browser on this device (IndexedDB). Make a backup now and then via Settings, because clearing your browser data erases it.",
+      "q3": "Does it work without internet?",
+      "a3": "Yes. After your first visit you can install {brand} on your home screen and everything works offline.",
+      "q4": "What does it cost?",
+      "a4": "Nothing. No subscriptions and no ads."
+    },
+    "finalTitle": "Start today. Your gut will tell the rest.",
+    "footerDisclaimer": "{brand} gives insight into patterns and is not a medical device. It does not diagnose or give treatment advice.",
+    "footerMade": "Made with care, without trackers.",
+    "mock": {
+      "date": "Sat 7 Nov",
+      "headline": "Calm morning.",
+      "breakfast": "Oats with banana",
+      "lunch": "Hummus wrap",
+      "symptom": "bloated",
+      "stress": "deadline",
+      "summary": "Seems mostly related to",
+      "factor": "food",
+      "detail": "onion/garlic · symptom 11 of 12 times"
+    }
+  },
+  "privacy": {
+    "title": "Privacy, in plain language",
+    "updated": "Last updated: November 2026",
+    "intro": "{brand} was built on one promise: what you track about your gut stays yours. Here's exactly what that means.",
+    "sections": {
+      "where": {
+        "title": "Where is my data?",
+        "body": "Everything you enter (meals, symptoms, stress, sleep and notes) is stored in your browser's storage on this device (IndexedDB). It is never sent to us or anyone else."
+      },
+      "account": {
+        "title": "Do I need an account?",
+        "body": "No. There is no account, no email and no password, so we can't see who you are either."
+      },
+      "analytics": {
+        "title": "Do you measure anything?",
+        "body": "Only on the public home page do we count visits, anonymously and without cookies (Vercel Web Analytics). Inside the app we measure nothing at all, and your health data never ends up in those statistics."
+      },
+      "backup": {
+        "title": "What if I lose my phone?",
+        "body": "Because we don't store your data, we can't restore it either. Make a backup now and then via Settings → Export. {brand} will gently remind you."
+      },
+      "control": {
+        "title": "Can I erase everything?",
+        "body": "Yes. Settings → Erase everything removes all data from this device at once. Clearing your browser data works too."
+      },
+      "medical": {
+        "title": "Not medical advice",
+        "body": "{brand} shows patterns but does not diagnose or give treatment advice. Discuss what you see with your GP or a (gastro) dietitian."
+      }
+    },
+    "back": "Back to the start"
+  },
+  "onboarding": {
+    "label": "Welcome",
+    "step": "Step {current} of {total}",
+    "s1": {
+      "kicker": "Welcome to {brand}",
+      "title": "A diary for your gut.",
+      "body": "Log what you eat, when your gut acts up and when you're stressed. It takes a few taps each time."
+    },
+    "s2": {
+      "kicker": "How it works",
+      "title": "After two weeks, patterns appear.",
+      "body": "{brand} compares your symptoms with your food, stress and sleep. The more you log, the clearer the picture."
+    },
+    "s3": {
+      "kicker": "Privacy",
+      "title": "Everything stays on this device.",
+      "body": "No account, no server, no trackers. Make a backup now and then, because we can't restore anything for you."
+    },
+    "s4": {
+      "kicker": "Important",
+      "title": "Insight, not a diagnosis.",
+      "body": "{brand} shows what seems related. That is not medical advice. Discuss patterns with your GP or a (gastro) dietitian before changing anything.",
+      "agree": "Understood"
+    },
+    "s5": {
+      "kicker": "Almost there",
+      "title": "What do you want to keep an eye on?",
+      "body": "Pick the food tags you'll use often. They'll appear first. You can always change this later.",
+      "start": "Start tracking"
+    }
+  },
+  "today": {
+    "greeting": {
+      "empty": "A blank page.",
+      "calm": "A calm day.",
+      "mixed": "A mixed day.",
+      "rough": "A rough day.",
+      "roughSub": "Good that you're keeping track. Be a little kind to yourself today."
+    },
+    "summary": "{meals, plural, =0 {no meals} one {# meal} other {# meals}} · {symptoms, plural, =0 {no symptoms} one {# symptom} other {# symptoms}} · {stress, plural, =0 {no stress} one {# stress moment} other {# stress moments}}",
+    "emptyTitle": "Start with your first entry",
+    "emptyBody": "Tap Food, Symptom or Stress below. The time is already set to now.",
+    "entriesTitle": "Logged today",
+    "add": "New",
+    "addAria": "New entry: {kind}",
+    "dayCard": {
+      "title": "Your day",
+      "sleep": "Sleep",
+      "sleepEmpty": "How did you sleep?",
+      "water": "Water",
+      "movement": "Movement",
+      "wearable": "Wearable",
+      "edit": "Edit day"
+    },
+    "progress": "{days, plural, one {# day} other {# days}} tracked",
+    "progressHint": "{left, plural, one {# day} other {# days}} until your first insights."
+  },
+  "entry": {
+    "meal": {
+      "title": "What did you eat?",
+      "editTitle": "Edit meal",
+      "placeholder": "E.g. pasta pesto",
+      "descriptionLabel": "Description",
+      "recent": "Recent",
+      "tagsLabel": "What was in it?",
+      "moreTags": "More tags",
+      "fewerTags": "Fewer tags",
+      "sizeLabel": "Portion",
+      "lateHint": "After 21:00 automatically counts as eating late."
+    },
+    "symptom": {
+      "title": "How does your gut feel?",
+      "editTitle": "Edit symptom",
+      "typesLabel": "What do you notice?",
+      "typesHint": "Pick one or more."
+    },
+    "stress": {
+      "title": "How tense are you?",
+      "editTitle": "Edit stress",
+      "triggerLabel": "Because of?",
+      "anticipatory": "Stress beforehand",
+      "anticipatoryHint": "Tension out of worry about gut symptoms, e.g. before a trip or appointment."
+    },
+    "saved": "Logged",
+    "updated": "Updated",
+    "deleted": "Deleted",
+    "deleteConfirm": "Are you sure?",
+    "timeNow": "Now · {time}",
+    "timeAt": "{day} · {time}",
+    "changeTime": "Change time",
+    "needsTypes": "Pick at least one symptom",
+    "needsDescription": "Describe what you ate, or pick a tag"
+  },
+  "day": {
+    "title": "Your day",
+    "sleepTitle": "Last night",
+    "bedtime": "Went to bed",
+    "wakeTime": "Got up",
+    "quality": "How did you sleep?",
+    "qualityWord": "{value, select, 1 {badly} 2 {so-so} 3 {okay} 4 {well} other {wonderfully}}",
+    "water": "Water",
+    "movement": "Movement",
+    "wearableTitle": "Wearable (optional)",
+    "wearableHint": "Copy what your watch or ring says.",
+    "stressScore": "Stress score (0–100)",
+    "hrv": "HRV (ms)",
+    "readiness": "Readiness (0–100)",
+    "decrease": "Less {what}",
+    "increase": "More {what}"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "prev": "Previous day",
+    "next": "Next day",
+    "today": "Go to today",
+    "empty": "Nothing logged on this day.",
+    "emptyHint": "Forgot? You can log afterwards: pick the time in the entry screen.",
+    "swipeHint": "Swipe to switch days",
+    "week": "Week",
+    "maxSeverity": "Highest severity {value}",
+    "noSymptoms": "No symptoms",
+    "legend": "Legend"
+  },
+  "insights": {
+    "title": "Insights",
+    "collectingTitle": "Your pattern is taking shape",
+    "collectingBody": "After about {min} days of tracking, {brand} can carefully say something. You're on day {days}.",
+    "collectingPreview": "Preliminary numbers, not reliable yet",
+    "emptyTitle": "Nothing to see yet",
+    "emptyBody": "Once you've logged food, symptoms and stress for a few days, your first patterns will appear here.",
+    "emptyCta": "Go to today",
+    "summaryKicker": "Summary",
+    "summaryFound": "Your symptoms seem mostly related to",
+    "summaryUnclear": "Nothing clearly stands out yet.",
+    "summaryUnclearBody": "That may mean more data is needed, or that your symptoms aren't strongly tied to one thing. Keep tracking.",
+    "factor": {
+      "food": "food",
+      "stress": "stress",
+      "sleep": "sleep"
+    },
+    "and": "and",
+    "foodDetail": "Especially after meals with {tags}.",
+    "basedOn": "Based on {days, plural, one {# day} other {# days}}, {meals, plural, one {# meal} other {# meals}}, {symptoms, plural, one {# symptom} other {# symptoms}} and {stress, plural, one {# stress moment} other {# stress moments}}.",
+    "confidence": {
+      "label": "Reliability",
+      "low": "little data",
+      "medium": "a fair amount of data",
+      "high": "lots of data"
+    },
+    "disclaimer": "These are patterns, not causes and not a diagnosis. Discuss them with your GP or a (gastro) dietitian.",
+    "rhythm": {
+      "title": "Your rhythm",
+      "body": "Highest symptom per day, with stress and sleep below.",
+      "severity": "symptom",
+      "stress": "stress",
+      "sleep": "sleep",
+      "dayLabel": "{date}: symptom {severity}, stress {stress}, sleep {sleep}"
+    },
+    "food": {
+      "title": "Food",
+      "body": "How often a symptom (severity {threshold} or more) followed within {min}–{max} hours after a meal.",
+      "with": "with",
+      "without": "without",
+      "row": "{tag}: symptom {hits} of {n} times ({rate}), versus {ref} without",
+      "few": "few",
+      "empty": "No meals with tags yet.",
+      "showAll": "Show all tags",
+      "showLess": "Show less"
+    },
+    "stress": {
+      "title": "Stress",
+      "body": "Chance of a symptom within {hours} hours after a stress moment, compared with other moments.",
+      "after": "after stress",
+      "anticipatory": "after stress beforehand",
+      "other": "other moments",
+      "daysTitle": "High-stress days",
+      "daysBody": "Average highest symptom on high-stress days versus calm days.",
+      "high": "high stress",
+      "low": "calm",
+      "empty": "Not enough stress moments yet."
+    },
+    "sleep": {
+      "title": "Sleep",
+      "body": "Average highest symptom after a poor night versus a good night.",
+      "poor": "slept poorly",
+      "good": "slept well",
+      "empty": "Log your sleep for a few days to see this."
+    },
+    "late": {
+      "title": "Eating late",
+      "body": "Symptoms the next morning after eating from {hour}:00.",
+      "late": "after eating late",
+      "other": "other evenings",
+      "empty": "Not enough evenings to compare yet."
+    },
+    "nDays": "{n, plural, one {# day} other {# days}}",
+    "nTimes": "{n}×",
+    "avg": "avg {value}",
+    "noData": "–",
+    "settingsLink": "Adjust time windows and thresholds"
+  },
+  "settings": {
+    "title": "Settings",
+    "tags": {
+      "title": "Food tags",
+      "body": "Favourites appear first when logging. Hidden tags stay in your history.",
+      "add": "Add tag",
+      "addPlaceholder": "E.g. avocado",
+      "favorite": "Favourite",
+      "hide": "Hide",
+      "show": "Show",
+      "remove": "Remove",
+      "hidden": "hidden",
+      "own": "own"
+    },
+    "language": {
+      "title": "Language",
+      "nl": "Nederlands",
+      "en": "English"
+    },
+    "theme": {
+      "title": "Theme",
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "analysis": {
+      "title": "Analysis",
+      "body": "Adjust how {brand} looks for patterns. Not sure? Then leave it as it is.",
+      "threshold": "Symptom counts from severity",
+      "foodMax": "Food: look up to … hours later",
+      "foodMin": "Food: from … hours later",
+      "stressWindow": "Stress: look up to … hours later",
+      "lateHour": "Eating late from",
+      "reset": "Restore defaults"
+    },
+    "data": {
+      "title": "Your data",
+      "body": "Everything lives only on this device. Make regular backups.",
+      "exportJson": "Make a backup (JSON)",
+      "exportCsv": "Export for spreadsheet (CSV)",
+      "import": "Restore a backup",
+      "importDone": "Restored: {added} new, {updated} updated",
+      "importError": {
+        "invalid-json": "This file can't be read.",
+        "not-ours": "This is not a {brand} backup.",
+        "invalid-data": "The backup seems damaged.",
+        "too-new": "This backup comes from a newer version. Update the app first."
+      },
+      "lastBackup": "Last backup: {date}",
+      "neverBackup": "No backup made yet",
+      "wipe": "Erase everything",
+      "wipeTitle": "Erase everything?",
+      "wipeBody": "All meals, symptoms, stress, sleep and settings will be removed from this device. This cannot be undone.",
+      "wipeConfirmLabel": "Type ERASE to confirm",
+      "wipeConfirmWord": "ERASE",
+      "wipeAction": "Erase for good",
+      "wiped": "Everything has been erased"
+    },
+    "about": {
+      "title": "About {brand}",
+      "privacy": "Privacy statement",
+      "disclaimer": "Medical disclaimer",
+      "disclaimerBody": "{brand} gives insight into patterns in your own data. It is not a medical device, does not diagnose and gives no treatment advice. Do you have persistent or new symptoms, blood in your stool, unintended weight loss or fever? Contact your GP.",
+      "onboarding": "View the introduction again",
+      "version": "Version {version}"
+    },
+    "dev": {
+      "title": "Development",
+      "seed": "Load 3 weeks of sample data",
+      "seeded": "Sample data loaded"
+    }
+  },
+  "backup": {
+    "title": "Time for a backup?",
+    "bodyNever": "You've been tracking for a while, but there's no backup yet. Your data lives only on this device.",
+    "bodyOld": "Your last backup was {days, plural, one {# day} other {# days}} ago.",
+    "action": "Make a backup",
+    "later": "Later",
+    "done": "Backup saved"
+  },
+  "offline": {
+    "title": "You're offline",
+    "body": "No problem: everything still works. This page just wasn't saved for offline use yet.",
+    "action": "Go to today"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "body": "Your data is safe on your device. Please try again.",
+    "retry": "Try again",
+    "notFoundTitle": "This page doesn't exist",
+    "notFoundBody": "Maybe the link is outdated.",
+    "home": "Back to the start",
+    "storage": "Saving failed. Is your storage full, or are you browsing privately?"
+  }
+}
