@@ -224,7 +224,7 @@
       },
       "analytics": {
         "title": "Meten jullie iets?",
-        "body": "Alleen op de openbare startpagina tellen we bezoeken, anoniem en zonder cookies (Vercel Web Analytics). In de app zelf meten we helemaal niets, en je gezondheidsgegevens komen nooit in die statistieken."
+        "body": "Alleen op de openbare pagina's (de startpagina en deze privacyverklaring) tellen we bezoeken, anoniem en zonder cookies (Vercel Web Analytics). In de app zelf meten we helemaal niets, en je gezondheidsgegevens komen nooit in die statistieken."
       },
       "backup": {
         "title": "Wat als ik mijn telefoon kwijtraak?",

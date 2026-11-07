@@ -4,7 +4,7 @@ Een mobile-first web-app voor mensen met prikkelbare darm (PDS). Je houdt eten, 
 
 > **Naam wijzigen:** één regel in `lib/brand.ts`. Alle teksten gebruiken `{brand}` en volgen automatisch.
 
-**Privacy is de kernbelofte:** alle gezondheidsgegevens blijven op het toestel (IndexedDB). Er zijn geen accounts, geen backend en geen trackers. Alleen de publieke landingspagina telt bezoeken, cookieloos via Vercel Web Analytics.
+**Privacy is de kernbelofte:** alle gezondheidsgegevens blijven op het toestel (IndexedDB). Er zijn geen accounts, geen backend en geen trackers. Alleen de publieke pagina's (landingspagina en privacyverklaring) tellen bezoeken, cookieloos via Vercel Web Analytics.
 
 ---
 
@@ -40,7 +40,7 @@ npm run dev            # http://localhost:3000
 1. Push de repository naar GitHub/GitLab.
 2. Op [vercel.com](https://vercel.com): **Add New → Project** en importeer de repository. Vercel herkent Next.js automatisch, er is geen extra configuratie nodig.
 3. Optioneel: stel de omgevingsvariabele `NEXT_PUBLIC_SITE_URL` in op je eigen domein (bijv. `https://ibscalm.com`). Zonder deze variabele gebruikt de app automatisch het productiedomein van Vercel voor canonical-links en Open Graph.
-4. Zet onder **Analytics** in het Vercel-dashboard *Web Analytics* aan. Dat is cookieloos en wordt alleen op de landingspagina geladen.
+4. Zet onder **Analytics** in het Vercel-dashboard *Web Analytics* aan. Dat is cookieloos en wordt alleen op de landingspagina en de privacyverklaring geladen, nooit in de app.
 5. Deploy. Elke push naar `main` geeft een nieuwe productie-deploy. De service worker ververst zijn cache automatisch per commit.
 
 Via de CLI kan het ook: `npx vercel` (preview) en `npx vercel --prod`.

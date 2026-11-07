@@ -224,7 +224,7 @@
       },
       "analytics": {
         "title": "Do you measure anything?",
-        "body": "Only on the public home page do we count visits, anonymously and without cookies (Vercel Web Analytics). Inside the app we measure nothing at all, and your health data never ends up in those statistics."
+        "body": "Only on the public pages (the home page and this privacy statement) do we count visits, anonymously and without cookies (Vercel Web Analytics). Inside the app we measure nothing at all, and your health data never ends up in those statistics."
       },
       "backup": {
         "title": "What if I lose my phone?",

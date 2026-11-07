@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ArrowRightIcon } from "@/components/ui/icons";
@@ -43,6 +44,8 @@ export default async function PrivacyPage({ params }: PageProps<"/[locale]/priva
         </Link>
       </main>
       <SiteFooter />
+      {/* Cookieless, anonymous page-view counting — public pages only, never inside the app. */}
+      <Analytics />
     </>
   );
 }
