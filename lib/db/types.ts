@@ -119,6 +119,11 @@ export const BUILTIN_FOOD_TAGS = [
   "large-meal",
   "late-meal",
   "fast-eating",
+  "eggs",
+  "beef",
+  "pork",
+  "poultry",
+  "fish",
 ] as const;
 export type BuiltinFoodTag = (typeof BUILTIN_FOOD_TAGS)[number];
 

@@ -7,6 +7,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { ensureBuiltinTags } from "@/lib/db/repo";
 import { useMounted, useSettings } from "@/lib/hooks/data";
 import { cn } from "@/lib/cn";
+import { useUi } from "@/lib/store/ui";
 import { applyTheme } from "@/lib/theme";
 import { InsightsIcon, SettingsIcon, TimelineIcon, TodayIcon } from "@/components/ui/icons";
 import { SheetHost } from "@/components/entry/sheet-host";
@@ -39,7 +40,8 @@ export function AppShell({ children }: { children: ReactNode }) {
     if (settings) applyTheme(settings.theme);
   }, [settings]);
 
-  const needsOnboarding = settings && !settings.onboardingDone && !onWelcome;
+  const onboardedThisSession = useUi((s) => s.onboardedThisSession);
+  const needsOnboarding = settings && !settings.onboardingDone && !onWelcome && !onboardedThisSession;
   useEffect(() => {
     if (needsOnboarding) router.replace("/welkom");
   }, [needsOnboarding, router]);

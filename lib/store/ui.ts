@@ -30,6 +30,12 @@ interface UiState {
   /** Id of the entry saved last, so it can "plop" into lists. */
   lastSavedId: string | null;
   setLastSaved: (id: string | null) => void;
+  /**
+   * Set the moment onboarding finishes. The settings live query can lag a moment behind the write;
+   * without this flag the app shell could briefly see "not onboarded" and bounce back to /welkom.
+   */
+  onboardedThisSession: boolean;
+  setOnboarded: (v: boolean) => void;
 }
 
 let toastId = 0;
@@ -54,4 +60,6 @@ export const useUi = create<UiState>((set) => ({
   dismissToast: () => set({ toast: null }),
   lastSavedId: null,
   setLastSaved: (id) => set({ lastSavedId: id }),
+  onboardedThisSession: false,
+  setOnboarded: (v) => set({ onboardedThisSession: v }),
 }));

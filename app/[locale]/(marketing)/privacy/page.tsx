@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/privacy"
   };
 }
 
-const SECTIONS = ["where", "account", "analytics", "backup", "control", "medical"] as const;
+const SECTIONS = ["where", "account", "analytics", "payment", "backup", "control", "medical"] as const;
 
 export default async function PrivacyPage({ params }: PageProps<"/[locale]/privacy">) {
   const { locale } = await params;

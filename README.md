@@ -45,6 +45,19 @@ npm run dev            # http://localhost:3000
 
 Via de CLI kan het ook: `npx vercel` (preview) en `npx vercel --prod`.
 
+## Rapport voor je arts (betaald, iDEAL)
+
+Gebruikers kunnen een PDF-rapport maken voor hun huisarts of diëtist: samenvatting, klachten (met grafiek per dag), eten, stress, slaap, laat eten, een dagoverzicht en ruimte voor notities. Eenmalig betalen (standaard € 4,99) ontgrendelt het rapport op dat toestel. De aankoop gaat mee in de back-up.
+
+- **Privacy:** de PDF wordt volledig op het toestel gemaakt (jsPDF, alleen geladen bij het downloaden). Naar de server gaat alleen de taal (`{ locale }`) om een betaling te starten; er gaan nooit gezondheidsgegevens mee. Een e2e-test controleert dat.
+- **Betaling:** via [Mollie](https://www.mollie.com) met iDEAL. De serverfuncties staan in `app/api/checkout/`: betaling aanmaken, status controleren (alleen `paid` als bedrag en product kloppen). Het betaal-id wordt vóór het doorsturen lokaal bewaard en na terugkomst gecontroleerd.
+- **Instellen:**
+  1. Maak een Mollie-account aan en activeer iDEAL.
+  2. Zet in Vercel de omgevingsvariabele `MOLLIE_API_KEY` (eerst een `test_`-sleutel, daarna `live_`). Optioneel `NEXT_PUBLIC_REPORT_PRICE_EUR` voor een andere prijs. Zie `.env.example`.
+  3. Redeploy. Zonder sleutel geeft de betaalknop in productie een nette foutmelding.
+- **Lokaal en in tests:** zonder Mollie-sleutel gebruikt de app een nagebootste betaling (`/betaling-test`) waarmee je "geslaagd" of "mislukt" kiest. Die is op Vercel-productie geblokkeerd.
+- **Let op:** ontgrendelen gebeurt op het toestel. Wie technisch handig is, kan dat omzeilen; voor een klein bedrag is dat een bewuste afweging tegenover "geen account en geen server met gebruikersgegevens".
+
 ## Architectuur
 
 ```
@@ -54,6 +67,7 @@ app/
   [locale]/offline          fallback van de service worker
   [locale]/opengraph-image  OG-afbeelding (gegenereerd)
   icons/[size]              PWA-iconen (gegenereerd)
+  api/checkout/             iDEAL-betaling voor het rapport (Mollie; ziet nooit gezondheidsdata)
   serwist/[path]            service worker (Serwist, Turbopack-variant)
   sw.ts                     service worker-bron
 lib/
@@ -62,6 +76,8 @@ lib/
   export/                   JSON/CSV-export, import met validatie (zod) en formaat-migraties
   sync/                     alleen het contract voor latere E2E-versleutelde sync
   seed/                     deterministische fictieve data (3 weken)
+  report/                   rapportmodel (puur, getest) en PDF-opmaak
+  payments/                 betaalconfiguratie, server (Mollie/mock) en client
   hooks/, store/            live queries (dexie-react-hooks) en UI-state (Zustand)
 components/
   ui/                       eigen primitives (Radix voor dialog/switch), iconen, logo

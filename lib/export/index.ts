@@ -1,4 +1,5 @@
 import { getDb, SCHEMA_VERSION } from "@/lib/db/database";
+import { getSettings, updateSettings } from "@/lib/db/repo";
 import type { DayLog, Meal, StressEvent, Symptom, Tag } from "@/lib/db/types";
 import { EXPORT_APP_ID, EXPORT_FORMAT, exportSchema, type ExportFile } from "./format";
 import { migrateExport } from "./migrations";
@@ -9,6 +10,7 @@ export * from "./format";
 /** Snapshot of everything on the device (including tombstones, so a restore stays faithful). */
 export async function buildExport(now = Date.now()): Promise<ExportFile> {
   const db = getDb();
+  const settings = await getSettings();
   const [meals, symptoms, stress, days, tags] = await Promise.all([
     db.meals.toArray(),
     db.symptoms.toArray(),
@@ -22,6 +24,7 @@ export async function buildExport(now = Date.now()): Promise<ExportFile> {
     exportedAt: now,
     schemaVersion: SCHEMA_VERSION,
     data: { meals, symptoms, stress, days, tags } as ExportFile["data"],
+    purchases: settings.purchases,
   };
 }
 
@@ -91,6 +94,10 @@ export async function applyImport(file: ExportFile, mode: "merge" | "replace" = 
     await merge<DayLog>(db.days as never, d.days as DayLog[], (x) => x.date);
     await merge<Tag>(db.tags as never, d.tags as Tag[], (x) => x.id);
   });
+  if (file.purchases?.doctorReport) {
+    const current = await getSettings();
+    if (!current.purchases.doctorReport) await updateSettings({ purchases: { ...current.purchases, doctorReport: file.purchases.doctorReport } });
+  }
   return result;
 }
 

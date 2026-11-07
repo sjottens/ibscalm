@@ -8,6 +8,7 @@ import { setFavoriteTags, updateSettings } from "@/lib/db/repo";
 import { BUILTIN_FOOD_TAGS, DERIVED_TAGS } from "@/lib/db/types";
 import { useTagLabel } from "@/lib/hooks/data";
 import { cn } from "@/lib/cn";
+import { useUi } from "@/lib/store/ui";
 import { Button, Chip } from "@/components/ui/controls";
 import { ArrowRightIcon, ChevronLeftIcon, InfoIcon, LockIcon, MealIcon, SymptomIcon } from "@/components/ui/icons";
 import { Logo, LogoMark } from "@/components/ui/logo";
@@ -25,9 +26,11 @@ export function Onboarding() {
   const [dir, setDir] = useState(1);
   const [favorites, setFavorites] = useState<Set<string>>(new Set(["onion-garlic", "wheat-gluten", "dairy-lactose"]));
 
+  const setOnboarded = useUi((s) => s.setOnboarded);
   const finish = async (save: boolean) => {
     if (save) await setFavoriteTags([...favorites]);
     await updateSettings({ onboardingDone: true });
+    setOnboarded(true);
     router.replace("/vandaag");
   };
   const go = (n: number) => {

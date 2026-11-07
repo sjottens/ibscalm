@@ -72,6 +72,8 @@ export const tagSchema = z.object({
   favorite: z.boolean().default(false),
 });
 
+const purchaseSchema = z.object({ paymentId: z.string().max(100), paidAt: z.number() });
+
 export const exportSchema = z.object({
   app: z.literal(EXPORT_APP_ID),
   format: z.literal(EXPORT_FORMAT),
@@ -84,6 +86,8 @@ export const exportSchema = z.object({
     days: z.array(dayLogSchema).default([]),
     tags: z.array(tagSchema).default([]),
   }),
+  /** Unlocked purchases, so a restore on a new phone keeps them. */
+  purchases: z.object({ doctorReport: purchaseSchema.optional() }).optional(),
 });
 
 export type ExportFile = z.infer<typeof exportSchema>;

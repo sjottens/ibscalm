@@ -19,6 +19,8 @@ export default defineConfig({
   },
   webServer: {
     command: `npx next start -p ${PORT}`,
+    // Simulated iDEAL payments for the report flow (never active on Vercel production).
+    env: { PAYMENT_PROVIDER: "mock" },
     port: PORT,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

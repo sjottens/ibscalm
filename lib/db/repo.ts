@@ -226,8 +226,18 @@ export async function setFavoriteTags(ids: string[]) {
 
 export type ThemePreference = "system" | "light" | "dark";
 
+export interface Purchase {
+  /** Payment reference from the payment provider (e.g. Mollie tr_…). */
+  paymentId: string;
+  paidAt: number;
+}
+
 export interface Settings {
   onboardingDone: boolean;
+  /** One-time purchases unlocked on this device. Included in backups. */
+  purchases: { doctorReport?: Purchase };
+  /** A payment that was started but not yet confirmed (set before redirecting to iDEAL). */
+  pendingPayment: { id: string; startedAt: number } | null;
   theme: ThemePreference;
   lastBackupAt: number | null;
   backupSnoozedUntil: number | null;
@@ -236,6 +246,8 @@ export interface Settings {
 
 export const DEFAULT_SETTINGS: Settings = {
   onboardingDone: false,
+  purchases: {},
+  pendingPayment: null,
   theme: "system",
   lastBackupAt: null,
   backupSnoozedUntil: null,

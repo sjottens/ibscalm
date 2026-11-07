@@ -7,7 +7,7 @@ const revision =
   spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout?.trim() ??
   crypto.randomUUID();
 
-const appRoutes = ["/vandaag", "/tijdlijn", "/inzichten", "/instellingen", "/welkom", "/privacy", "/offline"];
+const appRoutes = ["/vandaag", "/tijdlijn", "/inzichten", "/instellingen", "/rapport", "/welkom", "/privacy", "/offline"];
 const pages = ["/", "/en", ...appRoutes, ...appRoutes.map((r) => `/en${r}`)];
 
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({

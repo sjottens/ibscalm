@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 import { ChartCard, CompareBars } from "@/components/charts/compare-bars";
 import { FoodChart } from "@/components/charts/food-chart";
 import { RhythmChart } from "@/components/charts/rhythm-chart";
-import { ArrowRightIcon, InfoIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, DownloadIcon, InfoIcon } from "@/components/ui/icons";
 import { EmptyState, Skeleton } from "./states";
 
 const factorColor: Record<Factor, string> = {
@@ -114,6 +114,8 @@ export function InsightsView() {
         {t("disclaimer")}
       </p>
 
+      <ReportCta />
+
       <ChartCard id="rhythm" title={t("rhythm.title")} body={t("rhythm.body")} riso="var(--sleep)">
         <RhythmChart days={result.days} />
       </ChartCard>
@@ -175,6 +177,22 @@ export function InsightsView() {
   function rateRow(label: string, c: RateComparison, emphasis: boolean) {
     return { label, value: c.exposed.rate, display: percent(c.exposed.rate), sub: `${c.exposed.hits}/${c.exposed.n}`, emphasis };
   }
+}
+
+function ReportCta() {
+  const t = useTranslations("reportPage");
+  return (
+    <Link href="/rapport" className="paper-card flex items-center gap-4 border-l-4 border-l-accent p-4 transition hover:bg-paper-deep">
+      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-stress-wash text-stress-ink">
+        <DownloadIcon size={22} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-bold">{t("ctaTitle")}</span>
+        <span className="block text-sm text-ink-soft">{t("ctaBody")}</span>
+      </span>
+      <ArrowRightIcon size={20} className="shrink-0" />
+    </Link>
+  );
 }
 
 function GroupBars({ g, exposed, reference, spot, empty }: { g: GroupComparison; exposed: string; reference: string; spot: "stress" | "sleep"; empty: string }) {

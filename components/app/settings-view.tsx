@@ -283,6 +283,9 @@ function DataSection({ lastBackupAt }: { lastBackupAt: number | null }) {
         <Button variant="spot" spot="sleep" size="lg" icon={<DownloadIcon size={20} />} onClick={() => void exportBackup()} className="justify-start">
           {t("exportJson")}
         </Button>
+        <Link href="/rapport" className="inline-flex min-h-14 items-center gap-2 rounded-lg border border-line-strong bg-card px-6 text-[1.0625rem] font-semibold hover:bg-paper-deep">
+          <DownloadIcon size={20} /> {t("report")}
+        </Link>
         <Button variant="outline" size="lg" icon={<DownloadIcon size={20} />} onClick={() => void exportCsv(tagLabel)} className="justify-start">
           {t("exportCsv")}
         </Button>
@@ -300,6 +303,7 @@ function DataSection({ lastBackupAt }: { lastBackupAt: number | null }) {
             e.preventDefault();
             if (confirm.trim().toUpperCase() !== t("wipeConfirmWord")) return;
             await wipeAll();
+            useUi.getState().setOnboarded(false);
             try {
               localStorage.clear();
             } catch {
@@ -345,6 +349,7 @@ function AboutSection() {
           type="button"
           onClick={async () => {
             await updateSettings({ onboardingDone: false });
+            useUi.getState().setOnboarded(false);
             router.push("/welkom");
           }}
           className="flex min-h-12 items-center justify-between rounded-xl px-1 text-left font-semibold hover:bg-paper-deep"
