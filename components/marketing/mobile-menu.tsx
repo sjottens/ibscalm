@@ -18,10 +18,13 @@ export function MobileMenu({
   items,
   language,
   labels,
+  className = "md:hidden",
 }: {
   items: Item[];
   language: { href: string; locale: "nl" | "en"; label: string };
   labels: { open: string; close: string; title: string };
+  /** Visibility of the menu button. Defaults to mobile only; the app shows it at every size. */
+  className?: string;
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -40,7 +43,7 @@ export function MobileMenu({
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className={className}>
       <button
         ref={buttonRef}
         type="button"

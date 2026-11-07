@@ -34,7 +34,7 @@ export function TodayView() {
   const days = tracked?.length ?? 0;
 
   return (
-    <div className="px-4 pb-44 pt-[max(env(safe-area-inset-top),1.25rem)]">
+    <div className="px-4 pb-44 pt-5">
       {/* Masthead */}
       <header>
         <div className="flex items-center justify-between text-sm font-semibold text-ink-soft">

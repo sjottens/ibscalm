@@ -100,7 +100,7 @@ export function ReportView() {
   };
 
   return (
-    <div className="space-y-5 px-4 pb-10 pt-[max(env(safe-area-inset-top),1.25rem)]">
+    <div className="space-y-5 px-4 pb-10 pt-5">
       <header>
         <h1 className="text-[2.1rem] font-black leading-tight">{t("title")}</h1>
         <p className="mt-2 text-ink-soft">{t("lead")}</p>

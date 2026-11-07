@@ -35,7 +35,7 @@ export function SettingsView() {
   const settings = useSettings();
 
   return (
-    <div className="space-y-5 px-4 pb-10 pt-[max(env(safe-area-inset-top),1.25rem)]">
+    <div className="space-y-5 px-4 pb-10 pt-5">
       <h1 className="font-display text-[2.2rem] font-extrabold leading-none">{t("title")}</h1>
       <TagsSection />
       <AppearanceSection theme={settings?.theme ?? "system"} />

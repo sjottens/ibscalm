@@ -71,6 +71,20 @@ test.describe("onboarding", () => {
     expect(labels.slice(0, 4)).toEqual(expect.arrayContaining(["ui/knoflook", "pittig"]));
   });
 
+  test("the app has a menu back to the website sections", async ({ page }) => {
+    await skipOnboarding(page);
+    await page.getByRole("button", { name: "Menu openen" }).click();
+    const menu = page.getByRole("region", { name: "Menu" });
+    await expect(menu.getByRole("link", { name: "Privacy" })).toBeVisible();
+    await menu.getByRole("link", { name: "Hoe het werkt" }).click();
+    await expect(page).toHaveURL(/\/#hoe-het-werkt$/);
+    await expect(page.getByRole("heading", { name: "Zo werkt het" })).toBeVisible();
+    // And back into the app via the website header button.
+    await page.getByRole("link", { name: "Open app" }).first().click();
+    await expect(page).toHaveURL(/\/vandaag$/);
+    await expect(page.getByRole("link", { name: /IBSCalm — naar de website/ })).toBeVisible();
+  });
+
   test("can be skipped", async ({ page }) => {
     await skipOnboarding(page);
     await page.reload();

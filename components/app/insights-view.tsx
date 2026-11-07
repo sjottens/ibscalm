@@ -39,7 +39,7 @@ export function InsightsView() {
 
   if (summary.daysTracked === 0) {
     return (
-      <div className="px-4 pt-[max(env(safe-area-inset-top),1.25rem)]">
+      <div className="px-4 pt-5">
         <h1 className="font-display text-[2.2rem] font-extrabold">{t("title")}</h1>
         <EmptyState
           variant="chart"
@@ -59,7 +59,7 @@ export function InsightsView() {
   const c = summary.counts;
 
   return (
-    <div className="space-y-5 px-4 pb-10 pt-[max(env(safe-area-inset-top),1.25rem)]">
+    <div className="space-y-5 px-4 pb-10 pt-5">
       <header>
         <p className="text-sm font-semibold text-ink-soft">
           {t("nDays", { n: summary.daysTracked })}

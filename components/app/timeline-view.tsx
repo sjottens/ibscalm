@@ -77,7 +77,7 @@ export function TimelineView() {
   if (!today) return <div className="p-4"><Skeleton className="h-40" /></div>;
 
   return (
-    <div className="px-4 pb-44 pt-[max(env(safe-area-inset-top),1.25rem)]">
+    <div className="px-4 pb-44 pt-5">
       <header className="flex items-end justify-between gap-3">
         <div>
           <p className="text-sm font-semibold text-ink-soft">

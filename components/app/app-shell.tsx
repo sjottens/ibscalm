@@ -1,7 +1,7 @@
 "use client";
 
 import { MotionConfig, motion } from "motion/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, type ReactNode } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { ensureBuiltinTags } from "@/lib/db/repo";
@@ -12,6 +12,9 @@ import { applyTheme } from "@/lib/theme";
 import { InsightsIcon, SettingsIcon, TimelineIcon, TodayIcon } from "@/components/ui/icons";
 import { SheetHost } from "@/components/entry/sheet-host";
 import { ToastHost } from "@/components/ui/toast";
+import { BRAND } from "@/lib/brand";
+import { Logo } from "@/components/ui/logo";
+import { MobileMenu } from "@/components/marketing/mobile-menu";
 import { PageLoading } from "./states";
 
 const NAV = [
@@ -52,11 +55,42 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     // Respect "reduce motion": springs become instant, layout animations are skipped.
     <MotionConfig reducedMotion="user">
+      {!onWelcome ? <AppTopBar pathname={pathname} /> : null}
       <div className={cn("mx-auto w-full max-w-xl", !onWelcome && "pb-[calc(env(safe-area-inset-bottom)+5.5rem)]")}>{children}</div>
       {!onWelcome ? <BottomNav pathname={pathname} /> : null}
       <SheetHost />
       <ToastHost />
     </MotionConfig>
+  );
+}
+
+/**
+ * Slim top bar inside the app: the logo leads back to the website, the menu button opens
+ * the same sections as on the website (how it works, about IBS, FAQ, privacy) plus the language.
+ */
+function AppTopBar({ pathname }: { pathname: string }) {
+  const t = useTranslations("landing.nav");
+  const locale = useLocale();
+  const other = locale === "nl" ? "en" : "nl";
+  return (
+    <header className="sticky top-0 z-30 border-b border-line bg-paper/95 pt-[env(safe-area-inset-top)] backdrop-blur-md">
+      <div className="relative mx-auto flex h-14 max-w-xl items-center justify-between px-3">
+        <Link href="/" aria-label={`${BRAND.name} — ${t("home")}`} className="inline-flex min-h-11 items-center rounded-md px-1">
+          <Logo size="sm" />
+        </Link>
+        <MobileMenu
+          className=""
+          items={[
+            { href: "/#hoe-het-werkt", label: t("how") },
+            { href: "/#over-pds", label: t("about") },
+            { href: "/#vragen", label: t("faq") },
+            { href: "/privacy", label: t("privacy") },
+          ]}
+          language={{ href: pathname, locale: other, label: other === "en" ? "English" : "Nederlands" }}
+          labels={{ open: t("menu"), close: t("menuClose"), title: t("menuTitle") }}
+        />
+      </div>
+    </header>
   );
 }
 
