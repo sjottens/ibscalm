@@ -126,6 +126,23 @@ test.describe("logging", () => {
     await expect(page.getByRole("heading", { name: "Vandaag", level: 1 })).toBeVisible();
   });
 
+  test("finds everyday foods in grouped tags", async ({ page }) => {
+    await page.getByRole("button", { name: "Nieuwe invoer: Eten" }).click();
+    const dialog = page.getByRole("dialog");
+    // Quick view shows the common triggers; everyday foods sit behind "Meer tags", grouped.
+    await expect(dialog.getByRole("button", { name: "ui/knoflook" })).toBeVisible();
+    await expect(dialog.getByRole("button", { name: "paprika" })).toHaveCount(0);
+    await dialog.getByRole("button", { name: "Meer tags" }).click();
+    await expect(dialog.getByRole("group", { name: "Groenten" })).toBeVisible();
+    await expect(dialog.getByRole("group", { name: "Drinken" }).getByRole("button", { name: "koffie" })).toBeVisible();
+    await dialog.getByRole("group", { name: "Groenten" }).getByRole("button", { name: "paprika" }).click();
+    await dialog.getByRole("group", { name: "Granen en zetmeel" }).getByRole("button", { name: "pasta" }).click();
+    await dialog.getByRole("button", { name: "Opslaan" }).click();
+    const list = page.getByRole("list", { name: "Vandaag genoteerd" });
+    await expect(list).toContainText("paprika");
+    await expect(list).toContainText("pasta");
+  });
+
   test("validates, edits and deletes with undo", async ({ page }) => {
     await page.getByRole("button", { name: "Nieuwe invoer: Klacht" }).click();
     const dialog = page.getByRole("dialog");

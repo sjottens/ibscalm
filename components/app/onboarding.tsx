@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { setFavoriteTags, updateSettings } from "@/lib/db/repo";
-import { BUILTIN_FOOD_TAGS, DERIVED_TAGS } from "@/lib/db/types";
+import { FOOD_TAG_GROUPS } from "@/lib/db/types";
 import { useTagLabel } from "@/lib/hooks/data";
 import { cn } from "@/lib/cn";
 import { useUi } from "@/lib/store/ui";
@@ -14,7 +14,8 @@ import { ArrowRightIcon, ChevronLeftIcon, InfoIcon, LockIcon, MealIcon, SymptomI
 import { Logo, LogoMark } from "@/components/ui/logo";
 
 const STEPS = 5;
-const PICKABLE = BUILTIN_FOOD_TAGS.filter((t) => t !== DERIVED_TAGS.large && t !== DERIVED_TAGS.late);
+// The choices that matter most at the start: common triggers and drinks. Everything else is one tap away later.
+const PICKABLE = [...FOOD_TAG_GROUPS.triggers, ...FOOD_TAG_GROUPS.drinks];
 
 export function Onboarding() {
   const t = useTranslations("onboarding");

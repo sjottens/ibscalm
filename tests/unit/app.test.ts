@@ -44,3 +44,24 @@ describe("backup reminder", () => {
     expect(shouldRemindBackup(s(null, now + DAY), now - 30 * DAY, 99, now)).toBeNull();
   });
 });
+
+describe("food tags", () => {
+  it("every built-in tag has a Dutch and English label, and group names exist", async () => {
+    const { BUILTIN_FOOD_TAGS, FOOD_TAG_GROUPS } = await import("@/lib/db/types");
+    for (const id of BUILTIN_FOOD_TAGS) {
+      expect((nl.tags as Record<string, string>)[id], `nl label for ${id}`).toBeTruthy();
+      expect((en.tags as Record<string, string>)[id], `en label for ${id}`).toBeTruthy();
+    }
+    for (const g of [...Object.keys(FOOD_TAG_GROUPS), "own"]) {
+      expect((nl.tagGroups as Record<string, string>)[g]).toBeTruthy();
+      expect((en.tagGroups as Record<string, string>)[g]).toBeTruthy();
+    }
+  });
+
+  it("each tag belongs to exactly one group (no duplicates)", async () => {
+    const { FOOD_TAG_GROUPS, BUILTIN_FOOD_TAGS } = await import("@/lib/db/types");
+    const all = Object.values(FOOD_TAG_GROUPS).flat();
+    expect(new Set(all).size).toBe(all.length);
+    expect(new Set(BUILTIN_FOOD_TAGS).size).toBe(BUILTIN_FOOD_TAGS.length);
+  });
+});

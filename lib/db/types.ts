@@ -104,28 +104,37 @@ export type Entry =
   | ({ kind: "symptom" } & Symptom)
   | ({ kind: "stress" } & StressEvent);
 
-/** Built-in food tags. Ids are stable; labels live in messages/*.json under tags.*. */
+/**
+ * Built-in food tags, grouped the way people think about food. Ids are stable (stored in data);
+ * labels live in messages/*.json under tags.* and group names under tagGroups.*.
+ * The order here is the order in the picker.
+ */
+export const FOOD_TAG_GROUPS = {
+  triggers: ["onion-garlic", "wheat-gluten", "dairy-lactose", "legumes", "sweeteners", "fatty-fried", "spicy"],
+  grains: ["bread", "pasta", "rice", "potato", "oats"],
+  vegetables: ["vegetables", "cabbage", "bell-pepper", "tomato", "mushrooms", "raw-veg"],
+  fruit: ["fruit", "stone-fruit", "banana", "citrus", "berries", "dried-fruit"],
+  protein: ["eggs", "beef", "pork", "poultry", "fish", "nuts"],
+  drinks: ["coffee", "alcohol", "carbonated"],
+  other: ["sugar-candy", "chocolate", "processed", "fast-eating"],
+} as const;
+export type FoodTagGroup = keyof typeof FOOD_TAG_GROUPS;
+
 export const BUILTIN_FOOD_TAGS = [
-  "onion-garlic",
-  "wheat-gluten",
-  "dairy-lactose",
-  "legumes",
-  "stone-fruit",
-  "sweeteners",
-  "fatty-fried",
-  "spicy",
-  "carbonated",
-  "sugar-candy",
+  ...Object.values(FOOD_TAG_GROUPS).flat(),
+  // Derived automatically from portion size and time (kept for history and analysis).
   "large-meal",
   "late-meal",
-  "fast-eating",
-  "eggs",
-  "beef",
-  "pork",
-  "poultry",
-  "fish",
 ] as const;
 export type BuiltinFoodTag = (typeof BUILTIN_FOOD_TAGS)[number];
+
+/** Group of a built-in tag; user-made tags have none. */
+export function tagGroupOf(id: string): FoodTagGroup | null {
+  for (const [group, ids] of Object.entries(FOOD_TAG_GROUPS)) {
+    if ((ids as readonly string[]).includes(id)) return group as FoodTagGroup;
+  }
+  return null;
+}
 
 /** Tags the analysis derives automatically (they can also be set by hand). */
 export const DERIVED_TAGS = { large: "large-meal", late: "late-meal" } as const;

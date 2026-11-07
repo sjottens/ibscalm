@@ -6,6 +6,9 @@ import { useTranslations } from "next-intl";
 import { saveMeal, saveStress, saveSymptom } from "@/lib/db/repo";
 import {
   DERIVED_TAGS,
+  FOOD_TAG_GROUPS,
+  tagGroupOf,
+  type FoodTagGroup,
   STRESS_TRIGGERS,
   SYMPTOM_TYPES,
   type Meal,
@@ -48,7 +51,6 @@ function useTimestamp(initial?: number) {
 }
 
 const AUTO_TAGS = new Set<string>([DERIVED_TAGS.large, DERIVED_TAGS.late]);
-const VISIBLE_TAGS = 8;
 
 // ── Meal ────────────────────────────────────────────────────────────────
 
@@ -70,9 +72,24 @@ export function MealForm({ formId, editing, at, onSaved, onError }: FormProps<Me
     () => (allTags ?? []).filter((tag) => !tag.archived && !AUTO_TAGS.has(tag.id)),
     [allTags],
   );
-  const visible = showAll
-    ? pickable
-    : pickable.filter((tag, i) => i < VISIBLE_TAGS || tag.favorite || tags.has(tag.id));
+  // Quick view: favourites, the common triggers and whatever is already selected.
+  const quick = pickable.filter(
+    (tag) => tag.favorite || tags.has(tag.id) || tagGroupOf(tag.id) === "triggers",
+  );
+  // Full view: every tag, grouped the way people think about food.
+  const groups = useMemo(() => {
+    const out: { key: string; tags: typeof pickable }[] = (Object.keys(FOOD_TAG_GROUPS) as FoodTagGroup[]).map((key) => ({
+      key,
+      tags: pickable.filter((tag) => tagGroupOf(tag.id) === key),
+    }));
+    out.push({ key: "own", tags: pickable.filter((tag) => !tag.builtin) });
+    return out.filter((g) => g.tags.length > 0);
+  }, [pickable]);
+  const chip = (tag: (typeof pickable)[number]) => (
+    <Chip key={tag.id} selected={tags.has(tag.id)} onToggle={() => toggle(tag.id)} spot="food">
+      {tagLabel(tag.id)}
+    </Chip>
+  );
 
   const toggle = (id: string) =>
     setTags((prev) => {
@@ -157,18 +174,29 @@ export function MealForm({ formId, editing, at, onSaved, onError }: FormProps<Me
 
       <fieldset>
         <legend className="mb-2.5 font-display text-[1.05rem] font-bold">{t("entry.meal.tagsLabel")}</legend>
-        <motion.div layout className="flex flex-wrap gap-2">
-          <AnimatePresence initial={false}>
-            {visible.map((tag) => (
-              <motion.div key={tag.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-                <Chip selected={tags.has(tag.id)} onToggle={() => toggle(tag.id)} spot="food">
-                  {tagLabel(tag.id)}
-                </Chip>
-              </motion.div>
+        {showAll ? (
+          <div className="space-y-4">
+            {groups.map((g) => (
+              <div key={g.key} role="group" aria-labelledby={`tg-${g.key}`}>
+                <p id={`tg-${g.key}`} className="mb-2 text-sm font-semibold text-ink-soft">
+                  {t(`tagGroups.${g.key}` as never)}
+                </p>
+                <div className="flex flex-wrap gap-2">{g.tags.map(chip)}</div>
+              </div>
             ))}
-          </AnimatePresence>
-        </motion.div>
-        {pickable.length > VISIBLE_TAGS ? (
+          </div>
+        ) : (
+          <motion.div layout className="flex flex-wrap gap-2">
+            <AnimatePresence initial={false}>
+              {quick.map((tag) => (
+                <motion.div key={tag.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
+                  {chip(tag)}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
+        {pickable.length > quick.length ? (
           <button
             type="button"
             onClick={() => setShowAll((s) => !s)}
