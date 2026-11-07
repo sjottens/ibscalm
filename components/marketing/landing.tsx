@@ -286,7 +286,7 @@ export async function SiteFooter() {
     <footer className="bg-ink text-paper">
       <div className={`${container} grid gap-8 py-12 md:grid-cols-[2fr_1fr]`}>
         <div className="max-w-xl">
-          <Logo size="sm" className="rounded-lg bg-white px-2 py-1" />
+          <Logo size="sm" onDark />
           <p className="mt-4 leading-relaxed opacity-85">{t("footerDisclaimer")}</p>
         </div>
         <nav aria-label="Footer">

@@ -1,37 +1,56 @@
-import Image from "next/image";
 import { BRAND } from "@/lib/brand";
 import { cn } from "@/lib/cn";
+import { CALM_PATH, IBS_PATH, LOGO_COLORS, LOGO_HEIGHT, LOGO_WIDTH, WAVE_PATH } from "./logo-data";
 
-/** Horizontal logo (public/logos/ibscalm-logo-horizontaal@2x.png, 1552×512). */
-const LOGO = { src: "/logos/ibscalm-logo-horizontaal@2x.png", width: 1552, height: 512 };
-/** Rounded app icon (public/logos/ibscalm-icon-rounded-512.png). */
-const ICON = { src: "/logos/ibscalm-icon-rounded-512.png", width: 512, height: 512 };
+const HEIGHT = { sm: 30, md: 36, lg: 56, xl: 72 } as const;
 
-const HEIGHT = { sm: 30, md: 38, lg: 56, xl: 72 } as const;
+function Mark() {
+  return (
+    <>
+      <rect width="48" height="48" rx="13" fill={LOGO_COLORS.teal} />
+      <path d={WAVE_PATH} fill="none" stroke={LOGO_COLORS.coral} strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  );
+}
 
 /**
- * The brand logo. In dark mode it sits on a light plate (`.logo-plate`), because the navy
- * lettering would otherwise disappear against the dark background.
+ * The IBScalm logo ("calm wave"), drawn as inline SVG so it is sharp at every size.
+ * "ibs" follows the theme (--logo-ibs: navy on light, cream on dark); `onDark` forces the cream version.
  */
 export function Logo({
   className,
   size = "md",
-  priority = false,
+  onDark = false,
 }: {
   className?: string;
   size?: keyof typeof HEIGHT;
+  onDark?: boolean;
+  /** Kept for API compatibility (the logo is inline SVG now, so nothing to prioritise). */
   priority?: boolean;
 }) {
   const h = HEIGHT[size];
-  const w = Math.round((LOGO.width / LOGO.height) * h);
+  const w = Math.round((LOGO_WIDTH / LOGO_HEIGHT) * h);
   return (
-    <span className={cn("logo-plate inline-flex shrink-0 items-center", className)}>
-      <Image src={LOGO.src} alt={BRAND.name} width={w} height={h} priority={priority} sizes={`${w}px`} className="block h-auto" style={{ width: w, height: h }} />
-    </span>
+    <svg
+      viewBox={`0 0 ${LOGO_WIDTH} ${LOGO_HEIGHT}`}
+      width={w}
+      height={h}
+      role="img"
+      aria-label={BRAND.name}
+      className={cn("block shrink-0", className)}
+    >
+      <Mark />
+      <path d={IBS_PATH} fill={onDark ? LOGO_COLORS.cream : "var(--logo-ibs)"} />
+      <path d={CALM_PATH} fill={LOGO_COLORS.coral} />
+    </svg>
   );
 }
 
-/** Square app icon (decorative by default). */
+/** Square app icon (decorative). */
 export function LogoMark({ className, size = 40 }: { className?: string; size?: number }) {
-  return <Image src={ICON.src} alt="" aria-hidden width={size} height={size} sizes={`${size}px`} className={cn("block", className)} />;
+  return (
+    <svg viewBox="0 0 48 48" width={size} height={size} aria-hidden="true" className={cn("block", className)}>
+      <Mark />
+    </svg>
+  );
 }

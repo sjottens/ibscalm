@@ -109,6 +109,16 @@ Alle analyse staat in `lib/analysis/`, als pure functies zonder I/O. Instelbaar 
 
 Rustig en professioneel, voor een gevoelig onderwerp: witte vlakken, donkerblauwe (navy) tekst en blokken, één gele actiekleur voor de belangrijkste knop, en één lettertype (Figtree) met een basisgrootte van 17 px. Elke soort invoer heeft een zachte eigen kleur (groen = eten, roze = klacht, amber = stress, indigo = slaap), maar kleur draagt nooit alleen informatie: er zijn altijd ook iconen, labels en vormen. Alle kleuren zijn semantische tokens in `app/globals.css`, met een eigen donkere variant. Animaties zijn kort en functioneel en respecteren `prefers-reduced-motion`.
 
+### Logo
+
+Het logo ("kalme golf": een onrustige golf die eindigt als rustige lijn) wordt volledig gegenereerd door `scripts/generate-logo.mjs`. Het woordmerk is omgezet van Nunito (SIL Open Font License) naar vectorvormen, zodat het nergens van een geladen lettertype afhangt.
+
+```bash
+node scripts/generate-logo.mjs
+```
+
+Dit maakt `components/ui/logo-data.ts` (gebruikt door `<Logo />` als inline SVG, waarbij "ibs" meekleurt met licht/donker), de SVG's en PNG's in `public/logos/`, de favicons en `favicon.ico`. Kleuren en vormen pas je aan bovenin het script.
+
 ### SEO
 
 - Landingspagina met inhoud gericht op zoektermen (PDS-dagboek, buikklachten bijhouden, prikkelbare darm syndroom), één H1 en een logische kopstructuur.
