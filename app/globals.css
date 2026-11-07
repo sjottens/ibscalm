@@ -252,13 +252,12 @@ body::after {
   }
 }
 
+/* Transform only: animating opacity would delay Largest Contentful Paint. */
 @keyframes rise {
   from {
-    opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
-    opacity: 1;
     transform: none;
   }
 }

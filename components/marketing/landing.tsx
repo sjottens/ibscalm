@@ -10,7 +10,7 @@ export async function SiteHeader() {
   const locale = await getLocale();
   return (
     <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 pt-[max(env(safe-area-inset-top),1.25rem)] sm:px-8">
-      <Link href="/" aria-label={BRAND.name} className="rounded-lg">
+      <Link href="/" aria-label={BRAND.name} className="inline-flex min-h-12 items-center rounded-lg">
         <Logo size="md" />
       </Link>
       <nav aria-label="Site" className="flex items-center gap-1 sm:gap-2">
@@ -24,11 +24,12 @@ export async function SiteHeader() {
           href="/"
           locale={locale === "nl" ? "en" : "nl"}
           className="inline-flex min-h-11 items-center rounded-xl px-3 font-mono text-sm font-semibold uppercase hover:bg-paper-deep"
-          aria-label={locale === "nl" ? "English" : "Nederlands"}
+          lang={locale === "nl" ? "en" : "nl"}
+          title={locale === "nl" ? "English" : "Nederlands"}
         >
           {locale === "nl" ? "EN" : "NL"}
         </Link>
-        <Link href="/vandaag" className="inline-flex min-h-11 items-center gap-1.5 rounded-xl bg-ink px-4 text-sm font-semibold text-paper riso-shadow [--riso:var(--symptom)] [--shadow-offset:3px]">
+        <Link href="/vandaag" prefetch={false} className="inline-flex min-h-11 items-center gap-1.5 rounded-xl bg-ink px-4 text-sm font-semibold text-paper riso-shadow [--riso:var(--symptom)] [--shadow-offset:3px]">
           {t("open")}
         </Link>
       </nav>
@@ -72,6 +73,7 @@ export async function Landing() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="/vandaag"
+              prefetch={false}
               className="group inline-flex min-h-14 items-center gap-2 rounded-2xl border-[1.5px] border-ink bg-food px-6 font-display text-lg font-extrabold text-on-spot shadow-[5px_5px_0_0_var(--ink)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_var(--ink)] active:translate-x-1 active:translate-y-1 active:shadow-none"
             >
               {t("cta")} <ArrowRightIcon size={22} className="transition-transform group-hover:translate-x-1" />
@@ -205,6 +207,7 @@ export async function Landing() {
           <h2 className="relative mx-auto max-w-2xl font-display text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1]">{t("finalTitle")}</h2>
           <Link
             href="/vandaag"
+            prefetch={false}
             className="relative mt-8 inline-flex min-h-14 items-center gap-2 rounded-2xl border-[1.5px] border-ink bg-paper px-6 font-display text-lg font-extrabold text-ink shadow-[5px_5px_0_0_var(--ink)] transition active:translate-x-1 active:translate-y-1 active:shadow-none"
           >
             {t("cta")} <ArrowRightIcon size={22} />

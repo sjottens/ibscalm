@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { MotionConfig, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useEffect, type ReactNode } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -44,15 +44,17 @@ export function AppShell({ children }: { children: ReactNode }) {
     if (needsOnboarding) router.replace("/welkom");
   }, [needsOnboarding, router]);
 
-  if (!mounted || !settings || needsOnboarding) return <PageLoading />;
+  // The welcome screen needs no settings, so it can paint right away.
+  if (!mounted || needsOnboarding || (!settings && !onWelcome)) return <PageLoading />;
 
   return (
-    <>
+    // Respect "reduce motion": springs become instant, layout animations are skipped.
+    <MotionConfig reducedMotion="user">
       <div className={cn("mx-auto w-full max-w-xl", !onWelcome && "pb-[calc(env(safe-area-inset-bottom)+5.5rem)]")}>{children}</div>
       {!onWelcome ? <BottomNav pathname={pathname} /> : null}
       <SheetHost />
       <ToastHost />
-    </>
+    </MotionConfig>
   );
 }
 

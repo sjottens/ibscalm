@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { BRAND } from "@/lib/brand";
 import { Landing, SiteFooter, SiteHeader } from "@/components/marketing/landing";
+
+export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: { canonical: locale === "nl" ? "/" : "/en", languages: { nl: "/", en: "/en" } } };
+}
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;

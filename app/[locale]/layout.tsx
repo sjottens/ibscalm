@@ -12,11 +12,13 @@ import "../globals.css";
 const display = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
-  axes: ["opsz", "wdth"],
+  axes: ["opsz"],
   display: "swap",
+  // Body text (Geist) is the LCP element; headings may swap in a moment later.
+  preload: false,
 });
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap", preload: false });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -32,7 +34,6 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     applicationName: BRAND.name,
     appleWebApp: { capable: true, title: BRAND.name, statusBarStyle: "default" },
     formatDetection: { telephone: false },
-    alternates: { canonical: locale === "nl" ? "/" : "/en", languages: { nl: "/", en: "/en" } },
     openGraph: {
       type: "website",
       siteName: BRAND.name,
@@ -69,7 +70,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-xl focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
+          className="fixed -top-24 left-4 z-[80] inline-flex min-h-12 items-center rounded-xl bg-ink px-4 font-semibold text-paper focus:top-4"
         >
           {t("skipToContent")}
         </a>
