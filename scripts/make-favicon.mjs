@@ -2,7 +2,7 @@
 // Usage: node scripts/make-favicon.mjs
 import { readFileSync, writeFileSync } from "node:fs";
 
-const files = ["public/favicon-16.png", "public/favicon-32.png", "public/favicon-64.png"];
+const files = ["public/ibscalm-favicon-16.png", "public/ibscalm-favicon-32.png", "public/ibscalm-favicon-64.png"];
 const images = files.map((f) => {
   const data = readFileSync(f);
   return { data, width: data.readUInt32BE(16), height: data.readUInt32BE(20) };

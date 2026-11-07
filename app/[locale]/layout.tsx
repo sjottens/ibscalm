@@ -38,10 +38,10 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       icon: [
         { url: "/favicon.ico", sizes: "any" },
         { url: "/logos/ibscalm-icon.svg", type: "image/svg+xml" },
-        { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-        { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+        { url: "/ibscalm-favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/ibscalm-favicon-16.png", sizes: "16x16", type: "image/png" },
       ],
-      apple: { url: "/logos/apple-touch-icon-180.png", sizes: "180x180" },
+      apple: { url: "/logos/ibscalm-apple-touch-icon-180.png", sizes: "180x180" },
     },
   };
 }

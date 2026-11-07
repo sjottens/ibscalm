@@ -17,7 +17,7 @@ export function generateStaticParams() {
 export default async function OpenGraphImage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "landing" });
-  const logo = await readFile(join(process.cwd(), "public/logos/logo-horizontaal@2x.png"));
+  const logo = await readFile(join(process.cwd(), "public/logos/ibscalm-logo-horizontaal@2x.png"));
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
   const navy = "#23485a";
   return new ImageResponse(

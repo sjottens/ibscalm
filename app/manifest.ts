@@ -16,10 +16,10 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "nl",
     categories: ["health", "lifestyle"],
     icons: [
-      { src: "/logos/android-icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/logos/icon-rounded-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/logos/app-icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
-      { src: "/logos/app-icon-1024.png", sizes: "1024x1024", type: "image/png", purpose: "maskable" },
+      { src: "/logos/ibscalm-android-icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/logos/ibscalm-icon-rounded-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/logos/ibscalm-app-icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/logos/ibscalm-app-icon-1024.png", sizes: "1024x1024", type: "image/png", purpose: "maskable" },
     ],
     shortcuts: [
       { name: "Vandaag", url: "/vandaag" },
