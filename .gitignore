@@ -50,3 +50,10 @@ next-env.d.ts
 # serwist
 public/sw*
 public/swe-worker*
+
+# This project uses npm (package-lock.json). Other lockfiles make Vercel switch package manager.
+pnpm-lock.yaml
+pnpm-workspace.yaml
+yarn.lock
+bun.lock
+bun.lockb
