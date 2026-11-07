@@ -110,7 +110,10 @@
       "about": "Over PDS",
       "faq": "Vragen",
       "privacy": "Privacy",
-      "open": "Start de app"
+      "open": "Open app",
+      "menu": "Menu openen",
+      "menuClose": "Menu sluiten",
+      "menuTitle": "Menu"
     },
     "kicker": "Gratis PDS-dagboek",
     "title": "Houd je buikklachten bij en ontdek wat ze uitlokt",

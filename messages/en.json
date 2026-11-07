@@ -110,7 +110,10 @@
       "about": "About IBS",
       "faq": "FAQ",
       "privacy": "Privacy",
-      "open": "Open the app"
+      "open": "Open App",
+      "menu": "Open menu",
+      "menuClose": "Close menu",
+      "menuTitle": "Menu"
     },
     "kicker": "Free IBS diary",
     "title": "Track your gut symptoms and find out what triggers them",

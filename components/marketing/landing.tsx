@@ -14,6 +14,7 @@ import {
   SymptomIcon,
 } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/logo";
+import { MobileMenu } from "./mobile-menu";
 import { PhoneMock } from "./phone-mock";
 
 const ctaClass =
@@ -28,12 +29,12 @@ export async function SiteHeader() {
   const other = locale === "nl" ? "en" : "nl";
   const navLink = "inline-flex min-h-11 items-center rounded-md px-3 hover:bg-paper-deep";
   return (
-    <header className="border-b border-line bg-paper">
-      <div className={`${container} flex min-h-[4.5rem] items-center justify-between gap-4 pt-[env(safe-area-inset-top)]`}>
+    <header className="relative z-30 border-b border-line bg-paper">
+      <div className="mx-auto flex min-h-[4.5rem] w-full max-w-6xl items-center justify-between gap-2 px-4 pt-[env(safe-area-inset-top)] sm:gap-4 sm:px-8">
         <Link href="/" aria-label={`${BRAND.name} — home`} className="inline-flex min-h-12 items-center rounded-md">
           <Logo size="md" />
         </Link>
-        <nav aria-label={locale === "nl" ? "Hoofdnavigatie" : "Main navigation"} className="flex items-center gap-1">
+        <nav aria-label={locale === "nl" ? "Hoofdnavigatie" : "Main navigation"} className="flex shrink-0 items-center gap-1">
           <ul className="hidden items-center gap-1 md:flex">
             <li>
               <Link href="/#hoe-het-werkt" className={navLink}>
@@ -62,13 +63,23 @@ export async function SiteHeader() {
             hrefLang={other}
             lang={other}
             title={other === "en" ? "English" : "Nederlands"}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 text-sm font-bold uppercase hover:bg-paper-deep"
+            className="hidden min-h-11 min-w-11 items-center justify-center rounded-md px-2 text-sm font-bold uppercase hover:bg-paper-deep md:inline-flex"
           >
             {other.toUpperCase()}
           </Link>
-          <Link href="/vandaag" prefetch={false} className="ml-1 inline-flex min-h-11 items-center rounded-lg bg-ink px-4 font-semibold text-paper hover:opacity-90">
+          <Link href="/vandaag" prefetch={false} className="ml-1 inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg bg-ink px-3 font-semibold sm:px-4 text-paper hover:opacity-90">
             {t("open")}
           </Link>
+          <MobileMenu
+            items={[
+              { href: "/#hoe-het-werkt", label: t("how") },
+              { href: "/#over-pds", label: t("about") },
+              { href: "/#vragen", label: t("faq") },
+              { href: "/privacy", label: t("privacy") },
+            ]}
+            language={{ href: "/", locale: other, label: other === "en" ? "English" : "Nederlands" }}
+            labels={{ open: t("menu"), close: t("menuClose"), title: t("menuTitle") }}
+          />
         </nav>
       </div>
     </header>

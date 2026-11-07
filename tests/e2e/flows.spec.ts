@@ -19,6 +19,24 @@ test.describe("landing", () => {
     await expect(page).toHaveURL(/\/welkom$/);
   });
 
+  test("mobile menu opens, navigates and closes", async ({ page }) => {
+    await page.goto("/");
+    const toggle = page.getByRole("button", { name: "Menu openen" });
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await toggle.click();
+    const menu = page.getByRole("region", { name: "Menu" });
+    await expect(menu.getByRole("link", { name: "Hoe het werkt" })).toBeVisible();
+    await expect(menu.getByRole("link", { name: "Over PDS" })).toBeVisible();
+    await expect(menu.getByRole("link", { name: "Privacy" })).toBeVisible();
+    await menu.getByRole("link", { name: "Vragen" }).click();
+    await expect(page).toHaveURL(/#vragen$/);
+    await expect(menu).toBeHidden();
+    await page.getByRole("button", { name: "Menu openen" }).click();
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(page.getByRole("button", { name: "Menu openen" })).toBeFocused();
+  });
+
   test("is available in English", async ({ page }) => {
     await page.goto("/en");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Track your gut symptoms");
