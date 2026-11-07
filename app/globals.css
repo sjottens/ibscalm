@@ -238,6 +238,35 @@ html:has(.site-header) {
   }
 }
 
+/* Header call-to-action in the logo's own colours.
+   Light: solid blue-grey from the "IBS" lettering. Dark: outlined in the logo's cream,
+   so the logo stays the only solid block in the header. */
+.header-cta {
+  background: #23485a;
+  color: #ffffff;
+}
+.header-cta:hover {
+  background: #1b3a49;
+}
+:root[data-theme="dark"] .header-cta {
+  background: transparent;
+  color: #fff7f0;
+  box-shadow: inset 0 0 0 1.5px rgb(255 247 240 / 0.55);
+}
+:root[data-theme="dark"] .header-cta:hover {
+  background: rgb(255 247 240 / 0.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .header-cta {
+    background: transparent;
+    color: #fff7f0;
+    box-shadow: inset 0 0 0 1.5px rgb(255 247 240 / 0.55);
+  }
+  :root:not([data-theme="light"]) .header-cta:hover {
+    background: rgb(255 247 240 / 0.1);
+  }
+}
+
 /* ── Surfaces ────────────────────────────────────────────────────────── */
 
 .paper-card {

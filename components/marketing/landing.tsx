@@ -67,7 +67,7 @@ export async function SiteHeader() {
           >
             {other.toUpperCase()}
           </Link>
-          <Link href="/vandaag" prefetch={false} className="ml-1 inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg bg-ink px-3 font-semibold sm:px-4 text-paper hover:opacity-90">
+          <Link href="/vandaag" prefetch={false} className="header-cta ml-1 inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg px-3.5 font-semibold transition-colors sm:px-4">
             {t("open")}
           </Link>
           <MobileMenu
