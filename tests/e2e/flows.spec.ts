@@ -11,17 +11,17 @@ async function skipOnboarding(page: Page) {
 test.describe("landing", () => {
   test("shows the promise and leads into the app", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Eten, stress of slaap?");
-    await expect(page.getByText("Je buik gaat niemand iets aan.")).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Houd je buikklachten bij");
+    await expect(page.getByRole("heading", { name: "Je gegevens blijven van jou" })).toBeVisible();
     const width = await page.evaluate(() => document.documentElement.scrollWidth);
     expect(width).toBeLessThanOrEqual(page.viewportSize()!.width);
-    await page.getByRole("link", { name: "Begin met bijhouden" }).first().click();
+    await page.getByRole("link", { name: "Begin gratis met bijhouden" }).first().click();
     await expect(page).toHaveURL(/\/welkom$/);
   });
 
   test("is available in English", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Food, stress or sleep?");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Track your gut symptoms");
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
   });
 });
@@ -30,14 +30,14 @@ test.describe("onboarding", () => {
   test("walks through all steps, saves favourite tags and lands on today", async ({ page }) => {
     await page.goto("/vandaag");
     await expect(page).toHaveURL(/\/welkom$/);
-    await expect(page.getByRole("heading", { name: "Een dagboek voor je buik." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Een dagboek voor je buik" })).toBeVisible();
     for (let i = 0; i < 3; i++) await page.getByRole("button", { name: /Volgende/ }).click();
-    await expect(page.getByRole("heading", { name: "Inzicht, geen diagnose." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Inzicht, geen diagnose" })).toBeVisible();
     await page.getByRole("button", { name: "Begrepen" }).click();
     await page.getByRole("button", { name: "pittig" }).click();
     await page.getByRole("button", { name: /Begin met bijhouden/ }).click();
     await expect(page).toHaveURL(/\/vandaag$/);
-    await expect(page.getByRole("heading", { name: "Nog een leeg blad." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Vandaag", level: 1 })).toBeVisible();
 
     // Favourites show up first in the meal picker.
     await page.getByRole("button", { name: "Nieuwe invoer: Eten" }).click();
@@ -85,7 +85,7 @@ test.describe("logging", () => {
     await expect(list).toContainText("Pasta pesto");
     await expect(list).toContainText("opgeblazen");
     await expect(list).toContainText("stress vooraf");
-    await expect(page.getByRole("heading", { name: "Pittige dag." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Vandaag", level: 1 })).toBeVisible();
   });
 
   test("validates, edits and deletes with undo", async ({ page }) => {
@@ -149,7 +149,7 @@ test.describe("data", () => {
     await page.getByRole("link", { name: "Instellingen" }).click();
 
     const [json] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Back-up maken (JSON)" }).click()]);
-    expect(json.suggestedFilename()).toMatch(/^pds-dagboek-\d{4}-\d{2}-\d{2}\.json$/);
+    expect(json.suggestedFilename()).toMatch(/^ibscalm-\d{4}-\d{2}-\d{2}\.json$/);
     const jsonPath = await json.path();
     const file = JSON.parse(await readFile(jsonPath, "utf-8"));
     expect(file.app).toBe("pds-tracker");
@@ -180,6 +180,6 @@ test.describe("data", () => {
   test("rejects a file that is not a backup", async ({ page }) => {
     await page.getByRole("link", { name: "Instellingen" }).click();
     await page.getByTestId("import-input").setInputFiles({ name: "x.json", mimeType: "application/json", buffer: Buffer.from('{"hello":1}') });
-    await expect(page.getByText("Dit is geen back-up van Mild.")).toBeVisible();
+    await expect(page.getByText("Dit is geen back-up van IBSCalm.")).toBeVisible();
   });
 });

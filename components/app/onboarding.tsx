@@ -9,8 +9,8 @@ import { BUILTIN_FOOD_TAGS, DERIVED_TAGS } from "@/lib/db/types";
 import { useTagLabel } from "@/lib/hooks/data";
 import { cn } from "@/lib/cn";
 import { Button, Chip } from "@/components/ui/controls";
-import { ArrowRightIcon, ChevronLeftIcon, InfoIcon, LockIcon, MealIcon, StressIcon, SymptomIcon } from "@/components/ui/icons";
-import { Logo } from "@/components/ui/logo";
+import { ArrowRightIcon, ChevronLeftIcon, InfoIcon, LockIcon, MealIcon, SymptomIcon } from "@/components/ui/icons";
+import { Logo, LogoMark } from "@/components/ui/logo";
 
 const STEPS = 5;
 const PICKABLE = BUILTIN_FOOD_TAGS.filter((t) => t !== DERIVED_TAGS.large && t !== DERIVED_TAGS.late);
@@ -36,7 +36,6 @@ export function Onboarding() {
   };
 
   const key = `s${step + 1}` as "s1" | "s2" | "s3" | "s4" | "s5";
-  const bg = ["bg-food", "bg-stress", "bg-sleep", "bg-symptom", "bg-food"][step];
 
   return (
     <div className="flex min-h-dvh flex-col px-5 pb-[max(env(safe-area-inset-bottom),1.25rem)] pt-[max(env(safe-area-inset-top),1rem)]">
@@ -65,15 +64,15 @@ export function Onboarding() {
           initial={reduce ? { opacity: 0 } : { opacity: 0, x: dir * 40 }}
           animate={{ opacity: 1, x: 0 }}
           exit={reduce ? { opacity: 0 } : { opacity: 0, x: dir * -40 }}
-          transition={{ type: "spring", stiffness: 380, damping: 34 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-1 flex-col"
           aria-labelledby="onb-title"
         >
           <div className="relative my-8 grid flex-1 place-items-center">
-            <Art step={step} bg={bg} />
+            <Art step={step} />
           </div>
-          <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-ink-soft">{t(`${key}.kicker`)}</p>
-          <h1 id="onb-title" className="mt-2 font-display text-[2.3rem] font-extrabold leading-[1.02]">
+          <p className="text-sm font-semibold text-ink-soft">{t(`${key}.kicker`)}</p>
+          <h1 id="onb-title" className="mt-2 text-[2rem] font-black leading-tight">
             {t(`${key}.title`)}
           </h1>
           <p className="mt-3 text-[1.05rem] text-ink-soft">{t(`${key}.body`)}</p>
@@ -116,52 +115,18 @@ export function Onboarding() {
   );
 }
 
-/** One riso composition per step; shapes stamp in with a little stagger. */
-function Art({ step, bg }: { step: number; bg: string }) {
-  const icons = [MealIcon, SymptomIcon, StressIcon];
+/** One calm illustration per step: an icon in a soft tinted circle. */
+function Art({ step }: { step: number; bg?: string }) {
+  const items = [
+    { Icon: null, tone: "bg-paper-deep" },
+    { Icon: SymptomIcon, tone: "bg-symptom-wash text-symptom-ink" },
+    { Icon: LockIcon, tone: "bg-sleep-wash text-sleep-ink" },
+    { Icon: InfoIcon, tone: "bg-stress-wash text-stress-ink" },
+    { Icon: MealIcon, tone: "bg-food-wash text-food-ink" },
+  ][step];
   return (
-    <div className="relative h-56 w-56" aria-hidden>
-      <motion.div
-        initial={{ scale: 0.6, rotate: -12, opacity: 0 }}
-        animate={{ scale: 1, rotate: -4, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 300, damping: 18 }}
-        className={cn("absolute inset-4 rounded-[2.5rem] border-[2px] border-ink", bg)}
-      />
-      <motion.div
-        initial={{ scale: 0.4, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.12, type: "spring", stiffness: 300, damping: 16 }}
-        className="halftone absolute -right-2 -top-2 h-24 w-24 rounded-full [--dot:var(--ink)]"
-      />
-      <div className="absolute inset-0 grid place-items-center">
-        {step === 0 ? <Logo size="lg" /> : null}
-        {step === 1 ? (
-          <div className="flex gap-2">
-            {icons.map((Icon, i) => (
-              <motion.span
-                key={i}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.15 + i * 0.08 }}
-                className="grid h-14 w-14 place-items-center rounded-2xl border-[2px] border-ink bg-card"
-              >
-                <Icon size={28} />
-              </motion.span>
-            ))}
-          </div>
-        ) : null}
-        {step === 2 ? (
-          <span className="grid h-24 w-24 place-items-center rounded-full border-[2px] border-ink bg-card">
-            <LockIcon size={44} />
-          </span>
-        ) : null}
-        {step === 3 ? <span className="font-display text-[5.5rem] font-extrabold leading-none text-ink">!</span> : null}
-        {step === 4 ? (
-          <span className="grid h-24 w-24 place-items-center rounded-full border-[2px] border-ink bg-card">
-            <MealIcon size={44} />
-          </span>
-        ) : null}
-      </div>
+    <div className={cn("grid h-44 w-44 place-items-center rounded-full", items.tone)} aria-hidden>
+      {items.Icon ? <items.Icon size={72} strokeWidth={1.6} /> : <LogoMark size={96} />}
     </div>
   );
 }

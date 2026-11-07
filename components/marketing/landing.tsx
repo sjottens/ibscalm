@@ -1,162 +1,209 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { BRAND } from "@/lib/brand";
-import { ArrowRightIcon, LockIcon, NoEyeIcon, PhoneIcon, ShieldIcon, StressIcon, SymptomIcon } from "@/components/ui/icons";
+import {
+  ArrowRightIcon,
+  CheckIcon,
+  LockIcon,
+  MealIcon,
+  NoEyeIcon,
+  PhoneIcon,
+  ShieldIcon,
+  SleepIcon,
+  StressIcon,
+  SymptomIcon,
+} from "@/components/ui/icons";
 import { Logo } from "@/components/ui/logo";
 import { PhoneMock } from "./phone-mock";
+
+const ctaClass =
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-[1.0625rem] font-bold text-[#1b2b48] transition-colors hover:bg-accent-hover";
+const container = "mx-auto w-full max-w-6xl px-5 sm:px-8";
+
+export const FAQ_KEYS = [1, 2, 3, 4, 5, 6] as const;
 
 export async function SiteHeader() {
   const t = await getTranslations("landing.nav");
   const locale = await getLocale();
+  const other = locale === "nl" ? "en" : "nl";
+  const navLink = "inline-flex min-h-11 items-center rounded-md px-3 hover:bg-paper-deep";
   return (
-    <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 pt-[max(env(safe-area-inset-top),1.25rem)] sm:px-8">
-      <Link href="/" aria-label={BRAND.name} className="inline-flex min-h-12 items-center rounded-lg">
-        <Logo size="md" />
-      </Link>
-      <nav aria-label="Site" className="flex items-center gap-1 sm:gap-2">
-        <a href="#hoe" className="hidden min-h-11 items-center rounded-xl px-3 text-sm font-semibold hover:bg-paper-deep sm:inline-flex">
-          {t("how")}
-        </a>
-        <Link href="/privacy" className="hidden min-h-11 items-center rounded-xl px-3 text-sm font-semibold hover:bg-paper-deep sm:inline-flex">
-          {t("privacy")}
+    <header className="border-b border-line bg-paper">
+      <div className={`${container} flex min-h-[4.5rem] items-center justify-between gap-4 pt-[env(safe-area-inset-top)]`}>
+        <Link href="/" aria-label={`${BRAND.name} — home`} className="inline-flex min-h-12 items-center rounded-md">
+          <Logo size="md" />
         </Link>
-        <Link
-          href="/"
-          locale={locale === "nl" ? "en" : "nl"}
-          className="inline-flex min-h-11 items-center rounded-xl px-3 font-mono text-sm font-semibold uppercase hover:bg-paper-deep"
-          lang={locale === "nl" ? "en" : "nl"}
-          title={locale === "nl" ? "English" : "Nederlands"}
-        >
-          {locale === "nl" ? "EN" : "NL"}
-        </Link>
-        <Link href="/vandaag" prefetch={false} className="inline-flex min-h-11 items-center gap-1.5 rounded-xl bg-ink px-4 text-sm font-semibold text-paper riso-shadow [--riso:var(--symptom)] [--shadow-offset:3px]">
-          {t("open")}
-        </Link>
-      </nav>
+        <nav aria-label={locale === "nl" ? "Hoofdnavigatie" : "Main navigation"} className="flex items-center gap-1">
+          <ul className="hidden items-center gap-1 md:flex">
+            <li>
+              <Link href="/#hoe-het-werkt" className={navLink}>
+                {t("how")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/#over-pds" className={navLink}>
+                {t("about")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/#vragen" className={navLink}>
+                {t("faq")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className={navLink}>
+                {t("privacy")}
+              </Link>
+            </li>
+          </ul>
+          <Link
+            href="/"
+            locale={other}
+            hrefLang={other}
+            lang={other}
+            title={other === "en" ? "English" : "Nederlands"}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 text-sm font-bold uppercase hover:bg-paper-deep"
+          >
+            {other.toUpperCase()}
+          </Link>
+          <Link href="/vandaag" prefetch={false} className="ml-1 inline-flex min-h-11 items-center rounded-lg bg-ink px-4 font-semibold text-paper hover:opacity-90">
+            {t("open")}
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }
 
 export async function Landing() {
   const t = await getTranslations("landing");
-  const tags = await getTranslations("tags");
-  const kinds = await getTranslations("kinds");
-  const marquee = [
-    tags("onion-garlic"),
-    kinds("stress"),
-    tags("dairy-lactose"),
-    kinds("sleep"),
-    tags("wheat-gluten"),
-    t("loopTitle"),
-    tags("legumes"),
-    tags("carbonated"),
-    tags("late-meal"),
-  ];
+  const locale = await getLocale();
+  const moreUrl =
+    locale === "nl" ? "https://www.thuisarts.nl/prikkelbaredarmsyndroom" : "https://www.nhs.uk/conditions/irritable-bowel-syndrome-ibs/";
+  const h2 = "text-[clamp(1.8rem,4vw,2.4rem)] font-black leading-tight";
 
   return (
     <>
       {/* ── Hero ───────────────────────────────────────────────────── */}
-      <section className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 pb-20 pt-10 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:pt-16">
-        <div className="animate-[rise_0.7s_var(--ease-out-soft)_both]">
-          <p className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-card px-3 py-1 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em]">
-            <span className="h-2 w-2 rounded-full bg-symptom" /> {t("kicker")}
-          </p>
-          <h1 className="mt-6 font-display text-[clamp(2.9rem,8.5vw,5.6rem)] font-extrabold leading-[0.92] tracking-[-0.035em]">
-            <span className="riso-text block [--riso:var(--stress)]">{t("title")}</span>
-            <span className="mt-2 block">
-              <span className="bg-[linear-gradient(transparent_58%,var(--symptom)_58%,var(--symptom)_92%,transparent_92%)] [box-decoration-break:clone]">
-                {t("titleAccent")}
-              </span>
-            </span>
-          </h1>
-          <p className="mt-7 max-w-xl text-[1.15rem] leading-relaxed text-ink-soft">{t("lead")}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/vandaag"
-              prefetch={false}
-              className="group inline-flex min-h-14 items-center gap-2 rounded-2xl border-[1.5px] border-ink bg-food px-6 font-display text-lg font-extrabold text-on-spot shadow-[5px_5px_0_0_var(--ink)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_var(--ink)] active:translate-x-1 active:translate-y-1 active:shadow-none"
-            >
-              {t("cta")} <ArrowRightIcon size={22} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-            <a href="#hoe" className="inline-flex min-h-14 items-center rounded-2xl px-4 font-semibold underline decoration-2 underline-offset-[6px] hover:decoration-symptom">
-              {t("ctaSecondary")}
-            </a>
+      <section className="bg-paper-deep" aria-labelledby="hero-title">
+        <div className={`${container} grid items-center gap-12 py-14 lg:grid-cols-[1.2fr_1fr] lg:py-20`}>
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.06em] text-ink-soft">{t("kicker")}</p>
+            <h1 id="hero-title" className="mt-3 text-[clamp(2.1rem,5.4vw,3.4rem)] font-black leading-[1.08] tracking-[-0.02em]">
+              {t("title")}
+            </h1>
+            <p className="mt-5 max-w-xl text-[1.15rem] leading-relaxed text-ink-soft">{t("lead")}</p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link href="/vandaag" prefetch={false} className={ctaClass}>
+                {t("cta")} <ArrowRightIcon size={20} />
+              </Link>
+              <a href="#hoe-het-werkt" className="text-link inline-flex min-h-12 items-center font-semibold">
+                {t("ctaSecondary")}
+              </a>
+            </div>
+            <ul className="mt-8 grid gap-2 sm:grid-cols-3" aria-label={t("free")}>
+              {(["free", "account", "device"] as const).map((k) => (
+                <li key={k} className="flex items-center gap-2 text-[0.95rem] font-medium">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-food-wash text-food-ink">
+                    <CheckIcon size={15} strokeWidth={3} />
+                  </span>
+                  {t(`trust.${k}`)}
+                </li>
+              ))}
+            </ul>
           </div>
-          <p className="mt-5 font-mono text-xs uppercase tracking-[0.14em] text-ink-soft">{t("free")}</p>
-        </div>
-        <div className="animate-[rise_0.9s_0.15s_var(--ease-out-soft)_both]">
           <PhoneMock />
         </div>
       </section>
 
-      {/* ── Marquee band ───────────────────────────────────────────── */}
-      <div className="overflow-hidden py-4" aria-hidden>
-      <div className="relative -mx-4 -rotate-1 border-y-[2px] border-ink bg-stress py-3">
-        <div className="flex w-max animate-[marquee_38s_linear_infinite] gap-8 whitespace-nowrap font-display text-xl font-extrabold text-on-spot">
-          {[...marquee, ...marquee].map((m, i) => (
-            <span key={i} className="inline-flex items-center gap-8">
-              {m} <span className="h-3 w-3 rounded-full bg-symptom ring-[1.5px] ring-ink" />
-            </span>
-          ))}
+      {/* ── How it works (navy band) ───────────────────────────────── */}
+      <section id="hoe-het-werkt" className="scroll-mt-4 bg-ink text-paper" aria-labelledby="steps-title">
+        <div className={`${container} py-16`}>
+          <h2 id="steps-title" className={h2}>
+            {t("stepsTitle")}
+          </h2>
+          <p className="mt-2 text-lg opacity-85">{t("stepsLead")}</p>
+          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+            {(["one", "two", "three"] as const).map((k, i) => (
+              <li key={k}>
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-accent text-lg font-black text-[#1b2b48]" aria-hidden>
+                  {i + 1}
+                </span>
+                <h3 className="mt-4 text-xl font-extrabold">{t(`steps.${k}.title`)}</h3>
+                <p className="mt-2 leading-relaxed opacity-85">{t(`steps.${k}.body`)}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </div>
-      </div>
+      </section>
 
-      {/* ── How it works ───────────────────────────────────────────── */}
-      <section id="hoe" className="mx-auto max-w-6xl scroll-mt-8 px-5 py-24 sm:px-8" aria-labelledby="steps-title">
-        <h2 id="steps-title" className="max-w-xl font-display text-[clamp(2.1rem,5vw,3.4rem)] font-extrabold leading-[0.98]">
-          {t("stepsTitle")}
+      {/* ── What you can track ─────────────────────────────────────── */}
+      <section className={`${container} py-16`} aria-labelledby="track-title">
+        <h2 id="track-title" className={h2}>
+          {t("trackTitle")}
         </h2>
-        <ol className="mt-12 grid gap-5 md:grid-cols-3">
-          {(["one", "two", "three"] as const).map((k, i) => (
-            <li
-              key={k}
-              className="paper-card relative p-6 riso-shadow"
-              style={{ ["--riso" as string]: ["var(--food)", "var(--symptom)", "var(--sleep)"][i], transform: `rotate(${[-1, 0.6, -0.4][i]}deg)` }}
-            >
-              <span className="tabular font-mono text-sm font-semibold text-ink-soft">0{i + 1}</span>
-              <h3 className="mt-6 font-display text-[2rem] font-extrabold leading-none">{t(`steps.${k}.title`)}</h3>
-              <p className="mt-3 text-ink-soft">{t(`steps.${k}.body`)}</p>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {(
+            [
+              ["meal", MealIcon, "bg-food-wash text-food-ink"],
+              ["symptom", SymptomIcon, "bg-symptom-wash text-symptom-ink"],
+              ["stress", StressIcon, "bg-stress-wash text-stress-ink"],
+              ["sleep", SleepIcon, "bg-sleep-wash text-sleep-ink"],
+            ] as const
+          ).map(([k, Icon, tone]) => (
+            <li key={k} className="paper-card p-5">
+              <span className={`grid h-11 w-11 place-items-center rounded-lg ${tone}`}>
+                <Icon size={24} />
+              </span>
+              <h3 className="mt-4 text-lg font-extrabold">{t(`track.${k}.title`)}</h3>
+              <p className="mt-1.5 leading-relaxed text-ink-soft">{t(`track.${k}.body`)}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </section>
 
-      {/* ── Gut–brain loop ─────────────────────────────────────────── */}
-      <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-24 sm:px-8 md:grid-cols-2" aria-labelledby="loop-title">
-        <LoopDiagram />
-        <div>
-          <h2 id="loop-title" className="font-display text-[clamp(2rem,4.6vw,3.1rem)] font-extrabold leading-[1]">
-            {t("loopTitle")}
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink-soft">{t("loopBody")}</p>
-        </div>
-      </section>
-
-      {/* ── Insight preview ───────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-5 pb-24 sm:px-8" aria-labelledby="insight-title">
-        <div className="grid items-center gap-10 rounded-[2rem] border-[1.5px] border-ink bg-card p-6 sm:p-10 md:grid-cols-2">
+      {/* ── About IBS (informational content) ──────────────────────── */}
+      <section id="over-pds" className="scroll-mt-4 border-y border-line bg-paper-deep" aria-labelledby="about-title">
+        <div className={`${container} grid gap-10 py-16 md:grid-cols-2`}>
           <div>
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink-soft">{t("insightKicker")}</p>
-            <h2 id="insight-title" className="mt-3 font-display text-[clamp(2rem,4.6vw,3rem)] font-extrabold leading-[1]">
-              {t("insightTitle")}
+            <h2 id="about-title" className={h2}>
+              {t("aboutTitle")}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">{t("insightBody")}</p>
+            <p className="mt-4 text-lg leading-relaxed">{t("aboutBody1")}</p>
+            <p className="mt-4 text-lg leading-relaxed">{t("aboutBody2")}</p>
+            <a href={moreUrl} target="_blank" rel="noopener noreferrer external" className="text-link mt-5 inline-flex min-h-11 items-center gap-1 font-semibold">
+              {t("aboutMore")} <ArrowRightIcon size={18} />
+            </a>
           </div>
-          <InsightMock />
+          <div className="paper-card self-start p-6">
+            <h3 className="text-xl font-extrabold">{t("loopTitle")}</h3>
+            <p className="mt-3 leading-relaxed text-ink-soft">{t("loopBody")}</p>
+          </div>
         </div>
       </section>
 
-      {/* ── Privacy (inverted ink block) ───────────────────────────── */}
+      {/* ── Insights ───────────────────────────────────────────────── */}
+      <section className={`${container} grid items-center gap-10 py-16 md:grid-cols-2`} aria-labelledby="insight-title">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-[0.06em] text-ink-soft">{t("insightKicker")}</p>
+          <h2 id="insight-title" className={`mt-2 ${h2}`}>
+            {t("insightTitle")}
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft">{t("insightBody")}</p>
+        </div>
+        <InsightMock />
+      </section>
+
+      {/* ── Privacy ────────────────────────────────────────────────── */}
       <section className="bg-ink text-paper" aria-labelledby="privacy-title">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-24 sm:px-8 md:grid-cols-[1.2fr_1fr]">
+        <div className={`${container} grid gap-10 py-16 md:grid-cols-[1.2fr_1fr]`}>
           <div>
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-stress">{t("privacyKicker")}</p>
-            <h2 id="privacy-title" className="mt-3 font-display text-[clamp(2.4rem,6vw,4.4rem)] font-extrabold leading-[0.95] [text-shadow:0.04em_0.04em_0_var(--symptom)]">
+            <p className="text-sm font-bold uppercase tracking-[0.06em] text-accent">{t("privacyKicker")}</p>
+            <h2 id="privacy-title" className={`mt-2 ${h2}`}>
               {t("privacyTitle")}
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed opacity-85">{t("privacyBody")}</p>
-            <Link href="/privacy" className="mt-7 inline-flex min-h-12 items-center gap-2 font-semibold underline decoration-stress decoration-2 underline-offset-[6px]">
+            <p className="mt-4 max-w-lg text-lg leading-relaxed opacity-90">{t("privacyBody")}</p>
+            <Link href="/privacy" className="mt-6 inline-flex min-h-11 items-center gap-2 font-semibold text-accent underline underline-offset-4">
               {t("privacyLink")} <ArrowRightIcon size={18} />
             </Link>
           </div>
@@ -169,9 +216,9 @@ export async function Landing() {
                 ["export", ShieldIcon],
               ] as const
             ).map(([k, Icon]) => (
-              <li key={k} className="flex items-center gap-4 rounded-2xl border-[1.5px] border-paper/25 p-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-stress text-on-spot">
-                  <Icon size={22} />
+              <li key={k} className="flex items-center gap-4 rounded-lg bg-white/[0.06] p-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent text-[#1b2b48]">
+                  <Icon size={20} />
                 </span>
                 <span className="font-semibold">{t(`privacyPoints.${k}`)}</span>
               </li>
@@ -181,36 +228,36 @@ export async function Landing() {
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-3xl px-5 py-24 sm:px-8" aria-labelledby="faq-title">
-        <h2 id="faq-title" className="font-display text-[clamp(2rem,4.6vw,3rem)] font-extrabold">
+      <section id="vragen" className="mx-auto max-w-3xl scroll-mt-4 px-5 py-16 sm:px-8" aria-labelledby="faq-title">
+        <h2 id="faq-title" className={h2}>
           {t("faqTitle")}
         </h2>
-        <div className="mt-8 divide-y-[1.5px] divide-line border-y-[1.5px] border-line">
-          {([1, 2, 3, 4] as const).map((n) => (
-            <details key={n} className="group py-2">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-bold">
-                {t(`faq.q${n}`)}
-                <span aria-hidden className="grid h-9 w-9 shrink-0 place-items-center rounded-full border-[1.5px] border-ink text-xl transition-transform group-open:rotate-45 group-open:bg-stress">
+        <div className="mt-6 divide-y divide-line border-y border-line">
+          {FAQ_KEYS.map((n) => (
+            <details key={n} className="group">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3">
+                <h3 className="text-lg font-bold">{t(`faq.q${n}`)}</h3>
+                <span aria-hidden className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-paper-deep text-xl transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="pb-4 pr-12 text-ink-soft">{t(`faq.a${n}`)}</p>
+              <p className="pb-5 pr-10 leading-relaxed text-ink-soft">{t(`faq.a${n}`)}</p>
             </details>
           ))}
         </div>
       </section>
 
       {/* ── Final CTA ──────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-5 pb-24 sm:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border-[2px] border-ink bg-symptom px-6 py-14 text-center text-on-spot sm:px-12">
-          <div className="halftone pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full opacity-40 [--dot:var(--ink)]" aria-hidden />
-          <h2 className="relative mx-auto max-w-2xl font-display text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1]">{t("finalTitle")}</h2>
-          <Link
-            href="/vandaag"
-            prefetch={false}
-            className="relative mt-8 inline-flex min-h-14 items-center gap-2 rounded-2xl border-[1.5px] border-ink bg-paper px-6 font-display text-lg font-extrabold text-ink shadow-[5px_5px_0_0_var(--ink)] transition active:translate-x-1 active:translate-y-1 active:shadow-none"
-          >
-            {t("cta")} <ArrowRightIcon size={22} />
+      <section className="bg-paper-deep" aria-labelledby="final-title">
+        <div className={`${container} flex flex-col items-start gap-6 py-14 md:flex-row md:items-center md:justify-between`}>
+          <div>
+            <h2 id="final-title" className="text-[clamp(1.6rem,3.5vw,2.1rem)] font-black">
+              {t("finalTitle")}
+            </h2>
+            <p className="mt-1 text-lg text-ink-soft">{t("finalBody")}</p>
+          </div>
+          <Link href="/vandaag" prefetch={false} className={ctaClass}>
+            {t("cta")} <ArrowRightIcon size={20} />
           </Link>
         </div>
       </section>
@@ -222,41 +269,33 @@ export async function SiteFooter() {
   const t = await getTranslations("landing");
   const tn = await getTranslations("landing.nav");
   return (
-    <footer className="border-t-[1.5px] border-line">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 sm:flex-row sm:items-end sm:justify-between sm:px-8">
-        <div className="max-w-md">
-          <Logo size="sm" />
-          <p className="mt-3 text-sm text-ink-soft">{t("footerDisclaimer")}</p>
+    <footer className="bg-ink text-paper">
+      <div className={`${container} grid gap-8 py-12 md:grid-cols-[2fr_1fr]`}>
+        <div className="max-w-xl">
+          <span className="inline-flex items-center rounded-md bg-white px-2 py-1 text-[#1b2b48]">
+            <Logo size="sm" />
+          </span>
+          <p className="mt-4 leading-relaxed opacity-85">{t("footerDisclaimer")}</p>
         </div>
-        <div className="flex flex-col gap-1 text-sm sm:items-end">
-          <Link href="/privacy" className="min-h-11 font-semibold underline-offset-4 hover:underline">
-            {tn("privacy")}
-          </Link>
-          <p className="text-ink-soft">{t("footerMade")}</p>
-        </div>
+        <nav aria-label="Footer">
+          <ul className="grid gap-1">
+            <li>
+              <Link href="/vandaag" prefetch={false} className="inline-flex min-h-11 items-center font-semibold hover:underline">
+                {tn("open")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="inline-flex min-h-11 items-center font-semibold hover:underline">
+                {tn("privacy")}
+              </Link>
+            </li>
+          </ul>
+          <p className="mt-3 text-sm opacity-75">
+            © 2026 {BRAND.name} · {t("footerMade")}
+          </p>
+        </nav>
       </div>
     </footer>
-  );
-}
-
-function LoopDiagram() {
-  return (
-    <svg viewBox="0 0 400 300" className="h-auto w-full max-w-md" aria-hidden>
-      <circle cx="128" cy="156" r="92" fill="var(--symptom)" opacity="0.92" />
-      <circle cx="276" cy="146" r="92" fill="var(--stress)" style={{ mixBlendMode: "multiply" }} />
-      <circle cx="132" cy="150" r="92" fill="none" stroke="var(--ink)" strokeWidth="2.5" />
-      <circle cx="272" cy="150" r="92" fill="none" stroke="var(--ink)" strokeWidth="2.5" />
-      <path d="M150 60 C 190 20, 230 20, 262 56" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" />
-      <path d="M252 46 l12 12 -16 4" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M250 244 C 210 282, 170 282, 140 244" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" />
-      <path d="M150 254 l-12 -12 16 -4" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <g transform="translate(96 124)" color="var(--ink)">
-        <SymptomIcon size={64} strokeWidth={1.6} />
-      </g>
-      <g transform="translate(244 118)" color="var(--ink)">
-        <StressIcon size={64} strokeWidth={1.6} />
-      </g>
-    </svg>
   );
 }
 
@@ -270,22 +309,22 @@ async function InsightMock() {
     [tags("dairy-lactose"), 30, 31],
   ];
   return (
-    <div className="rounded-[1.4rem] border-[1.5px] border-ink bg-paper p-5 shadow-[6px_6px_0_0_var(--symptom)]" aria-hidden>
-      <p className="font-display text-xl font-extrabold leading-tight">
-        {t("summary")} <span className="rounded-md bg-food px-1.5 text-on-spot">{t("factor")}</span>.
+    <div className="paper-card riso-shadow p-6" aria-hidden>
+      <p className="text-xl font-extrabold leading-snug">
+        {t("summary")} <span className="rounded bg-food-wash px-1.5 text-food-ink">{t("factor")}</span>
       </p>
       <div className="perforation my-4" />
-      <ul className="space-y-3">
+      <ul className="space-y-3.5">
         {rows.map(([label, w, ref]) => (
           <li key={label}>
-            <div className="mb-1 flex justify-between text-sm">
+            <div className="mb-1 flex justify-between text-[0.95rem]">
               <span className="font-semibold">{label}</span>
-              <span className="tabular font-mono text-xs text-ink-soft">
+              <span className="tabular text-ink-soft">
                 <b className="text-ink">{w}%</b> · {ref}%
               </span>
             </div>
-            <div className="relative h-3.5 rounded-md bg-paper-deep">
-              <div className="absolute inset-y-0 left-0 rounded-md border-[1.5px] border-ink bg-symptom" style={{ width: `${w}%` }} />
+            <div className="relative h-3 rounded bg-paper-deep">
+              <div className="absolute inset-y-0 left-0 rounded bg-symptom" style={{ width: `${w}%` }} />
               <div className="absolute -inset-y-1 w-[3px] rounded-full bg-ink" style={{ left: `${ref}%` }} />
             </div>
           </li>

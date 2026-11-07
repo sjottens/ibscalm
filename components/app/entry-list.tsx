@@ -25,10 +25,10 @@ export function EntryList({ entries, label }: { entries: Entry[]; label: string 
           <motion.li
             key={e.id}
             layout={!reduce}
-            initial={e.id === lastSavedId && !reduce ? { opacity: 0, scale: 0.7, rotate: -4 } : false}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={e.id === lastSavedId && !reduce ? { opacity: 0, y: -8 } : false}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, x: -24, transition: { duration: 0.2 } }}
-            transition={{ type: "spring", stiffness: 520, damping: 26 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
             <EntryRow entry={e} />
           </motion.li>
@@ -87,8 +87,8 @@ function EntryRow({ entry }: { entry: Entry }) {
       onClick={() => openEntry(entry.kind, { editing: entry })}
       className="paper-card group flex w-full items-start gap-3 px-3.5 py-3 text-left transition hover:border-line-strong active:scale-[0.99]"
     >
-      <span className="tabular w-11 shrink-0 pt-1.5 font-mono text-[0.8rem] font-medium text-ink-soft">{formatTime(entry.timestamp, locale)}</span>
-      <span className={cn("relative z-[1] grid h-9 w-9 shrink-0 place-items-center rounded-full border-[1.5px] border-ink text-on-spot", badge[entry.kind])}>
+      <span className="tabular w-11 shrink-0 pt-1.5 text-[0.9rem] font-semibold text-ink-soft">{formatTime(entry.timestamp, locale)}</span>
+      <span className={cn("relative z-[1] grid h-9 w-9 shrink-0 place-items-center rounded-full text-on-spot", badge[entry.kind])}>
         <Icon size={18} />
       </span>
       <span className="min-w-0 flex-1 pt-1">
@@ -114,7 +114,7 @@ export function LevelDots({ value }: { value: number }) {
   return (
     <span aria-hidden className="inline-flex gap-0.5">
       {[1, 2, 3, 4, 5].map((i) => (
-        <span key={i} className={cn("h-2.5 w-2.5 rounded-full border border-ink/40", i <= value ? "bg-stress" : "bg-paper-deep")} />
+        <span key={i} className={cn("h-2.5 w-2.5 rounded-full border border-line-strong", i <= value ? "bg-stress" : "bg-paper-deep")} />
       ))}
     </span>
   );

@@ -37,28 +37,21 @@ export function TodayView() {
     <div className="px-4 pb-44 pt-[max(env(safe-area-inset-top),1.25rem)]">
       {/* Masthead */}
       <header>
-        <div className="flex items-center justify-between font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-ink-soft">
+        <div className="flex items-center justify-between text-sm font-semibold text-ink-soft">
           <span>{today ? formatDayShort(today, locale) : " "}</span>
           <span>
             {t("timeline.week")} {today ? isoWeek(today) : ""}
           </span>
         </div>
-        <div className="perforation mt-2" />
-        <motion.h1
-          key={mood}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="riso-text mt-4 font-display text-[2.6rem] font-extrabold leading-[0.95] [--riso:var(--stress)]"
-        >
-          {t(`today.greeting.${mood}`)}
-        </motion.h1>
+                <h1 className="mt-3 text-[2.25rem] font-black leading-tight">{t("common.today")}</h1>
         <p className="mt-2 text-[0.95rem] text-ink-soft">
-          {mood === "rough" ? t("today.greeting.roughSub") : t("today.summary", { meals, symptoms: symptoms.length, stress })}
+          {t("today.summary", { meals, symptoms: symptoms.length, stress })}
+          {mood === "rough" ? <span className="mt-1 block">{t("today.greeting.roughSub")}</span> : null}
         </p>
       </header>
 
       {/* Day ticket */}
-      <section className="paper-card riso-shadow mt-5 overflow-hidden p-4 [--riso:var(--food)]" aria-label={t("today.dayCard.title")}>
+      <section className="paper-card mt-5 overflow-hidden p-4" aria-label={t("today.dayCard.title")}>
         {entries ? (
           <DayStrip entries={entries} nowHour={now ? localHour(now) : null} className="h-auto w-full" />
         ) : (
@@ -75,7 +68,7 @@ export function TodayView() {
             {dayLog?.sleepQuality ? (
               <span className="inline-flex gap-0.5" aria-label={`${dayLog.sleepQuality}/5`}>
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <span key={i} className={cn("h-2.5 w-2.5 rounded-full border border-ink/40", i <= dayLog.sleepQuality! ? "bg-sleep" : "bg-paper-deep")} />
+                  <span key={i} className={cn("h-2.5 w-2.5 rounded-full border border-line-strong", i <= dayLog.sleepQuality! ? "bg-sleep" : "bg-paper-deep")} />
                 ))}
               </span>
             ) : (
@@ -101,7 +94,7 @@ export function TodayView() {
 
       {/* Progress punch card */}
       {tracked && days < MIN_DAYS ? (
-        <section className="mt-5 rounded-[var(--radius-card)] border-[1.5px] border-dashed border-line-strong p-4" aria-label={t("today.progress", { days })}>
+        <section className="mt-5 paper-card p-4" aria-label={t("today.progress", { days })}>
           <div className="flex items-baseline justify-between gap-2">
             <p className="font-display text-lg font-bold">{t("today.progress", { days })}</p>
             <p className="font-mono text-xs text-ink-soft tabular">
@@ -114,7 +107,7 @@ export function TodayView() {
                 key={i}
                 initial={false}
                 animate={{ scale: i < days ? 1 : 0.86 }}
-                className={cn("aspect-square rounded-full border-[1.5px]", i < days ? "border-ink bg-symptom" : "border-line-strong")}
+                className={cn("aspect-square rounded-full border", i < days ? "border-transparent bg-ink" : "border-line-strong")}
               />
             ))}
           </div>
@@ -124,7 +117,7 @@ export function TodayView() {
 
       {/* Entries */}
       <section className="mt-6" aria-labelledby="today-entries">
-        <h2 id="today-entries" className="mb-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-ink-soft">
+        <h2 id="today-entries" className="mb-3 text-sm font-semibold text-ink-soft">
           {t("today.entriesTitle")}
         </h2>
         {!entries ? (
@@ -133,7 +126,7 @@ export function TodayView() {
             <Skeleton className="h-16" />
           </div>
         ) : entries.length === 0 ? (
-          <div className="flex items-center gap-4 rounded-[var(--radius-card)] border-[1.5px] border-dashed border-line-strong p-5">
+          <div className="flex items-center gap-4 paper-card p-5">
             <EmptyIllustration variant="plate" className="h-20 shrink-0" />
             <div>
               <p className="font-display text-lg font-bold leading-tight">{t("today.emptyTitle")}</p>
@@ -153,7 +146,7 @@ export function TodayView() {
 function Stat({ icon, label, tone, children }: { icon: React.ReactNode; label: string; tone: string; children: React.ReactNode }) {
   return (
     <span className="block min-w-0">
-      <span className={cn("flex items-center gap-1 font-mono text-[0.68rem] font-medium uppercase tracking-[0.12em]", tone)}>
+      <span className={cn("flex items-center gap-1 text-[0.8rem] font-semibold", tone)}>
         {icon}
         {label}
       </span>

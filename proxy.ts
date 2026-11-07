@@ -5,5 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Skip Next internals, the service worker, generated icons and any file with an extension.
-  matcher: ["/((?!api|serwist|icons|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|serwist|icons|sitemap|robots|_next|_vercel|.*\\..*).*)"],
 };

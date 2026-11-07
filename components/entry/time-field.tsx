@@ -47,7 +47,7 @@ export function TimeField({ value, onChange, isNow }: { value: number; onChange:
         aria-expanded={open}
         aria-controls={id}
         className={cn(
-          "inline-flex min-h-11 items-center gap-2 rounded-full border-[1.5px] px-4 font-mono text-sm font-medium transition-colors",
+          "inline-flex min-h-11 items-center gap-2 rounded-full border px-4 font-mono text-sm font-medium transition-colors",
           open ? "border-ink bg-ink text-paper" : "border-line-strong bg-card text-ink hover:border-ink",
         )}
       >

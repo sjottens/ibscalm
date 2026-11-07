@@ -36,10 +36,9 @@ export function ActionDock({ at, inline = false }: { at?: () => number; inline?:
             initial={inline ? false : { y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.05 * i, type: "spring", stiffness: 500, damping: 30 }}
-            whileTap={{ scale: 0.95, x: 2, y: 2, boxShadow: "0px 0px 0 0 var(--ink)" }}
-            style={{ boxShadow: "4px 4px 0 0 var(--ink)" }}
+            whileTap={{ scale: 0.97 }}
             className={cn(
-              "flex min-h-16 flex-col items-center justify-center gap-0.5 rounded-[1.25rem] border-[1.5px] border-ink font-display text-[1.02rem] font-extrabold text-on-spot",
+              "flex min-h-16 flex-col items-center justify-center gap-0.5 rounded-xl text-base font-bold text-on-spot shadow-[var(--shadow-md)]",
               bg,
             )}
           >

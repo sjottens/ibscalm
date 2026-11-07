@@ -57,7 +57,7 @@ export function Sheet({
             </Dialog.Overlay>
             <Dialog.Content asChild forceMount {...(description ? {} : { "aria-describedby": undefined })}>
               <motion.div
-                className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[94dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-[var(--radius-sheet)] border-[1.5px] border-b-0 border-ink bg-paper shadow-[0_-12px_40px_rgb(18_20_42/0.18)] outline-none"
+                className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[94dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-[var(--radius-sheet)] bg-paper shadow-[0_-12px_40px_rgb(18_20_42/0.18)] outline-none"
                 initial={reduce ? { opacity: 0 } : { y: "100%" }}
                 animate={reduce ? { opacity: 1 } : { y: 0 }}
                 exit={reduce ? { opacity: 0 } : { y: "100%" }}
@@ -76,12 +76,12 @@ export function Sheet({
                   className="relative shrink-0 cursor-grab touch-none pb-1 pt-2.5 active:cursor-grabbing"
                   onPointerDown={(e) => controls.start(e)}
                 >
-                  <div className={cn("absolute inset-x-0 top-0 h-1.5 rounded-t-[var(--radius-sheet)]", bandColor[spot])} />
+                  <div className={cn("absolute inset-x-0 top-0 h-1 rounded-t-[var(--radius-sheet)]", bandColor[spot])} />
                   <div className="mx-auto mt-1.5 h-1.5 w-11 rounded-full bg-line-strong" />
                 </div>
                 <div className="flex shrink-0 items-start justify-between gap-4 px-5 pb-3 pt-2">
                   <div>
-                    <Dialog.Title className="font-display text-[1.6rem] font-extrabold leading-tight">{title}</Dialog.Title>
+                    <Dialog.Title className="text-[1.5rem] font-extrabold leading-tight">{title}</Dialog.Title>
                     {description ? (
                       <Dialog.Description className="mt-1 text-sm text-ink-soft">{description}</Dialog.Description>
                     ) : null}
@@ -94,7 +94,7 @@ export function Sheet({
                   </Dialog.Close>
                 </div>
                 <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-4">{children}</div>
-                {footer ? <div className="pb-safe shrink-0 border-t-[1.5px] border-line bg-paper px-5 pt-3">{footer}</div> : null}
+                {footer ? <div className="pb-safe shrink-0 border-t border-line bg-paper px-5 pt-3">{footer}</div> : null}
               </motion.div>
             </Dialog.Content>
           </Dialog.Portal>
@@ -122,7 +122,7 @@ export function ConfirmDialog({
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-[rgb(18_20_42/0.5)]" />
-        <Dialog.Content className="paper-card riso-shadow fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 p-6 [--riso:var(--danger)]">
+        <Dialog.Content className="paper-card riso-shadow fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 p-6">
           <Dialog.Title className="font-display text-2xl font-extrabold">{title}</Dialog.Title>
           <Dialog.Description className="mt-2 text-ink-soft">{description}</Dialog.Description>
           <div className="mt-5">{children}</div>

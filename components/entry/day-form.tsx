@@ -65,7 +65,7 @@ export function DayForm({
   return (
     <form id={formId} onSubmit={submit} className="space-y-7" noValidate>
       <section aria-labelledby={`${formId}-sleep`}>
-        <h3 id={`${formId}-sleep`} className="mb-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-sleep-ink">
+        <h3 id={`${formId}-sleep`} className="mb-3 text-sm font-semibold text-sleep-ink">
           {t("day.sleepTitle")}
         </h3>
         <div className="grid grid-cols-2 gap-3">

@@ -133,7 +133,7 @@ export function MealForm({ formId, editing, at, onSaved, onError }: FormProps<Me
         ) : null}
         {!editing && recent && recent.length > 0 ? (
           <div className="mt-3">
-            <p className="mb-1.5 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-soft">{t("entry.meal.recent")}</p>
+            <p className="mb-1.5 text-sm font-semibold text-ink-soft">{t("entry.meal.recent")}</p>
             <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1">
               {recent.map((r) => (
                 <button
@@ -145,7 +145,7 @@ export function MealForm({ formId, editing, at, onSaved, onError }: FormProps<Me
                     setSize(r.size);
                     setError(false);
                   }}
-                  className="min-h-11 shrink-0 rounded-xl border-[1.5px] border-dashed border-line-strong bg-paper px-3.5 text-sm font-medium text-ink hover:border-ink"
+                  className="min-h-11 shrink-0 rounded-lg border border-line-strong bg-paper-deep px-3.5 text-sm font-medium text-ink hover:border-ink"
                 >
                   {r.description}
                 </button>

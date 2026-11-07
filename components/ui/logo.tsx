@@ -2,59 +2,36 @@ import { BRAND } from "@/lib/brand";
 import { cn } from "@/lib/cn";
 
 /**
- * Wordmark: the brand name in Bricolage, where the dot of the "i" is a little round belly
- * printed in riso pink, slightly off register. Works for any name: without an "i" the
- * belly sits after the last letter.
+ * Wordmark: a calm wave mark (a gut settling down) next to the name.
+ * "IBS" in bold navy, "Calm" in regular weight — readable at any size.
  */
 export function Logo({ className, size = "md" }: { className?: string; size?: "sm" | "md" | "lg" | "xl" }) {
-  const name = BRAND.name.toLowerCase();
-  const i = name.indexOf("i");
-  const text = {
-    sm: "text-[1.35rem]",
-    md: "text-[1.7rem]",
-    lg: "text-[2.6rem]",
-    xl: "text-[clamp(4rem,14vw,9rem)]",
-  }[size];
-
-  const Belly = (
-    <span
-      aria-hidden
-      className="absolute left-1/2 top-[0.06em] h-[0.27em] w-[0.27em] -translate-x-1/2 rounded-full bg-symptom"
-      style={{ boxShadow: "0.035em 0.03em 0 0 var(--stress)" }}
-    />
-  );
-
+  const text = { sm: "text-[1.2rem]", md: "text-[1.45rem]", lg: "text-[2.2rem]", xl: "text-[3rem]" }[size];
+  const mark = { sm: 26, md: 30, lg: 44, xl: 60 }[size];
+  const split = BRAND.name.match(/^([A-Z]+)(.*)$/);
   return (
-    <span className={cn("font-display inline-flex items-baseline font-extrabold leading-none tracking-[-0.045em]", text, className)}>
-      <span className="sr-only">{BRAND.name}</span>
-      <span aria-hidden className="inline-flex items-baseline">
-        {i >= 0 ? (
+    <span className={cn("inline-flex items-center gap-2 leading-none", text, className)}>
+      <LogoMark size={mark} />
+      <span className="tracking-[-0.01em]">
+        {split ? (
           <>
-            {name.slice(0, i)}
-            <span className="relative inline-block">
-              ı{Belly}
-            </span>
-            {name.slice(i + 1)}
+            <span className="font-extrabold">{split[1]}</span>
+            <span className="font-medium">{split[2]}</span>
           </>
         ) : (
-          <>
-            {name}
-            <span className="relative inline-block w-[0.35em]">{Belly}</span>
-          </>
+          <span className="font-extrabold">{BRAND.name}</span>
         )}
       </span>
     </span>
   );
 }
 
-/** Square app mark: pink belly over an ink circle, slightly off register. */
+/** App mark: rounded navy square with a gentle wave settling into a straight line. */
 export function LogoMark({ className, size = 40 }: { className?: string; size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" className={className} aria-hidden>
-      <rect width="64" height="64" rx="16" fill="var(--paper)" />
-      <circle cx="34" cy="35" r="17" fill="var(--stress)" />
-      <circle cx="31" cy="32" r="17" fill="var(--symptom)" style={{ mixBlendMode: "multiply" }} />
-      <path d="M22 35c3-4 6-4 9 0s6 4 9 0" stroke="var(--ink)" strokeWidth="3.2" fill="none" strokeLinecap="round" />
+    <svg width={size} height={size} viewBox="0 0 48 48" className={className} aria-hidden>
+      <rect width="48" height="48" rx="12" fill="#1b2b48" />
+      <path d="M10 26c3.5-6 7-6 10 0s5.5 4.5 8 0 5-3 10-1" stroke="#f5d33d" strokeWidth="4" fill="none" strokeLinecap="round" />
     </svg>
   );
 }

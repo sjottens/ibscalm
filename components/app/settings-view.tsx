@@ -88,7 +88,7 @@ function TagsSection() {
       {!tags ? (
         <Skeleton className="h-40" />
       ) : (
-        <ul className="divide-y-[1.5px] divide-line">
+        <ul className="divide-y divide-line">
           {tags.map((tag) => (
             <li key={tag.id} className={cn("flex items-center gap-1 py-1.5", tag.archived && "opacity-55")}>
               <span className="min-w-0 flex-1 truncate font-medium">
@@ -146,7 +146,7 @@ function IconToggle({ label, pressed, onClick, children }: { label: string; pres
 
 function Segmented<T extends string>({ label, value, options, onChange }: { label: string; value: T; options: { value: T; label: string }[]; onChange: (v: T) => void }) {
   return (
-    <div role="radiogroup" aria-label={label} className="grid rounded-2xl border-[1.5px] border-line-strong p-1" style={{ gridTemplateColumns: `repeat(${options.length}, 1fr)` }}>
+    <div role="radiogroup" aria-label={label} className="grid rounded-2xl border border-line-strong p-1" style={{ gridTemplateColumns: `repeat(${options.length}, 1fr)` }}>
       {options.map((o) => (
         <button
           key={o.value}
@@ -229,7 +229,7 @@ function AnalysisSection({ overrides }: { overrides: Parameters<typeof resolveCo
 
   return (
     <Section id="analyse" title={t("title")} body={t("body")}>
-      <div className="divide-y-[1.5px] divide-line">
+      <div className="divide-y divide-line">
         {row(t("threshold"), cfg.severityThreshold, (v) => save({ severityThreshold: v }), 1, 9)}
         {row(t("foodMin"), cfg.food.minHours, (v) => save({ food: { minHours: Math.min(v, cfg.food.maxHours - 1) } }), 0, 12, "u")}
         {row(t("foodMax"), cfg.food.maxHours, (v) => save({ food: { maxHours: Math.max(v, cfg.food.minHours + 1) } }), 2, 24, "u")}
@@ -361,8 +361,8 @@ function DevSection() {
   const t = useTranslations("settings.dev");
   const showToast = useUi((s) => s.showToast);
   return (
-    <section className="rounded-[var(--radius-card)] border-[1.5px] border-dashed border-stress-ink p-5">
-      <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-stress-ink">{t("title")}</h2>
+    <section className="rounded-[var(--radius-card)] border border-dashed border-stress-ink p-5">
+      <h2 className="text-sm font-semibold text-stress-ink">{t("title")}</h2>
       <Button
         variant="outline"
         className="mt-3"

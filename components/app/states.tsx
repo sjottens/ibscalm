@@ -1,20 +1,15 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-/**
- * Loading: a stack of paper slips gently shuffling — no spinner.
- * Purely CSS, so it also works before hydration.
- */
+/** Loading state: a calm progress bar (CSS only, works before hydration). */
 export function PageLoading({ label }: { label?: string }) {
   return (
     <div className="grid min-h-[70dvh] place-items-center" role="status" aria-live="polite">
-      <div className="relative h-20 w-16" aria-hidden>
-        <span className="absolute inset-0 animate-[shuffle_1.4s_ease-in-out_infinite] rounded-lg border-[1.5px] border-ink bg-food" />
-        <span className="absolute inset-0 animate-[shuffle_1.4s_ease-in-out_0.2s_infinite] rounded-lg border-[1.5px] border-ink bg-stress" />
-        <span className="absolute inset-0 animate-[shuffle_1.4s_ease-in-out_0.4s_infinite] rounded-lg border-[1.5px] border-ink bg-symptom" />
+      <div className="h-1.5 w-32 overflow-hidden rounded-full bg-paper-deep" aria-hidden>
+        <div className="h-full w-1/3 animate-[load_1.1s_ease-in-out_infinite] rounded-full bg-ink" />
       </div>
-      <span className="sr-only">{label ?? "…"}</span>
-      <style>{`@keyframes shuffle{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(5deg) translateY(-6px)}}`}</style>
+      <span className="sr-only">{label ?? "Laden…"}</span>
+      <style>{"@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}"}</style>
     </div>
   );
 }

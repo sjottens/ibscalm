@@ -1,7 +1,6 @@
 "use client";
 
 import * as SwitchPrimitive from "@radix-ui/react-switch";
-import { motion } from "motion/react";
 import { forwardRef, useId, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { CheckIcon, MinusIcon, PlusIcon } from "./icons";
@@ -13,6 +12,12 @@ const spotBg: Record<Spot, string> = {
   symptom: "bg-symptom",
   stress: "bg-stress",
   sleep: "bg-sleep",
+};
+const spotSelected: Record<Spot, string> = {
+  food: "bg-food-wash text-food-ink ring-2 ring-inset ring-food",
+  symptom: "bg-symptom-wash text-symptom-ink ring-2 ring-inset ring-symptom",
+  stress: "bg-stress-wash text-stress-ink ring-2 ring-inset ring-stress",
+  sleep: "bg-sleep-wash text-sleep-ink ring-2 ring-inset ring-sleep",
 };
 const spotWash: Record<Spot, string> = {
   food: "bg-food-wash text-food-ink",
@@ -36,25 +41,30 @@ export const kindSpot = { meal: "food", symptom: "symptom", stress: "stress" } a
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "spot" | "ghost" | "outline" | "danger";
+  /** Kept for API compatibility; buttons no longer take category colours. */
   spot?: Spot;
   size?: "md" | "lg";
   icon?: ReactNode;
 };
 
-/** Pressable with a printed, off-register shadow that "stamps" down on press. */
+/**
+ * Buttons are flat and consistent. "spot" is the main call to action (yellow with navy text),
+ * "primary" is navy. Category colours are never used on buttons, so the action colour always means "do this".
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = "primary", spot = "symptom", size = "md", icon, className, children, ...props },
+  { variant = "primary", spot: _spot, size = "md", icon, className, children, ...props },
   ref,
 ) {
+  void _spot;
   const base =
-    "relative inline-flex select-none items-center justify-center gap-2 rounded-2xl font-semibold transition-[transform,box-shadow,background-color] duration-150 ease-[var(--ease-out-soft)] active:translate-x-[2px] active:translate-y-[2px] disabled:pointer-events-none disabled:opacity-45";
-  const sizes = { md: "min-h-12 px-5 text-[0.95rem]", lg: "min-h-14 px-6 text-base" };
+    "relative inline-flex select-none items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-150 disabled:pointer-events-none disabled:opacity-45";
+  const sizes = { md: "min-h-12 px-5 text-base", lg: "min-h-14 px-6 text-[1.0625rem]" };
   const variants = {
-    primary: "bg-ink text-paper riso-shadow active:shadow-none [--riso:var(--symptom)]",
-    spot: cn(spotBg[spot], "text-on-spot riso-shadow active:shadow-none [--riso:var(--ink)]"),
+    primary: "bg-ink text-paper hover:opacity-90",
+    spot: "bg-accent text-[#1b2b48] hover:bg-accent-hover",
     ghost: "text-ink hover:bg-paper-deep",
-    outline: "border-[1.5px] border-line-strong text-ink hover:bg-paper-deep",
-    danger: "bg-danger text-paper riso-shadow active:shadow-none [--riso:var(--ink)]",
+    outline: "border border-line-strong bg-card text-ink hover:bg-paper-deep",
+    danger: "bg-danger text-white hover:opacity-90",
   };
   return (
     <button ref={ref} type="button" className={cn(base, sizes[size], variants[variant], className)} {...props}>
@@ -64,7 +74,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   );
 });
 
-/** Toggle chip (aria-pressed). */
+/** Toggle chip (aria-pressed). Selected state shows a check mark, a tint and a ring — never colour alone. */
 export function Chip({
   selected,
   onToggle,
@@ -80,36 +90,35 @@ export function Chip({
   className?: string;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">) {
   return (
-    <motion.button
+    <button
       type="button"
       aria-pressed={selected}
       onClick={onToggle}
-      whileTap={{ scale: 0.94 }}
       className={cn(
-        "inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border-[1.5px] px-4 text-[0.92rem] font-medium transition-colors",
-        selected ? cn(spotBg[spot], "border-ink text-on-spot") : "border-line-strong bg-card text-ink hover:border-ink",
+        "inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border px-4 text-[0.95rem] font-medium transition-colors",
+        selected ? cn(spotSelected[spot], "border-transparent") : "border-line-strong bg-card text-ink hover:border-ink-soft",
         className,
       )}
-      {...(props as object)}
+      {...props}
     >
-      {selected ? <CheckIcon size={15} strokeWidth={2.6} /> : null}
+      {selected ? <CheckIcon size={16} strokeWidth={2.6} /> : null}
       {children}
-    </motion.button>
+    </button>
   );
 }
 
-/** Wash-coloured tag for read-only lists. */
+/** Tinted label for read-only lists. */
 export function Tag({ spot, children, className }: { spot: Spot; children: ReactNode; className?: string }) {
   return (
-    <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-[0.8rem] font-medium", spotWash[spot], className)}>
+    <span className={cn("inline-flex items-center rounded-md px-2 py-0.5 text-[0.85rem] font-medium", spotWash[spot], className)}>
       {children}
     </span>
   );
 }
 
 /**
- * Single-choice row of big buttons (radiogroup with roving focus via arrow keys).
- * Used for severity 0–10, stress 1–5, sleep 1–5, portion size.
+ * Single-choice row of buttons (radiogroup, arrow keys move the selection).
+ * Used for severity 0–10, stress 1–5, sleep 1–5 and portion size.
  */
 export function ScalePicker<T extends string | number>({
   label,
@@ -139,8 +148,7 @@ export function ScalePicker<T extends string | number>({
     e.preventDefault();
     const next = options[(i + delta + options.length) % options.length];
     onChange(next);
-    const el = document.getElementById(`${id}-${String(next)}`);
-    el?.focus();
+    document.getElementById(`${id}-${String(next)}`)?.focus();
   };
   const focusIndex = value === null ? 0 : Math.max(0, options.indexOf(value));
   return (
@@ -153,7 +161,7 @@ export function ScalePicker<T extends string | number>({
       {options.map((opt, i) => {
         const selected = opt === value;
         return (
-          <motion.button
+          <button
             key={String(opt)}
             id={`${id}-${String(opt)}`}
             type="button"
@@ -163,16 +171,15 @@ export function ScalePicker<T extends string | number>({
             tabIndex={i === focusIndex ? 0 : -1}
             onKeyDown={(e) => onKey(e, i)}
             onClick={() => onChange(selected && allowClear ? null : opt)}
-            whileTap={{ scale: 0.9 }}
-            animate={selected ? { y: -2 } : { y: 0 }}
-            transition={{ type: "spring", stiffness: 600, damping: 26 }}
             className={cn(
-              "tabular flex min-h-12 items-center justify-center rounded-xl border-[1.5px] font-mono text-[0.95rem] font-semibold transition-colors",
-              selected ? cn(spotBg[spot], "border-ink text-on-spot riso-shadow [--shadow-offset:2px] [--riso:var(--ink)]") : "border-line bg-card text-ink-soft hover:border-ink hover:text-ink",
+              "tabular flex min-h-12 items-center justify-center rounded-lg border text-base font-semibold transition-colors",
+              selected
+                ? cn(spotBg[spot], "border-transparent text-on-spot ring-2 ring-ink ring-offset-1 ring-offset-paper")
+                : "border-line-strong bg-card text-ink hover:border-ink-soft",
             )}
           >
             {renderOption ? renderOption(opt) : String(opt)}
-          </motion.button>
+          </button>
         );
       })}
     </div>
@@ -202,28 +209,18 @@ export function Stepper({
   label: string;
 }) {
   const v = value ?? 0;
+  const btn =
+    "grid h-12 w-12 place-items-center rounded-lg border border-line-strong bg-card text-ink transition hover:bg-paper-deep disabled:opacity-35";
   return (
     <div className="flex items-center gap-2" role="group" aria-label={label}>
-      <button
-        type="button"
-        aria-label={decreaseLabel}
-        onClick={() => onChange(Math.max(min, v - step))}
-        disabled={v <= min}
-        className="grid h-12 w-12 place-items-center rounded-full border-[1.5px] border-line-strong text-ink transition active:scale-90 disabled:opacity-35"
-      >
+      <button type="button" aria-label={decreaseLabel} onClick={() => onChange(Math.max(min, v - step))} disabled={v <= min} className={btn}>
         <MinusIcon size={20} />
       </button>
-      <output aria-live="polite" className="tabular min-w-16 text-center font-mono text-lg font-semibold">
+      <output aria-live="polite" className="tabular min-w-16 text-center text-lg font-semibold">
         {v}
         {unit ? <span className="ml-1 text-sm font-normal text-ink-soft">{unit}</span> : null}
       </output>
-      <button
-        type="button"
-        aria-label={increaseLabel}
-        onClick={() => onChange(Math.min(max, v + step))}
-        disabled={v >= max}
-        className="grid h-12 w-12 place-items-center rounded-full border-[1.5px] border-line-strong text-ink transition active:scale-90 disabled:opacity-35"
-      >
+      <button type="button" aria-label={increaseLabel} onClick={() => onChange(Math.min(max, v + step))} disabled={v >= max} className={btn}>
         <PlusIcon size={20} />
       </button>
     </div>
@@ -235,7 +232,6 @@ export function Switch({
   onCheckedChange,
   label,
   description,
-  spot = "stress",
 }: {
   checked: boolean;
   onCheckedChange: (v: boolean) => void;
@@ -259,12 +255,9 @@ export function Switch({
         checked={checked}
         onCheckedChange={onCheckedChange}
         aria-describedby={description ? `${id}-d` : undefined}
-        className={cn(
-          "relative mt-0.5 inline-flex h-8 w-14 shrink-0 items-center rounded-full border-[1.5px] border-ink transition-colors",
-          checked ? spotBg[spot] : "bg-paper-deep",
-        )}
+        className={cn("relative mt-0.5 inline-flex h-8 w-14 shrink-0 items-center rounded-full transition-colors", checked ? "bg-ink" : "bg-line-strong")}
       >
-        <SwitchPrimitive.Thumb className="block h-6 w-6 translate-x-0.5 rounded-full bg-ink transition-transform duration-200 ease-[var(--ease-stamp)] data-[state=checked]:translate-x-[1.6rem]" />
+        <SwitchPrimitive.Thumb className="block h-6 w-6 translate-x-1 rounded-full bg-white shadow transition-transform duration-200 data-[state=checked]:translate-x-7" />
       </SwitchPrimitive.Root>
     </div>
   );
@@ -274,23 +267,23 @@ export function FieldLabel({ children, hint, htmlFor, as = "label" }: { children
   const Tag = as;
   return (
     <div className="mb-2.5 flex items-baseline justify-between gap-3">
-      <Tag {...(as === "label" ? { htmlFor } : {})} className="font-display text-[1.05rem] font-bold">
+      <Tag {...(as === "label" ? { htmlFor } : {})} className="text-[1.05rem] font-bold">
         {children}
       </Tag>
-      {hint ? <span className="text-xs text-ink-soft">{hint}</span> : null}
+      {hint ? <span className="text-sm text-ink-soft">{hint}</span> : null}
     </div>
   );
 }
 
 export const inputClass =
-  "w-full rounded-2xl border-[1.5px] border-line-strong bg-card px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:border-ink focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2";
+  "w-full rounded-lg border border-line-strong bg-card px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:border-ink focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2";
 
-/** Section heading in the masthead style: small mono kicker + display title. */
+/** Section heading: small label + title. */
 export function SectionTitle({ kicker, title, id, className }: { kicker?: string; title: string; id?: string; className?: string }) {
   return (
     <div className={className}>
-      {kicker ? <p className="mb-1 font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-ink-soft">{kicker}</p> : null}
-      <h2 id={id} className="font-display text-[1.45rem] font-extrabold leading-tight">
+      {kicker ? <p className="mb-1 text-sm font-semibold text-ink-soft">{kicker}</p> : null}
+      <h2 id={id} className="text-[1.4rem] font-extrabold leading-tight">
         {title}
       </h2>
     </div>

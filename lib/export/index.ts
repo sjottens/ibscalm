@@ -96,7 +96,7 @@ export async function applyImport(file: ExportFile, mode: "merge" | "replace" = 
 
 export function exportFileName(ext: "json" | "csv", now = new Date()): string {
   const pad = (n: number) => String(n).padStart(2, "0");
-  return `pds-dagboek-${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}.${ext}`;
+  return `ibscalm-${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}.${ext}`;
 }
 
 /** Triggers a download of a text file in the browser. */

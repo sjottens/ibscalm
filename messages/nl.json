@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "{brand} — dagboek voor je buik",
-    "description": "Houd eten, klachten, stress en slaap bij en ontdek na een paar weken waar jouw buikklachten mee samenhangen. Alles blijft op je eigen telefoon.",
-    "ogAlt": "{brand}: eten, stress of slaap? Ontdek wat jouw buik doet."
+    "title": "{brand} — PDS-dagboek: houd je buikklachten bij en ontdek je triggers",
+    "description": "Gratis PDS-dagboek voor mensen met prikkelbare darm syndroom. Houd eten, buikklachten, stress en slaap bij en zie na twee weken waar je klachten mee samenhangen. Zonder account, privé op je telefoon.",
+    "ogAlt": "{brand}: PDS-dagboek voor eten, klachten, stress en slaap"
   },
   "common": {
     "save": "Opslaan",
@@ -19,7 +19,7 @@
     "today": "Vandaag",
     "yesterday": "Gisteren",
     "done": "Klaar",
-    "loading": "Even bladeren…",
+    "loading": "Laden…",
     "optional": "optioneel",
     "addNote": "Notitie toevoegen",
     "note": "Notitie",
@@ -94,83 +94,119 @@
     "word": "{value, select, 1 {een beetje} 2 {wat} 3 {behoorlijk} 4 {veel} other {heel veel}}"
   },
   "bristol": {
-    "label": "Ontlasting (Bristol)",
-    "hint": "Optioneel. Type 1 is hard, type 7 is waterig.",
     "1": "harde keutels",
     "2": "klonterige worst",
     "3": "worst met barstjes",
     "4": "gladde worst",
     "5": "zachte stukjes",
     "6": "brijig",
-    "7": "waterig"
+    "7": "waterig",
+    "label": "Ontlasting (Bristol)",
+    "hint": "Optioneel. Type 1 is hard, type 7 is waterig."
   },
   "landing": {
     "nav": {
       "how": "Hoe het werkt",
+      "about": "Over PDS",
+      "faq": "Vragen",
       "privacy": "Privacy",
-      "open": "Open de app"
+      "open": "Start de app"
     },
-    "kicker": "Dagboek voor prikkelbare darm",
-    "title": "Eten, stress of slaap?",
-    "titleAccent": "Ontdek wat jóúw buik doet.",
-    "lead": "Noteer in tien seconden wat je eet, hoe je buik voelt en hoe gespannen je bent. Na een paar weken laat {brand} zien waar je klachten mee lijken samen te hangen.",
-    "cta": "Begin met bijhouden",
-    "ctaSecondary": "Hoe werkt het?",
+    "kicker": "Gratis PDS-dagboek",
+    "title": "Houd je buikklachten bij en ontdek wat ze uitlokt",
+    "titleAccent": "",
+    "lead": "{brand} is een eenvoudig dagboek voor mensen met prikkelbare darm syndroom (PDS). Noteer in een paar seconden wat je eet, welke klachten je hebt, wanneer je stress ervaart en hoe je slaapt. Na twee weken zie je waar je klachten mee lijken samen te hangen.",
+    "cta": "Begin gratis met bijhouden",
+    "ctaSecondary": "Bekijk hoe het werkt",
     "free": "Gratis · geen account · werkt offline",
-    "stepsTitle": "Drie stappen, geen gedoe",
+    "trust": {
+      "free": "Gratis en zonder reclame",
+      "account": "Geen account nodig",
+      "device": "Gegevens blijven op je telefoon"
+    },
+    "stepsTitle": "Zo werkt het",
+    "stepsLead": "Drie stappen, zonder ingewikkelde schermen.",
     "steps": {
       "one": {
         "title": "Noteer",
-        "body": "Drie grote knoppen: eten, klacht, stress. De tijd staat al goed. Klaar voor je koffie koud is."
+        "body": "Kies Eten, Klacht of Stress. De tijd staat al ingevuld. Een notitie kost ongeveer tien seconden."
       },
       "two": {
-        "title": "Zie het patroon",
-        "body": "Na ongeveer twee weken zie je of je klachten vooral samenhangen met wat je eet, met stress of met je slaap."
+        "title": "Bekijk je patronen",
+        "body": "Na ongeveer twee weken laat {brand} zien of je klachten vooral samenhangen met eten, stress of slaap."
       },
       "three": {
         "title": "Bespreek het",
-        "body": "Neem je overzicht mee naar je huisarts of MDL-diëtist. Exporteer het als bestand wanneer je wilt."
+        "body": "Neem je overzicht mee naar je huisarts of MDL-diëtist. Je kunt alles exporteren als bestand."
       }
     },
-    "loopTitle": "Buik en hoofd praten met elkaar",
-    "loopBody": "Stress kan je darmen onrustiger maken, en onrustige darmen geven weer stress. Soms al vóórdat er iets gebeurt: de spanning voor een treinreis of een afspraak. {brand} houdt die ‘stress vooraf’ apart bij, zodat je dat kringetje kunt zien.",
+    "trackTitle": "Wat kun je bijhouden?",
+    "track": {
+      "meal": {
+        "title": "Eten",
+        "body": "Maaltijden met tags zoals ui/knoflook, zuivel, tarwe of peulvruchten, en de portiegrootte."
+      },
+      "symptom": {
+        "title": "Klachten",
+        "body": "Buikpijn, opgeblazen gevoel, krampen of diarree, met ernst van 0 tot 10 en de Bristol-schaal."
+      },
+      "stress": {
+        "title": "Stress",
+        "body": "Hoe gespannen je bent en waardoor. Ook stress vooraf, uit zorg om buikklachten."
+      },
+      "sleep": {
+        "title": "Slaap en dag",
+        "body": "Hoe je sliep, water, beweging en desgewenst gegevens van je smartwatch."
+      }
+    },
+    "aboutTitle": "Wat is PDS?",
+    "aboutBody1": "Prikkelbare darm syndroom (PDS, in het Engels IBS) is een veelvoorkomende aandoening van de darmen. Klachten zijn onder andere buikpijn, een opgeblazen gevoel, krampen, diarree of juist verstopping. De klachten wisselen vaak per dag.",
+    "aboutBody2": "Wat de klachten uitlokt, verschilt per persoon. Bepaalde voeding (zoals ui, knoflook, zuivel of tarwe), stress en slecht slapen kunnen een rol spelen. Darmen en hersenen beïnvloeden elkaar: spanning kan klachten verergeren, en klachten geven weer spanning. Een dagboek helpt om jouw persoonlijke patroon te zien.",
+    "aboutMore": "Meer informatie over PDS vind je op Thuisarts.nl",
+    "loopTitle": "Stress en buikklachten versterken elkaar",
+    "loopBody": "Spanning kan je darmen onrustiger maken, en onrustige darmen geven weer spanning. Soms al vóórdat er iets gebeurt, zoals voor een treinreis of een afspraak. {brand} houdt deze ‘stress vooraf’ apart bij, zodat je dat verband kunt zien.",
     "privacyKicker": "Privacy",
-    "privacyTitle": "Je buik gaat niemand iets aan.",
-    "privacyBody": "Alles wat je invult blijft op je eigen telefoon. Er is geen account, geen server die je gegevens bewaart en geen tracker die meekijkt. Wij kunnen je gegevens niet zien, ook niet als we zouden willen.",
+    "privacyTitle": "Je gegevens blijven van jou",
+    "privacyBody": "Alles wat je invult, wordt alleen op je eigen telefoon opgeslagen. Er is geen account, geen server die je gegevens bewaart en er zijn geen trackers. Wij kunnen je gegevens niet inzien.",
     "privacyPoints": {
-      "device": "Opgeslagen op je toestel",
-      "noAccount": "Geen account nodig",
+      "device": "Opgeslagen op je eigen toestel",
+      "noAccount": "Geen account of e-mailadres nodig",
       "noTracking": "Geen trackers of advertenties",
       "export": "Exporteren en wissen wanneer je wilt"
     },
     "privacyLink": "Lees de privacyverklaring",
     "insightKicker": "Inzichten",
-    "insightTitle": "Geen grafieken om de grafieken.",
-    "insightBody": "Een samenvatting in gewone taal, met erbij hoeveel gegevens eronder liggen. Voorzichtig geformuleerd: {brand} laat patronen zien en stelt geen diagnoses.",
-    "faqTitle": "Vragen",
+    "insightTitle": "Duidelijke inzichten in gewone taal",
+    "insightBody": "Geen ingewikkelde grafieken, maar een samenvatting die laat zien waar je klachten mee lijken samen te hangen, met erbij hoeveel gegevens eronder liggen. {brand} laat patronen zien en stelt geen diagnoses.",
+    "faqTitle": "Veelgestelde vragen",
     "faq": {
-      "q1": "Is dit medisch advies?",
-      "a1": "Nee. {brand} laat patronen zien in wat je zelf bijhoudt. Bespreek wat je ziet altijd met je huisarts of een (MDL-)diëtist voordat je iets aan je eten of leefstijl verandert.",
-      "q2": "Waar worden mijn gegevens bewaard?",
-      "a2": "Alleen in je browser op dit toestel (IndexedDB). Maak af en toe een back-up via Instellingen, want als je je browsergegevens wist, ben je ze kwijt.",
-      "q3": "Werkt het zonder internet?",
-      "a3": "Ja. Na je eerste bezoek kun je {brand} installeren op je beginscherm en werkt alles offline.",
-      "q4": "Wat kost het?",
-      "a4": "Niets. Er zijn geen abonnementen en geen advertenties."
+      "q1": "Is {brand} gratis?",
+      "a1": "Ja. {brand} is gratis, zonder abonnement en zonder advertenties.",
+      "q2": "Is dit medisch advies?",
+      "a2": "Nee. {brand} laat patronen zien in wat je zelf bijhoudt. Bespreek wat je ziet altijd met je huisarts of een (MDL-)diëtist voordat je iets aan je eten of leefstijl verandert.",
+      "q3": "Waar worden mijn gegevens bewaard?",
+      "a3": "Alleen in de browser op je eigen toestel. Er gaat niets naar een server. Maak af en toe een back-up via Instellingen, want als je je browsergegevens wist, ben je ze kwijt.",
+      "q4": "Hoe lang moet ik bijhouden?",
+      "a4": "Na ongeveer twee weken zijn de eerste patronen zichtbaar. Hoe langer en vollediger je bijhoudt, hoe betrouwbaarder de inzichten.",
+      "q5": "Werkt het zonder internet?",
+      "a5": "Ja. Na je eerste bezoek kun je {brand} op je beginscherm zetten en werkt alles offline.",
+      "q6": "Helpt dit bij het FODMAP-dieet?",
+      "a6": "{brand} kan je helpen bijhouden hoe je reageert op voedingsmiddelen, bijvoorbeeld tijdens het herintroduceren. Volg een FODMAP-dieet bij voorkeur onder begeleiding van een MDL-diëtist."
     },
-    "finalTitle": "Begin vandaag. Je buik vertelt de rest.",
-    "footerDisclaimer": "{brand} geeft inzicht in patronen en is geen medisch hulpmiddel. Het stelt geen diagnoses en geeft geen behandeladvies.",
-    "footerMade": "Gemaakt met zorg, zonder trackers.",
+    "finalTitle": "Begin vandaag met bijhouden",
+    "finalBody": "Gratis, zonder account en privé op je eigen telefoon.",
+    "footerDisclaimer": "{brand} geeft inzicht in patronen en is geen medisch hulpmiddel. Het stelt geen diagnoses en geeft geen behandeladvies. Heb je aanhoudende of nieuwe klachten? Neem contact op met je huisarts.",
+    "footerMade": "Gemaakt zonder trackers.",
     "mock": {
-      "date": "za 7 nov",
-      "headline": "Rustige ochtend.",
+      "date": "Za 7 nov",
+      "headline": "Vandaag",
       "breakfast": "Havermout met banaan",
-      "lunch": "Wrap hummus",
-      "symptom": "opgeblazen",
-      "stress": "deadline",
+      "lunch": "Wrap met hummus",
+      "symptom": "Opgeblazen",
+      "stress": "Deadline",
       "summary": "Lijkt vooral samen te hangen met",
       "factor": "eten",
-      "detail": "ui/knoflook · 11 van 12 keer een klacht"
+      "detail": "ui/knoflook: 11 van 12 keer een klacht"
     }
   },
   "privacy": {
@@ -210,39 +246,39 @@
     "step": "Stap {current} van {total}",
     "s1": {
       "kicker": "Welkom bij {brand}",
-      "title": "Een dagboek voor je buik.",
+      "title": "Een dagboek voor je buik",
       "body": "Noteer wat je eet, wanneer je buik opspeelt en wanneer je gestrest bent. Dat kost je een paar tikken per keer."
     },
     "s2": {
       "kicker": "Zo werkt het",
-      "title": "Na twee weken zie je patronen.",
+      "title": "Na twee weken zie je patronen",
       "body": "{brand} vergelijkt je klachten met je eten, je stress en je slaap. Hoe vaker je iets noteert, hoe duidelijker het beeld."
     },
     "s3": {
       "kicker": "Privacy",
-      "title": "Alles blijft op dit toestel.",
+      "title": "Alles blijft op dit toestel",
       "body": "Geen account, geen server, geen trackers. Maak af en toe een back-up, want wij kunnen niets voor je terugzetten."
     },
     "s4": {
       "kicker": "Belangrijk",
-      "title": "Inzicht, geen diagnose.",
+      "title": "Inzicht, geen diagnose",
       "body": "{brand} laat zien wat lijkt samen te hangen. Dat is geen medisch advies. Bespreek patronen met je huisarts of (MDL-)diëtist voordat je iets verandert.",
       "agree": "Begrepen"
     },
     "s5": {
       "kicker": "Bijna klaar",
-      "title": "Wat wil je in de gaten houden?",
+      "title": "Wat wil je bijhouden?",
       "body": "Kies de voedingstags die je vaak wilt gebruiken. Die staan dan bovenaan. Je kunt dit later altijd aanpassen.",
       "start": "Begin met bijhouden"
     }
   },
   "today": {
     "greeting": {
-      "empty": "Nog een leeg blad.",
-      "calm": "Rustige dag.",
-      "mixed": "Wisselende dag.",
-      "rough": "Pittige dag.",
-      "roughSub": "Goed dat je het bijhoudt. Wees een beetje lief voor jezelf vandaag."
+      "empty": "Nog niets genoteerd",
+      "calm": "Vandaag",
+      "mixed": "Vandaag",
+      "rough": "Vandaag",
+      "roughSub": "Een zware dag? Noteer wat je merkt. Dat helpt later om patronen te zien."
     },
     "summary": "{meals, plural, =0 {geen maaltijden} one {# maaltijd} other {# maaltijden}} · {symptoms, plural, =0 {geen klachten} one {# klacht} other {# klachten}} · {stress, plural, =0 {geen stress} one {# stressmoment} other {# stressmomenten}}",
     "emptyTitle": "Begin met je eerste notitie",

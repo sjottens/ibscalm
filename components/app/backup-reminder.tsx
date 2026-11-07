@@ -42,7 +42,7 @@ export function BackupReminder() {
           className="overflow-hidden"
           aria-labelledby="backup-title"
         >
-          <div className="mt-5 rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sleep-wash p-4">
+          <div className="paper-card mt-5 border-l-4 border-l-sleep-ink p-4">
             <h2 id="backup-title" className="font-display text-lg font-extrabold">
               {t("title")}
             </h2>

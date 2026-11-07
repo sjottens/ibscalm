@@ -1,104 +1,103 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Mild — design tokens
-   Risograph print on warm paper: ink blue + four spot colours, one per kind of entry.
-   food = mint · symptom = riso pink · stress = fluor yellow · sleep = lavender
-   *-ink variants are for text/icons (AA contrast); *-wash for soft fills.
+   Design tokens — calm, professional health style.
+   White surfaces, deep navy text, one yellow call-to-action colour.
+   Category colours (one per kind of entry) are soft tints that keep AA contrast
+   with navy text: food = green · symptom = rose · stress = amber · sleep = indigo.
+   *-ink variants are for coloured text/icons; *-wash for subtle backgrounds.
+   Token names are semantic, so components never reference raw colours.
    ───────────────────────────────────────────────────────────────────────── */
 
 :root {
   color-scheme: light;
-  --paper: #f6f1e7;
-  --paper-deep: #ece4d3;
-  --card: #fcf9f2;
-  --ink: #1d2340;
-  --ink-soft: #4b5072;
-  --ink-faint: #8a8da3;
-  --line: rgb(29 35 64 / 0.14);
-  --line-strong: rgb(29 35 64 / 0.32);
-  --on-spot: #1d2340;
+  --paper: #ffffff;
+  --paper-deep: #f2f5f9;
+  --card: #ffffff;
+  --ink: #1b2b48;
+  --ink-soft: #4a5a75;
+  --ink-faint: #8794a8;
+  --line: #dde3eb;
+  --line-strong: #b9c3d1;
+  --on-spot: #1b2b48;
 
-  --food: #5fbfa0;
-  --food-ink: #1c6a52;
-  --food-wash: #d9efe5;
-  --symptom: #f2668b;
-  --symptom-ink: #a3234a;
-  --symptom-wash: #fbdde5;
-  --stress: #f5c84b;
-  --stress-ink: #765400;
-  --stress-wash: #fbefc6;
-  --sleep: #9c8fe0;
-  --sleep-ink: #4a3da3;
-  --sleep-wash: #e7e3f8;
+  --accent: #f5d33d;
+  --accent-hover: #ecc61f;
+  --link: #1f5fbf;
 
-  --danger: #b8322b;
-  --danger-wash: #f8ddd9;
-  --focus: #1d2340;
+  --food: #6cc3a4;
+  --food-ink: #1d6b52;
+  --food-wash: #e6f4ee;
+  --symptom: #f07c9b;
+  --symptom-ink: #a52a50;
+  --symptom-wash: #fce9ee;
+  --stress: #f5c542;
+  --stress-ink: #7f5600;
+  --stress-wash: #fdf3d6;
+  --sleep: #9ea3e8;
+  --sleep-ink: #3f45a3;
+  --sleep-wash: #eceefb;
 
-  --grain-opacity: 0.5;
-  --grain-blend: multiply;
-  --shadow-offset: 4px;
+  --danger: #b42318;
+  --danger-wash: #fdecea;
+  --focus: #1f5fbf;
+
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06);
+  --shadow-md: 0 1px 2px rgb(16 24 40 / 0.05), 0 6px 20px rgb(16 24 40 / 0.07);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --paper: #12142a;
-    --paper-deep: #0b0d1e;
-    --card: #1b1e3a;
-    --ink: #f3ede0;
-    --ink-soft: #bfbacb;
-    --ink-faint: #7e7c93;
-    --line: rgb(243 237 224 / 0.13);
-    --line-strong: rgb(243 237 224 / 0.3);
-    --food: #6fd3b2;
-    --food-ink: #8fe3c6;
-    --food-wash: rgb(111 211 178 / 0.15);
-    --symptom: #ff7a9c;
-    --symptom-ink: #ffa0b8;
-    --symptom-wash: rgb(255 122 156 / 0.15);
-    --stress: #f7d060;
-    --stress-ink: #f9dc83;
-    --stress-wash: rgb(247 208 96 / 0.14);
-    --sleep: #ada2f0;
-    --sleep-ink: #c6bdf7;
-    --sleep-wash: rgb(173 162 240 / 0.15);
+    --paper: #0f1b2e;
+    --paper-deep: #16243b;
+    --card: #172843;
+    --ink: #eef2f7;
+    --ink-soft: #b4c0d3;
+    --ink-faint: #7d8ba1;
+    --line: #2a3b57;
+    --line-strong: #41557a;
+    --link: #8ab4ff;
+    --food-ink: #8fdcc0;
+    --food-wash: rgb(108 195 164 / 0.14);
+    --symptom-ink: #ffa8bf;
+    --symptom-wash: rgb(240 124 155 / 0.14);
+    --stress-ink: #f8d77a;
+    --stress-wash: rgb(245 197 66 / 0.13);
+    --sleep-ink: #c3c6f5;
+    --sleep-wash: rgb(158 163 232 / 0.15);
     --danger: #ff8a7f;
-    --danger-wash: rgb(255 138 127 / 0.14);
-    --focus: #f7d060;
-    --grain-opacity: 0.35;
-    --grain-blend: screen;
+    --danger-wash: rgb(255 138 127 / 0.12);
+    --focus: #8ab4ff;
+    --shadow-sm: none;
+    --shadow-md: 0 6px 20px rgb(0 0 0 / 0.25);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --paper: #12142a;
-  --paper-deep: #0b0d1e;
-  --card: #1b1e3a;
-  --ink: #f3ede0;
-  --ink-soft: #bfbacb;
-  --ink-faint: #7e7c93;
-  --line: rgb(243 237 224 / 0.13);
-  --line-strong: rgb(243 237 224 / 0.3);
-  --food: #6fd3b2;
-  --food-ink: #8fe3c6;
-  --food-wash: rgb(111 211 178 / 0.15);
-  --symptom: #ff7a9c;
-  --symptom-ink: #ffa0b8;
-  --symptom-wash: rgb(255 122 156 / 0.15);
-  --stress: #f7d060;
-  --stress-ink: #f9dc83;
-  --stress-wash: rgb(247 208 96 / 0.14);
-  --sleep: #ada2f0;
-  --sleep-ink: #c6bdf7;
-  --sleep-wash: rgb(173 162 240 / 0.15);
+  --paper: #0f1b2e;
+  --paper-deep: #16243b;
+  --card: #172843;
+  --ink: #eef2f7;
+  --ink-soft: #b4c0d3;
+  --ink-faint: #7d8ba1;
+  --line: #2a3b57;
+  --line-strong: #41557a;
+  --link: #8ab4ff;
+  --food-ink: #8fdcc0;
+  --food-wash: rgb(108 195 164 / 0.14);
+  --symptom-ink: #ffa8bf;
+  --symptom-wash: rgb(240 124 155 / 0.14);
+  --stress-ink: #f8d77a;
+  --stress-wash: rgb(245 197 66 / 0.13);
+  --sleep-ink: #c3c6f5;
+  --sleep-wash: rgb(158 163 232 / 0.15);
   --danger: #ff8a7f;
-  --danger-wash: rgb(255 138 127 / 0.14);
-  --focus: #f7d060;
-  --grain-opacity: 0.35;
-  --grain-blend: screen;
+  --danger-wash: rgb(255 138 127 / 0.12);
+  --focus: #8ab4ff;
+  --shadow-sm: none;
+  --shadow-md: 0 6px 20px rgb(0 0 0 / 0.25);
 }
 
 @theme inline {
@@ -111,6 +110,9 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-on-spot: var(--on-spot);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-link: var(--link);
   --color-food: var(--food);
   --color-food-ink: var(--food-ink);
   --color-food-wash: var(--food-wash);
@@ -126,14 +128,14 @@
   --color-danger: var(--danger);
   --color-danger-wash: var(--danger-wash);
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 1.375rem;
-  --radius-sheet: 1.75rem;
+  --radius-card: 0.75rem;
+  --radius-sheet: 1.25rem;
 
-  --ease-stamp: cubic-bezier(0.2, 1.4, 0.4, 1);
+  --ease-stamp: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -149,80 +151,75 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
-  text-rendering: optimizeLegibility;
+  font-size: 1.0625rem; /* 17px: comfortable reading on phones */
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
   overflow-x: clip;
 }
 
-/* Paper grain — an SVG noise texture laid over everything, like ink on uncoated stock. */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  opacity: var(--grain-opacity);
-  mix-blend-mode: var(--grain-blend);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.13 0 0 0 0 0.25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 ::selection {
-  background: var(--stress);
-  color: var(--on-spot);
+  background: var(--accent);
+  color: #1b2b48;
 }
 
 :focus-visible {
-  outline: 2.5px solid var(--focus);
-  outline-offset: 3px;
-  border-radius: 8px;
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-/* Display type: Bricolage Grotesque with optical sizing; tight, confident. */
 .font-display {
   font-family: var(--font-display);
-  font-optical-sizing: auto;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
-.tabular {
+/* Numbers line up in lists and charts. */
+.tabular,
+.font-mono {
   font-variant-numeric: tabular-nums;
 }
 
-/* ── Riso print effects ──────────────────────────────────────────────── */
-
-/* Mis-registered second ink layer behind a shape. */
-.riso-shadow {
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0 var(--riso, var(--ink));
+/* Inline text links: clearly recognisable as links (colour + underline). */
+.text-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-/* Headline with an offset pink pass, like a two-colour print slightly off register. */
-.riso-text {
-  text-shadow: 0.045em 0.04em 0 var(--riso, var(--symptom));
-}
-
-/* Halftone dot fill. */
-.halftone {
-  background-image: radial-gradient(circle at center, var(--dot, var(--ink)) 0.9px, transparent 1.3px);
-  background-size: 6px 6px;
-}
-
-/* Perforated divider, like a tear-off ticket. */
-.perforation {
-  background-image: radial-gradient(circle, var(--line-strong) 1.2px, transparent 1.6px);
-  background-size: 9px 3px;
-  background-repeat: repeat-x;
-  height: 3px;
-}
+/* Component classes live in the components layer, so Tailwind utilities can still override them. */
+@layer components {
+/* ── Surfaces ────────────────────────────────────────────────────────── */
 
 .paper-card {
   background: var(--card);
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Hide scrollbars on horizontal chip rails but keep them scrollable. */
+/* Elevated card (kept under the old class name used across components). */
+.riso-shadow {
+  box-shadow: var(--shadow-md);
+}
+
+/* Former print effect: now plain text. */
+.riso-text {
+  text-shadow: none;
+}
+
+/* Subtle dot pattern: secondary encoding for reference bars in charts (not colour alone). */
+.halftone {
+  background-image: radial-gradient(circle at center, var(--dot, var(--ink-soft)) 0.9px, transparent 1.3px);
+  background-size: 5px 5px;
+}
+
+/* Simple divider. */
+.perforation {
+  height: 1px;
+  background: var(--line);
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }
@@ -230,15 +227,9 @@ body::after {
   display: none;
 }
 
-/* Safe-area helpers for the bottom action dock. */
 .pb-safe {
   padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
 }
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -249,15 +240,5 @@ body::after {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* Transform only: animating opacity would delay Largest Contentful Paint. */
-@keyframes rise {
-  from {
-    transform: translateY(14px);
-  }
-  to {
-    transform: none;
   }
 }

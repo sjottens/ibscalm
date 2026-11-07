@@ -63,7 +63,7 @@ function BottomNav({ pathname }: { pathname: string }) {
   return (
     <nav
       aria-label={t("label")}
-      className="fixed inset-x-0 bottom-0 z-30 border-t-[1.5px] border-line bg-paper/92 backdrop-blur-md"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 backdrop-blur-md"
     >
       <ul className="pb-safe mx-auto grid max-w-xl grid-cols-4 px-2 pt-1.5">
         {NAV.map(({ href, key, Icon }) => {
@@ -81,7 +81,7 @@ function BottomNav({ pathname }: { pathname: string }) {
                 {active ? (
                   <motion.span
                     layoutId="nav-active"
-                    className="absolute top-1 h-8 w-14 rounded-full bg-stress"
+                    className="absolute top-1 h-8 w-14 rounded-full bg-paper-deep"
                     transition={{ type: "spring", stiffness: 500, damping: 34 }}
                   />
                 ) : null}

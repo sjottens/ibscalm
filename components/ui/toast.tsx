@@ -4,11 +4,11 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect } from "react";
 import { useUi } from "@/lib/store/ui";
 import { cn } from "@/lib/cn";
-import { CheckIcon } from "./icons";
+import { CheckIcon, InfoIcon } from "./icons";
 
 /**
- * The "stamp": after saving, a rubber-stamp mark thumps onto the page at a slight angle.
- * Error and info toasts use the same position without the stamp motion.
+ * Feedback after an action (ISO 9241-110: self-descriptiveness, error tolerance):
+ * a short confirmation at the top, readable by screen readers, with "undo" where an action is reversible.
  */
 export function ToastHost() {
   const toast = useUi((s) => s.toast);
@@ -17,7 +17,7 @@ export function ToastHost() {
 
   useEffect(() => {
     if (!toast) return;
-    const id = setTimeout(dismiss, toast.action ? 5000 : 2400);
+    const id = setTimeout(dismiss, toast.action ? 6000 : 3000);
     return () => clearTimeout(id);
   }, [toast, dismiss]);
 
@@ -28,30 +28,17 @@ export function ToastHost() {
           {toast ? (
             <motion.div
               key={toast.id}
-              initial={reduce ? { opacity: 0 } : toast.tone === "stamp" ? { opacity: 0, scale: 1.7, rotate: -9 } : { opacity: 0, y: -16 }}
-              animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, rotate: toast.tone === "stamp" ? -3.5 : 0, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.18 } }}
-              transition={{ type: "spring", stiffness: 700, damping: 22, mass: 0.7 }}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0.15 } }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className={cn(
-                "pointer-events-auto flex items-center gap-3 rounded-2xl border-[2.5px] bg-card px-4 py-2.5 shadow-[0_10px_30px_rgb(18_20_42/0.18)]",
-                toast.tone === "stamp" && "border-symptom text-symptom-ink",
-                toast.tone === "info" && "border-ink text-ink",
-                toast.tone === "error" && "border-danger text-danger",
+                "pointer-events-auto flex min-h-12 items-center gap-3 rounded-lg px-4 py-2 shadow-[var(--shadow-md)]",
+                toast.tone === "error" ? "bg-danger text-white" : "bg-ink text-paper",
               )}
             >
-              {toast.tone === "stamp" ? (
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-symptom text-on-spot">
-                  <CheckIcon size={16} strokeWidth={3} />
-                </span>
-              ) : null}
-              <span
-                className={cn(
-                  "font-display font-extrabold",
-                  toast.tone === "stamp" ? "text-lg uppercase tracking-[0.08em]" : "text-base",
-                )}
-              >
-                {toast.message}
-              </span>
+              {toast.tone === "error" ? <InfoIcon size={20} /> : <CheckIcon size={20} strokeWidth={2.6} />}
+              <span className="font-semibold">{toast.message}</span>
               {toast.action ? (
                 <button
                   type="button"
@@ -59,7 +46,7 @@ export function ToastHost() {
                     toast.action!.run();
                     dismiss();
                   }}
-                  className="ml-1 min-h-11 rounded-xl px-3 font-semibold text-ink underline decoration-2 underline-offset-4"
+                  className="ml-1 min-h-11 rounded-md px-3 font-bold text-accent underline underline-offset-4"
                 >
                   {toast.action.label}
                 </button>

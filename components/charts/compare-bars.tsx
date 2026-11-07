@@ -36,8 +36,8 @@ export function CompareBars({
             {r.value !== null ? (
               <span
                 className={cn(
-                  "absolute inset-y-0 left-0 rounded-r-[4px] border-r-[1.5px] border-ink",
-                  r.emphasis ? cn(fill, "border-y-[1.5px] border-l-[1.5px] rounded-l-md") : "halftone [--dot:var(--ink-soft)]",
+                  "absolute inset-y-0 left-0 rounded-r-[4px]",
+                  r.emphasis ? cn(fill, "rounded-l-md") : "halftone border-r-2 border-ink-soft [--dot:var(--ink-soft)]",
                 )}
                 style={{ width: `${Math.max(2, Math.min(100, (r.value / max) * 100))}%` }}
               />
@@ -69,8 +69,8 @@ export function ChartCard({
   id?: string;
 }) {
   return (
-    <section className="paper-card riso-shadow p-5" style={{ ["--riso" as string]: riso }} aria-labelledby={id}>
-      <h2 id={id} className="font-display text-[1.35rem] font-extrabold leading-tight">
+    <section className="paper-card p-5" data-accent={riso} aria-labelledby={id}>
+      <h2 id={id} className="text-[1.3rem] font-extrabold leading-tight">
         {title}
       </h2>
       {body ? <p className="mt-1 text-sm text-ink-soft">{body}</p> : null}

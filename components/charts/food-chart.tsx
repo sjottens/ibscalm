@@ -40,14 +40,14 @@ export function FoodChart({ tags, config, tagLabel }: { tags: TagEffect[]; confi
             <li key={row.tag}>
               <div className="mb-1 flex items-baseline justify-between gap-3">
                 <span className="truncate font-semibold">{tagLabel(row.tag)}</span>
-                <span className="tabular shrink-0 font-mono text-xs text-ink-soft">
+                <span className="tabular shrink-0 text-sm text-ink-soft">
                   <span className="font-bold text-ink">{percent(row.exposed.rate)}</span> · {percent(row.reference.rate)} · n={row.exposed.n}
                   {few ? <span className="ml-1.5 rounded-full bg-paper-deep px-1.5 py-0.5 font-sans">{t("few")}</span> : null}
                 </span>
               </div>
               <div className="relative h-4 rounded-md bg-paper-deep" aria-hidden>
                 <div
-                  className={cn("absolute inset-y-0 left-0 rounded-md border-[1.5px] border-ink", few ? "halftone bg-symptom-wash [--dot:var(--symptom-ink)]" : "bg-symptom")}
+                  className={cn("absolute inset-y-0 left-0 rounded-md", few ? "halftone bg-symptom-wash [--dot:var(--symptom-ink)]" : "bg-symptom")}
                   style={{ width: `${Math.max(3, w)}%` }}
                 />
                 <div className="absolute -inset-y-1 w-[3px] -translate-x-1/2 rounded-full bg-ink" style={{ left: `${ref}%` }} />

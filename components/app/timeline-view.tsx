@@ -80,7 +80,7 @@ export function TimelineView() {
     <div className="px-4 pb-44 pt-[max(env(safe-area-inset-top),1.25rem)]">
       <header className="flex items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-ink-soft">
+          <p className="text-sm font-semibold text-ink-soft">
             {t("timeline.week")} {isoWeek(date)}
           </p>
           <h1 className="font-display text-[2.2rem] font-extrabold leading-none">{t("timeline.title")}</h1>
@@ -99,7 +99,7 @@ export function TimelineView() {
           type="button"
           onClick={() => go(addDays(date, -1))}
           aria-label={t("timeline.prev")}
-          className="grid h-12 w-12 place-items-center rounded-full border-[1.5px] border-line-strong transition hover:border-ink active:scale-90"
+          className="grid h-12 w-12 place-items-center rounded-full border border-line-strong transition hover:border-ink active:scale-90"
         >
           <ChevronLeftIcon />
         </button>
@@ -111,7 +111,7 @@ export function TimelineView() {
           onClick={() => go(addDays(date, 1))}
           aria-label={t("timeline.next")}
           disabled={isToday}
-          className="grid h-12 w-12 place-items-center rounded-full border-[1.5px] border-line-strong transition hover:border-ink active:scale-90 disabled:opacity-30"
+          className="grid h-12 w-12 place-items-center rounded-full border border-line-strong transition hover:border-ink active:scale-90 disabled:opacity-30"
         >
           <ChevronRightIcon />
         </button>
@@ -123,14 +123,14 @@ export function TimelineView() {
             key={date}
             custom={direction}
             variants={{
-              enter: (d: number) => (reduce ? { opacity: 0 } : { x: d * 80, opacity: 0, rotate: d * 1.2 }),
-              center: { x: 0, opacity: 1, rotate: 0 },
-              exit: (d: number) => (reduce ? { opacity: 0 } : { x: d * -80, opacity: 0, rotate: d * -1.2 }),
+              enter: (d: number) => (reduce ? { opacity: 0 } : { x: d * 60, opacity: 0 }),
+              center: { x: 0, opacity: 1 },
+              exit: (d: number) => (reduce ? { opacity: 0 } : { x: d * -60, opacity: 0 }),
             }}
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ type: "spring", stiffness: 420, damping: 36 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             drag={reduce ? false : "x"}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.25}
@@ -184,12 +184,12 @@ function WeekStrip({ date, today, onSelect, locale }: { date: string; today: str
             aria-pressed={selected}
             aria-label={`${formatDayLong(d, locale)} — ${sev ? t("maxSeverity", { value: sev }) : t("noSymptoms")}`}
             className={cn(
-              "flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-2xl border-[1.5px] transition",
-              selected ? "border-ink bg-ink text-paper" : "border-line hover:border-ink",
+              "flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-lg border transition",
+              selected ? "border-ink bg-ink text-paper" : "border-line-strong bg-card hover:border-ink-soft",
               future && "opacity-35",
             )}
           >
-            <span className="font-mono text-[0.68rem] uppercase">{formatWeekdayNarrow(d, locale)}</span>
+            <span className="text-[0.8rem] font-semibold">{formatWeekdayNarrow(d, locale)}</span>
             <span className="tabular font-display text-lg font-bold leading-none">{parseDayKey(d).getDate()}</span>
             <span
               aria-hidden
@@ -215,7 +215,7 @@ function DayPanel({ date, isToday }: { date: string; isToday: boolean }) {
 
   return (
     <div className="space-y-4">
-      <div className="paper-card riso-shadow p-4 [--riso:var(--sleep)]">
+      <div className="paper-card p-4">
         <DayStrip entries={entries} nowHour={isToday && now ? localHour(now) : null} className="h-auto w-full" />
         <div className="perforation my-3" />
         <button type="button" onClick={() => openDay(date)} className="flex min-h-11 w-full items-center gap-2 rounded-xl px-1 text-left text-sm hover:bg-paper-deep">
@@ -227,7 +227,7 @@ function DayPanel({ date, isToday }: { date: string; isToday: boolean }) {
         </button>
       </div>
       {entries.length === 0 ? (
-        <div className="flex flex-col items-center rounded-[var(--radius-card)] border-[1.5px] border-dashed border-line-strong px-6 py-8 text-center">
+        <div className="flex flex-col items-center paper-card px-6 py-8 text-center">
           <EmptyIllustration variant="day" className="h-20" />
           <p className="mt-3 font-display text-lg font-bold">{t("timeline.empty")}</p>
           <p className="mt-1 text-sm text-ink-soft">{t("timeline.emptyHint")}</p>

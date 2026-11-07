@@ -46,7 +46,7 @@ export function DayStrip({
               y={H - 1}
               textAnchor={h === 0 ? "start" : h === 24 ? "end" : "middle"}
               fontSize="9"
-              fontFamily="var(--font-geist-mono)"
+              fontFamily="var(--font-figtree)"
               fill="var(--ink-soft)"
             >
               {String(h).padStart(2, "0")}

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { Figtree } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,16 +9,8 @@ import { themeScript } from "@/lib/theme";
 import { Providers } from "@/components/app/providers";
 import "../globals.css";
 
-const display = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-bricolage",
-  axes: ["opsz"],
-  display: "swap",
-  // Body text (Geist) is the LCP element; headings may swap in a moment later.
-  preload: false,
-});
-const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap", preload: false });
+// One humanist sans for everything: calm, highly legible, professional.
+const sans = Figtree({ subsets: ["latin"], variable: "--font-figtree", display: "swap" });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -48,8 +40,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f1e7" },
-    { media: "(prefers-color-scheme: dark)", color: "#12142a" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f1b2e" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -63,7 +55,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const t = await getTranslations({ locale, namespace: "common" });
 
   return (
-    <html lang={locale} className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={sans.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

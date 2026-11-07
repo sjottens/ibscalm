@@ -46,7 +46,7 @@ export function InsightsView() {
           title={t("emptyTitle")}
           body={t("emptyBody")}
           action={
-            <Link href="/vandaag" className="inline-flex min-h-12 items-center gap-2 rounded-2xl bg-ink px-5 font-semibold text-paper riso-shadow [--riso:var(--symptom)]">
+            <Link href="/vandaag" className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-5 font-bold text-[#1b2b48]">
               {t("emptyCta")} <ArrowRightIcon size={18} />
             </Link>
           }
@@ -61,7 +61,7 @@ export function InsightsView() {
   return (
     <div className="space-y-5 px-4 pb-10 pt-[max(env(safe-area-inset-top),1.25rem)]">
       <header>
-        <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-ink-soft">
+        <p className="text-sm font-semibold text-ink-soft">
           {t("nDays", { n: summary.daysTracked })}
         </p>
         <h1 className="font-display text-[2.2rem] font-extrabold leading-none">{t("title")}</h1>
@@ -73,12 +73,12 @@ export function InsightsView() {
       <motion.section
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-[var(--radius-card)] border-[1.5px] border-ink bg-card p-5 riso-shadow [--riso:var(--symptom)]"
+        className="paper-card relative overflow-hidden border-l-4 border-l-ink p-5"
         aria-labelledby="summary-title"
       >
-        <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-ink-soft">{t("summaryKicker")}</p>
+        <p className="text-sm font-semibold text-ink-soft">{t("summaryKicker")}</p>
         {summary.status === "found" ? (
-          <h2 id="summary-title" className="mt-2 font-display text-[1.75rem] font-extrabold leading-[1.08]">
+          <h2 id="summary-title" className="mt-2 text-[1.6rem] font-black leading-tight">
             {t("summaryFound")}{" "}
             {summary.factors.map((f, i) => (
               <span key={f}>
@@ -197,7 +197,7 @@ function GroupBars({ g, exposed, reference, spot, empty }: { g: GroupComparison;
 function ConfidenceBadge({ level, label }: { level: "low" | "medium" | "high"; label: string }) {
   const filled = level === "low" ? 1 : level === "medium" ? 2 : 3;
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink px-2.5 py-0.5">
+    <span className="inline-flex items-center gap-2 rounded-full border border-ink px-2.5 py-0.5">
       <span aria-hidden className="flex gap-0.5">
         {[1, 2, 3].map((i) => (
           <span key={i} className={cn("h-2.5 w-1.5 rounded-sm", i <= filled ? "bg-ink" : "bg-line-strong")} />
@@ -213,7 +213,7 @@ function Collecting({ days, min, progress }: { days: number; min: number; progre
   const R = 34;
   const C = 2 * Math.PI * R;
   return (
-    <section className="flex items-center gap-4 rounded-[var(--radius-card)] border-[1.5px] border-dashed border-line-strong p-4" aria-labelledby="collecting-title">
+    <section className="flex items-center gap-4 paper-card p-4" aria-labelledby="collecting-title">
       <svg width="88" height="88" viewBox="0 0 88 88" role="img" aria-label={`${days}/${min}`} className="shrink-0">
         <circle cx="44" cy="44" r={R} fill="none" stroke="var(--paper-deep)" strokeWidth="10" />
         <motion.circle
@@ -230,7 +230,7 @@ function Collecting({ days, min, progress }: { days: number; min: number; progre
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           transform="rotate(-90 44 44)"
         />
-        <text x="44" y="50" textAnchor="middle" fontSize="18" fontWeight="800" fill="var(--ink)" fontFamily="var(--font-bricolage)">
+        <text x="44" y="50" textAnchor="middle" fontSize="18" fontWeight="800" fill="var(--ink)" fontFamily="var(--font-figtree)">
           {days}/{min}
         </text>
       </svg>

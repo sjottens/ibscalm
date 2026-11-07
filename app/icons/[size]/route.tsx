@@ -7,34 +7,27 @@ const SIZES: Record<string, { size: number; pad: number }> = {
   "180": { size: 180, pad: 0 },
   "192": { size: 192, pad: 0 },
   "512": { size: 512, pad: 0 },
-  // Maskable icons need ~10% safe zone on each side.
-  maskable: { size: 512, pad: 0.14 },
+  // Maskable icons need a safe zone; the wave stays well inside it.
+  maskable: { size: 512, pad: 0.12 },
 };
 
 export function generateStaticParams() {
   return Object.keys(SIZES).map((size) => ({ size }));
 }
 
-/** App icon: a pink belly over a yellow offset print, with an ink wave, on warm paper. */
+/** App icon: navy square with the yellow "calm wave". */
 export async function GET(_: Request, { params }: { params: Promise<{ size: string }> }) {
   const { size: key } = await params;
   const { size, pad } = SIZES[key] ?? SIZES["512"];
-  const inner = size * (1 - pad * 2);
-  const r = inner * 0.3;
-  const c = size / 2;
+  const s = (size * (1 - pad * 2)) / 48;
+  const off = size * pad;
   return new ImageResponse(
     (
-      <div style={{ width: size, height: size, display: "flex", background: "#f6f1e7", position: "relative" }}>
+      <div style={{ width: size, height: size, display: "flex", background: "#1b2b48" }}>
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-          <circle cx={c + r * 0.12} cy={c + r * 0.12} r={r} fill="#f5c84b" />
-          <circle cx={c - r * 0.06} cy={c - r * 0.06} r={r} fill="#f2668b" />
-          <path
-            d={`M${c - r * 0.55} ${c + r * 0.05} q ${r * 0.275} ${-r * 0.32} ${r * 0.55} 0 t ${r * 0.55} 0`}
-            stroke="#1d2340"
-            strokeWidth={r * 0.13}
-            fill="none"
-            strokeLinecap="round"
-          />
+          <g transform={`translate(${off} ${off}) scale(${s})`}>
+            <path d="M10 26c3.5-6 7-6 10 0s5.5 4.5 8 0 5-3 10-1" stroke="#f5d33d" strokeWidth="4" fill="none" strokeLinecap="round" />
+          </g>
         </svg>
       </div>
     ),

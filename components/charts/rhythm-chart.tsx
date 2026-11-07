@@ -58,7 +58,7 @@ export function RhythmChart({ days }: { days: DaySummary[] }) {
         {[0, 5, 10].map((v) => (
           <line key={v} x1={0} x2={W} y1={ySev(v)} y2={ySev(v)} stroke="var(--line)" strokeDasharray={v === 0 ? undefined : "2 4"} />
         ))}
-        <text x={W} y={ySev(10) - 2} textAnchor="end" fontSize="9" fill="var(--ink-soft)" fontFamily="var(--font-geist-mono)">
+        <text x={W} y={ySev(10) - 2} textAnchor="end" fontSize="9" fill="var(--ink-soft)" fontFamily="var(--font-figtree)">
           10
         </text>
         <line x1={0} x2={W} y1={yStress + rowH.stress / 2} y2={yStress + rowH.stress / 2} stroke="var(--line)" />
@@ -102,12 +102,12 @@ export function RhythmChart({ days }: { days: DaySummary[] }) {
         })}
         {/* first / last date labels */}
         {first ? (
-          <text x={0} y={H - 2} fontSize="9.5" fill="var(--ink-soft)" fontFamily="var(--font-geist-mono)">
+          <text x={0} y={H - 2} fontSize="9.5" fill="var(--ink-soft)" fontFamily="var(--font-figtree)">
             {formatDayShort(first, locale)}
           </text>
         ) : null}
         {last ? (
-          <text x={W} y={H - 2} textAnchor="end" fontSize="9.5" fill="var(--ink-soft)" fontFamily="var(--font-geist-mono)">
+          <text x={W} y={H - 2} textAnchor="end" fontSize="9.5" fill="var(--ink-soft)" fontFamily="var(--font-figtree)">
             {formatDayShort(last, locale)}
           </text>
         ) : null}
@@ -115,7 +115,7 @@ export function RhythmChart({ days }: { days: DaySummary[] }) {
 
       {activeDay ? (
         <div
-          className="pointer-events-none absolute top-6 z-10 rounded-xl border-[1.5px] border-ink bg-card px-3 py-2 text-xs shadow-lg"
+          className="pointer-events-none absolute top-6 z-10 rounded-xl border border-ink bg-card px-3 py-2 text-xs shadow-lg"
           style={{
             left: `${Math.min(70, Math.max(0, (((x(activeDay) ?? 0) + bw / 2) / W) * 100 - 15))}%`,
           }}

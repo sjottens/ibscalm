@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "{brand} — a diary for your gut",
-    "description": "Track food, symptoms, stress and sleep, and after a few weeks discover what your IBS symptoms seem to relate to. Everything stays on your own phone.",
-    "ogAlt": "{brand}: food, stress or sleep? Find out what your gut does."
+    "title": "{brand} — IBS diary: track your symptoms and find your triggers",
+    "description": "Free IBS symptom diary. Track food, gut symptoms, stress and sleep, and after two weeks see what your symptoms seem to relate to. No account, private on your phone.",
+    "ogAlt": "{brand}: IBS diary for food, symptoms, stress and sleep"
   },
   "common": {
     "save": "Save",
@@ -19,7 +19,7 @@
     "today": "Today",
     "yesterday": "Yesterday",
     "done": "Done",
-    "loading": "Turning pages…",
+    "loading": "Loading…",
     "optional": "optional",
     "addNote": "Add a note",
     "note": "Note",
@@ -94,83 +94,119 @@
     "word": "{value, select, 1 {a little} 2 {some} 3 {quite} 4 {a lot} other {very much}}"
   },
   "bristol": {
-    "label": "Stool (Bristol)",
-    "hint": "Optional. Type 1 is hard, type 7 is watery.",
     "1": "hard lumps",
     "2": "lumpy sausage",
     "3": "cracked sausage",
     "4": "smooth sausage",
     "5": "soft blobs",
     "6": "mushy",
-    "7": "watery"
+    "7": "watery",
+    "label": "Stool (Bristol)",
+    "hint": "Optional. Type 1 is hard, type 7 is watery."
   },
   "landing": {
     "nav": {
       "how": "How it works",
+      "about": "About IBS",
+      "faq": "FAQ",
       "privacy": "Privacy",
       "open": "Open the app"
     },
-    "kicker": "A diary for IBS",
-    "title": "Food, stress or sleep?",
-    "titleAccent": "Find out what your gut does.",
-    "lead": "Log what you eat, how your gut feels and how tense you are in ten seconds. After a few weeks, {brand} shows what your symptoms seem to relate to.",
-    "cta": "Start tracking",
-    "ctaSecondary": "How does it work?",
+    "kicker": "Free IBS diary",
+    "title": "Track your gut symptoms and find out what triggers them",
+    "titleAccent": "",
+    "lead": "{brand} is a simple diary for people with irritable bowel syndrome (IBS). Log what you eat, your symptoms, when you feel stressed and how you sleep in a few seconds. After two weeks you'll see what your symptoms seem to relate to.",
+    "cta": "Start tracking for free",
+    "ctaSecondary": "See how it works",
     "free": "Free · no account · works offline",
-    "stepsTitle": "Three steps, no fuss",
+    "trust": {
+      "free": "Free and ad-free",
+      "account": "No account needed",
+      "device": "Data stays on your phone"
+    },
+    "stepsTitle": "How it works",
+    "stepsLead": "Three steps, no complicated screens.",
     "steps": {
       "one": {
         "title": "Log",
-        "body": "Three big buttons: food, symptom, stress. The time is already set. Done before your coffee cools."
+        "body": "Choose Food, Symptom or Stress. The time is already filled in. An entry takes about ten seconds."
       },
       "two": {
-        "title": "See the pattern",
-        "body": "After about two weeks you'll see whether your symptoms mostly go with what you eat, with stress, or with your sleep."
+        "title": "See your patterns",
+        "body": "After about two weeks, {brand} shows whether your symptoms mostly relate to food, stress or sleep."
       },
       "three": {
-        "title": "Talk it through",
-        "body": "Bring your overview to your GP or a gastro dietitian. Export it as a file whenever you like."
+        "title": "Discuss it",
+        "body": "Take your overview to your GP or a gastro dietitian. You can export everything as a file."
       }
     },
-    "loopTitle": "Gut and mind talk to each other",
-    "loopBody": "Stress can make your gut more restless, and a restless gut causes stress. Sometimes before anything happens: the tension before a train ride or an appointment. {brand} tracks that ‘stress beforehand’ separately, so you can see the loop.",
+    "trackTitle": "What can you track?",
+    "track": {
+      "meal": {
+        "title": "Food",
+        "body": "Meals with tags such as onion/garlic, dairy, wheat or legumes, and the portion size."
+      },
+      "symptom": {
+        "title": "Symptoms",
+        "body": "Pain, bloating, cramps or diarrhoea, with severity from 0 to 10 and the Bristol stool scale."
+      },
+      "stress": {
+        "title": "Stress",
+        "body": "How tense you are and why. Including stress beforehand, out of worry about symptoms."
+      },
+      "sleep": {
+        "title": "Sleep and day",
+        "body": "How you slept, water, movement and, if you like, data from your smartwatch."
+      }
+    },
+    "aboutTitle": "What is IBS?",
+    "aboutBody1": "Irritable bowel syndrome (IBS) is a common condition of the gut. Symptoms include abdominal pain, bloating, cramps, diarrhoea or constipation. Symptoms often vary from day to day.",
+    "aboutBody2": "What triggers symptoms differs per person. Certain foods (such as onion, garlic, dairy or wheat), stress and poor sleep can play a role. Gut and brain influence each other: tension can worsen symptoms, and symptoms cause tension. A diary helps you see your personal pattern.",
+    "aboutMore": "Read more about IBS on the NHS website",
+    "loopTitle": "Stress and gut symptoms reinforce each other",
+    "loopBody": "Tension can make your gut more restless, and a restless gut causes tension. Sometimes before anything happens, such as before a train journey or an appointment. {brand} tracks this ‘stress beforehand’ separately, so you can see the connection.",
     "privacyKicker": "Privacy",
-    "privacyTitle": "Your gut is nobody's business.",
-    "privacyBody": "Everything you enter stays on your own phone. No account, no server keeping your data, no tracker watching. We can't see your data, even if we wanted to.",
+    "privacyTitle": "Your data stays yours",
+    "privacyBody": "Everything you enter is stored only on your own phone. There is no account, no server keeping your data and no trackers. We cannot see your data.",
     "privacyPoints": {
-      "device": "Stored on your device",
-      "noAccount": "No account needed",
+      "device": "Stored on your own device",
+      "noAccount": "No account or email needed",
       "noTracking": "No trackers or ads",
       "export": "Export and erase whenever you want"
     },
     "privacyLink": "Read the privacy statement",
     "insightKicker": "Insights",
-    "insightTitle": "No charts for the sake of charts.",
-    "insightBody": "A summary in plain language, with how much data it is based on. Carefully worded: {brand} shows patterns and never diagnoses.",
-    "faqTitle": "Questions",
+    "insightTitle": "Clear insights in plain language",
+    "insightBody": "No complicated charts, but a summary of what your symptoms seem to relate to, with how much data it is based on. {brand} shows patterns and never diagnoses.",
+    "faqTitle": "Frequently asked questions",
     "faq": {
-      "q1": "Is this medical advice?",
-      "a1": "No. {brand} shows patterns in what you track yourself. Always discuss what you see with your GP or a (gastro) dietitian before changing your diet or lifestyle.",
-      "q2": "Where is my data stored?",
-      "a2": "Only in your browser on this device (IndexedDB). Make a backup now and then via Settings, because clearing your browser data erases it.",
-      "q3": "Does it work without internet?",
-      "a3": "Yes. After your first visit you can install {brand} on your home screen and everything works offline.",
-      "q4": "What does it cost?",
-      "a4": "Nothing. No subscriptions and no ads."
+      "q1": "Is {brand} free?",
+      "a1": "Yes. {brand} is free, without subscriptions or ads.",
+      "q2": "Is this medical advice?",
+      "a2": "No. {brand} shows patterns in what you track yourself. Always discuss what you see with your GP or a (gastro) dietitian before changing your diet or lifestyle.",
+      "q3": "Where is my data stored?",
+      "a3": "Only in the browser on your own device. Nothing is sent to a server. Make a backup now and then via Settings, because clearing your browser data erases it.",
+      "q4": "How long should I track?",
+      "a4": "The first patterns appear after about two weeks. The longer and more completely you track, the more reliable the insights.",
+      "q5": "Does it work without internet?",
+      "a5": "Yes. After your first visit you can add {brand} to your home screen and everything works offline.",
+      "q6": "Does this help with the low-FODMAP diet?",
+      "a6": "{brand} can help you track how you respond to foods, for example during reintroduction. Preferably follow a low-FODMAP diet with guidance from a gastro dietitian."
     },
-    "finalTitle": "Start today. Your gut will tell the rest.",
-    "footerDisclaimer": "{brand} gives insight into patterns and is not a medical device. It does not diagnose or give treatment advice.",
-    "footerMade": "Made with care, without trackers.",
+    "finalTitle": "Start tracking today",
+    "finalBody": "Free, no account and private on your own phone.",
+    "footerDisclaimer": "{brand} gives insight into patterns and is not a medical device. It does not diagnose or give treatment advice. Persistent or new symptoms? Contact your GP.",
+    "footerMade": "Made without trackers.",
     "mock": {
       "date": "Sat 7 Nov",
-      "headline": "Calm morning.",
+      "headline": "Today",
       "breakfast": "Oats with banana",
       "lunch": "Hummus wrap",
-      "symptom": "bloated",
-      "stress": "deadline",
+      "symptom": "Bloated",
+      "stress": "Deadline",
       "summary": "Seems mostly related to",
       "factor": "food",
-      "detail": "onion/garlic · symptom 11 of 12 times"
+      "detail": "onion/garlic: symptom 11 of 12 times"
     }
   },
   "privacy": {
@@ -210,39 +246,39 @@
     "step": "Step {current} of {total}",
     "s1": {
       "kicker": "Welcome to {brand}",
-      "title": "A diary for your gut.",
+      "title": "A diary for your gut",
       "body": "Log what you eat, when your gut acts up and when you're stressed. It takes a few taps each time."
     },
     "s2": {
       "kicker": "How it works",
-      "title": "After two weeks, patterns appear.",
+      "title": "After two weeks, patterns appear",
       "body": "{brand} compares your symptoms with your food, stress and sleep. The more you log, the clearer the picture."
     },
     "s3": {
       "kicker": "Privacy",
-      "title": "Everything stays on this device.",
+      "title": "Everything stays on this device",
       "body": "No account, no server, no trackers. Make a backup now and then, because we can't restore anything for you."
     },
     "s4": {
       "kicker": "Important",
-      "title": "Insight, not a diagnosis.",
+      "title": "Insight, not a diagnosis",
       "body": "{brand} shows what seems related. That is not medical advice. Discuss patterns with your GP or a (gastro) dietitian before changing anything.",
       "agree": "Understood"
     },
     "s5": {
       "kicker": "Almost there",
-      "title": "What do you want to keep an eye on?",
+      "title": "What do you want to track?",
       "body": "Pick the food tags you'll use often. They'll appear first. You can always change this later.",
       "start": "Start tracking"
     }
   },
   "today": {
     "greeting": {
-      "empty": "A blank page.",
-      "calm": "A calm day.",
-      "mixed": "A mixed day.",
-      "rough": "A rough day.",
-      "roughSub": "Good that you're keeping track. Be a little kind to yourself today."
+      "empty": "Nothing logged yet",
+      "calm": "Today",
+      "mixed": "Today",
+      "rough": "Today",
+      "roughSub": "A hard day? Log what you notice. It helps you see patterns later."
     },
     "summary": "{meals, plural, =0 {no meals} one {# meal} other {# meals}} · {symptoms, plural, =0 {no symptoms} one {# symptom} other {# symptoms}} · {stress, plural, =0 {no stress} one {# stress moment} other {# stress moments}}",
     "emptyTitle": "Start with your first entry",
