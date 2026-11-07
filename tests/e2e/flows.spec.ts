@@ -31,6 +31,12 @@ test.describe("landing", () => {
     await menu.getByRole("link", { name: "Vragen" }).click();
     await expect(page).toHaveURL(/#vragen$/);
     await expect(menu).toBeHidden();
+    // Sticky header stays on top, and the section heading lands below it (not hidden behind it).
+    await page.waitForTimeout(800);
+    const header = await page.locator("header.site-header").boundingBox();
+    const heading = await page.getByRole("heading", { name: "Veelgestelde vragen" }).boundingBox();
+    expect(header!.y).toBe(0);
+    expect(heading!.y).toBeGreaterThanOrEqual(header!.height);
     await page.getByRole("button", { name: "Menu openen" }).click();
     await page.keyboard.press("Escape");
     await expect(menu).toBeHidden();

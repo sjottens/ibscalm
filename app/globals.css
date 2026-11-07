@@ -158,6 +158,12 @@ body {
   overflow-x: clip;
 }
 
+/* Pages with the sticky site header: anchor jumps stop below the header, not behind it. */
+html:has(.site-header) {
+  scroll-padding-top: calc(4.5rem + env(safe-area-inset-top) + 0.5rem);
+  scroll-behavior: smooth;
+}
+
 ::selection {
   background: var(--accent);
   color: #1b2b48;

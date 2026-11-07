@@ -29,7 +29,7 @@ export async function SiteHeader() {
   const other = locale === "nl" ? "en" : "nl";
   const navLink = "inline-flex min-h-11 items-center rounded-md px-3 hover:bg-paper-deep";
   return (
-    <header className="relative z-30 border-b border-line bg-paper">
+    <header className="site-header sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur-md supports-[not(backdrop-filter:blur(1px))]:bg-paper">
       <div className="mx-auto flex min-h-[4.5rem] w-full max-w-6xl items-center justify-between gap-2 px-4 pt-[env(safe-area-inset-top)] sm:gap-4 sm:px-8">
         <Link href="/" aria-label={`${BRAND.name} — home`} className="inline-flex min-h-12 items-center rounded-md">
           <Logo size="md" />
@@ -128,7 +128,7 @@ export async function Landing() {
       </section>
 
       {/* ── How it works (navy band) ───────────────────────────────── */}
-      <section id="hoe-het-werkt" className="scroll-mt-4 bg-ink text-paper" aria-labelledby="steps-title">
+      <section id="hoe-het-werkt" className="bg-ink text-paper" aria-labelledby="steps-title">
         <div className={`${container} py-16`}>
           <h2 id="steps-title" className={h2}>
             {t("stepsTitle")}
@@ -174,7 +174,7 @@ export async function Landing() {
       </section>
 
       {/* ── About IBS (informational content) ──────────────────────── */}
-      <section id="over-pds" className="scroll-mt-4 border-y border-line bg-paper-deep" aria-labelledby="about-title">
+      <section id="over-pds" className="border-y border-line bg-paper-deep" aria-labelledby="about-title">
         <div className={`${container} grid gap-10 py-16 md:grid-cols-2`}>
           <div>
             <h2 id="about-title" className={h2}>
@@ -239,7 +239,7 @@ export async function Landing() {
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────────────── */}
-      <section id="vragen" className="mx-auto max-w-3xl scroll-mt-4 px-5 py-16 sm:px-8" aria-labelledby="faq-title">
+      <section id="vragen" className="mx-auto max-w-3xl px-5 py-16 sm:px-8" aria-labelledby="faq-title">
         <h2 id="faq-title" className={h2}>
           {t("faqTitle")}
         </h2>
